@@ -1,0 +1,110 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: white;
+    padding-left: 16px;
+    padding-right: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #f1f1f1;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.circle {
+    height: 35px;
+    width: 35px;
+    background-color: #a5b6c7;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.initials {
+    font-family: 'Barlow';
+    font-size: 20px;
+    color: white;
+}
+
+.logo {
+    font-family: 'Barlow';
+    font-size: 34px;
+    padding-left: 20px;
+}
+
+.nav-icon {
+    max-width: 10%;
+    height: auto;
+}
+
+.divider {
+    height: 1px;
+    background-color: #2a3b4c;
+    border: none;
+}
+
+.nav-primary {
+    background-color: #70969e;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: auto;
+    width: 15%;
+    z-index: 0;
+}
+
+.nav-primary a {
+    display: block;
+    padding: 15px;
+    color: #f1f1f1;
+    text-decoration: none;
+}
+
+.nav-primary a.active {
+    background-color: #acccc7;
+    color: white;
+}
+
+.nav-primary a:hover {
+    background-color: #acccc7;
+}
+
+.main-content {
+    padding-left: 30%;
+    padding-top: 2%;
+    width: 80%;
+}
+
+.form-content {
+    padding-top: 10px;
+}
+
+.form-button {
+    padding-top: 20px;
+}
