@@ -72,7 +72,7 @@
 .nav-primary {
     background-color: #70969e;
     height: 100%;
-    position: fixed;
+    position: absolute;
     left: 0;
     top: auto;
     width: 15%;
@@ -96,9 +96,9 @@
 }
 
 .main-content {
-    padding-left: 30%;
+    padding-left: 20%;
     padding-top: 2%;
-    width: 80%;
+    width: 90%;
 }
 
 .form-content {
@@ -107,4 +107,15 @@
 
 .form-button {
     padding-top: 20px;
+}
+
+.action-icon {
+    max-width: 70%;
+    height: auto;
+}
+
+.icon-container {
+    width: 30px;
+    height: auto;
+    display: flex;
 }
