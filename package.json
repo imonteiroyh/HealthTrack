@@ -1,0 +1,23 @@
+{
+  "name": "gerenciador_hospitalar",
+  "version": "1.0.0",
+  "description": "Um gerenciador hospitalar, para acelerar e facilitar o atendimento.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imonteiroyh/WEB.git"
+  },
+  "author": "Yago Oliveira e Vandemberg Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imonteiroyh/WEB/issues"
+  },
+  "homepage": "https://github.com/imonteiroyh/WEB#readme",
+  "dependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
