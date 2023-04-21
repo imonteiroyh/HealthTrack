@@ -119,3 +119,23 @@
     height: auto;
     display: flex;
 }
+
+.risk1 {
+    background-color: rgba(201,30,38,0.7);
+}
+
+.risk2 {
+    background-color: rgba(243,107,33,0.7)
+}
+
+.risk3 {
+    background-color: rgba(225,208,30,0.7)
+}
+
+.risk4 {
+    background-color: rgba(1,134,69,0.7)
+}
+
+.risk5 {
+    background-color: rgba(0,148,218,0.7)
+}
