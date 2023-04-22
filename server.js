@@ -10,15 +10,8 @@ app.use(express.static('public'))
 var initials = 'VM';
 
 const profiles = [
-    'attendant'
+    'attendant', 'risk-classification', 'doctor', 'admin'
 ]
-
-app.get('/', (req, res) => {
-    res.render('consultation-queue', {
-        initials: initials,
-        profile: profiles[0]
-    });
-});
 
 // Attendant routes
 app.get('/register-patient', (req, res) => {
@@ -34,8 +27,21 @@ app.get('/register-consultation', (req, res) => {
 });
 
 // Risk classification routes
+app.get('/risk-classification', (req, res) => {
+    res.render('risk-classification', {
+        initials: initials
+    });
+});
+
+// Doctor routes
 app.get('/consultation-queue', (req, res) => {
     res.render('consultation-queue', {
+        initials: initials
+    });
+});
+
+app.get('/visualization', (req, res) => {
+    res.render('visualization', {
         initials: initials
     });
 });

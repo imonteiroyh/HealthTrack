@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<!-- DOCTOR -->
+
+<html lang="en">
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: Visualização</title>
+    </head>
+
+    <body>
+
+        <%- include('partials/header', {initials}); %>
+
+        <nav class="nav-primary">
+            <% const currentPage = 'visualization'; %>
+            <%- include(`partials/doctor-sidebar`, {currentPage}); %>
+        </nav>
+
+        <div class="main-content">
+            
+        </div>
+
+    </body>
+
+</html>
