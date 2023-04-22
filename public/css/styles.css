@@ -139,3 +139,38 @@
 .risk5 {
     background-color: rgba(0,148,218,0.7)
 }
+
+.wrapper {
+    height: 100%;
+    background-color: #acccc7;
+}
+
+.login-box {
+    width: 30%;
+    height: 70%;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo-container {
+    height: 40%;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.logo-img {
+    height: 100%;
+    width: auto;
+    display: inline-block;
+}
+
+.btn-dark-green {
+    background-color: #70969e;
+}

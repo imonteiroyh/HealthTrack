@@ -8,10 +8,54 @@ app.set('views', './views');
 app.use(express.static('public'))
 
 var initials = 'VM';
+var profile;
+
+// profile = 'admin'
 
 const profiles = [
-    'attendant', 'risk-classification', 'doctor', 'admin'
+    'admin', 'doctor', 'risk-classification', 'attendant'
 ]
+
+app.get('/', (req, res) => {
+    switch (profile) {
+        case profiles[0]:
+            res.render('register', {
+                initials: initials
+            });
+            break;
+
+        case profiles[1]:
+            res.render('consultation-queue', {
+                initials: initials
+            });
+            break;
+
+        case profiles[2]:
+            res.render('risk-classification', {
+                initials: initials
+            });
+            break;
+
+        case profiles[3]:
+            res.render('register-patient', {
+                initials: initials
+                });
+                break;
+
+        default:
+            res.render('login');
+            break;
+    }
+});
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+// Admin routes
+app.get('/register', (req, res) => {
+    res.render('register');
+});
 
 // Attendant routes
 app.get('/register-patient', (req, res) => {

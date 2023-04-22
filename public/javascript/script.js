@@ -7,5 +7,5 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             dropdownContent.style.display = "block";
         }
-    })
+    });
 })

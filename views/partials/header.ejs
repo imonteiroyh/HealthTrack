@@ -7,22 +7,28 @@
         </b>
     </a>
 
-    <div class="dropdown" style="float:right">
-        <button class="btn dropdown-toggle dropbtn" type="button">
-            <div class="circle" style="padding-top: 3px;">
-                <span class="initials"><%= initials %></span>
+    <% if (typeof initials !== 'undefined') { %>
+        <div class="dropdown" style="float:right">
+            <button class="btn dropdown-toggle dropbtn" type="button">
+                <div class="circle" style="padding-top: 3px;">
+                    <span class="initials"><%= initials %></span>
+                </div>
+            </button>
+            <div class="dropdown-content border" style="right: 0">
+                <a href="/configurations">
+                    <img class="nav-icon" src="/images/config.png">
+                    Configurações
+                </a>
+                <div class="border-top"></div>
+                <a href="/logout">
+                    <img class="nav-icon" src="/images/logout.png">
+                    Sair
+                </a>
             </div>
-        </button>
-        <div class="dropdown-content border" style="right: 0">
-            <a href="/configurations">
-                <img class="nav-icon" src="/images/config.png">
-                Configurações
-            </a>
-            <div class="border-top"></div>
-            <a href="/logout">
-                <img class="nav-icon" src="/images/logout.png">
-                Sair
-            </a>
         </div>
-    </div>
+    <% } else { %>
+        
+
+    <% } %>
+
 </header>

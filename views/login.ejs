@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<!-- ADMIN -->
+
+<html lang="en">
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: Login</title>
+    </head>
+
+    <body style="background-color: #acccc7;">
+
+        <%- include('partials/header'); %>
+
+        <div class="wrapper">
+            <div class="login-box rounded">
+                <div class="logo-container">
+                    <img class="logo-img" src="/images/logo.png">
+                </div>
+
+                <form action="/login" method="post">
+                    <div class="form-floating mb-3">
+                        <input autocomplete="off" autofocus class="form-control" type="text" id="username" placeholder="Digite aqui..." required>
+                        <label for="username">Nome de usuário</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input autocomplete="off" class="form-control" type="password" id="password" placeholder="Digite aqui..." required>
+                        <label for="password">Senha</label>
+                    </div>
+
+                    <div class="form-button">
+                        <button type="submit" class="btn btn-primary btn-dark-green">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </body>
+
+</html>
