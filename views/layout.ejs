@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<!-- PERFIL -->
+
+<html lang="en">
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: {title}</title>
+    </head>
+
+    <body>
+
+        <%- include('partials/header', {initials}); %>
+
+        <nav class="nav-primary">
+            <!-- CONTEÚDO DA BARRA LATERAL -->
+            <% const currentPage = {page}; %>
+            <%- include(`partials/{profile}-sidebar`, {currentPage}); %>
+        </nav>
+
+        <div class="main-content">
+            <!-- CONTEÚDO DA PÁGINA -->
+        </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<!-- RISK CLASSIFICATION -->
+
+<html lang="en">
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: Fila de Consultas</title>
+    </head>
+
+    <body>
+
+        <%- include('partials/header', {initials}); %>
+
+        <nav class="nav-primary">
+            <% const currentPage = 'consultation-queue'; %>
+            <%- include(`partials/risk-classification-sidebar`, {currentPage}); %>
+        </nav>
+
+        <div class="main-content">
+            <!-- CONTEÚDO DA PÁGINA -->
+        </div>
+
+    </body>
+
+</html>
