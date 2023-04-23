@@ -6,12 +6,18 @@
 
     <head>
         <%- include('partials/head'); %>
-        <title> HealthTrack: Registro</title>
+        <title> HealthTrack: Registrar Usuário</title>
     </head>
 
     <body>
 
         <%- include('partials/header'); %>
+
+        <nav class="nav-primary">
+            <!-- CONTEÚDO DA BARRA LATERAL -->
+            <% const currentPage = 'register'; %>
+            <%- include('partials/admin-sidebar', {currentPage}); %>
+        </nav>
 
         <div class="main-content">
             <!-- CONTEÚDO DA PÁGINA -->

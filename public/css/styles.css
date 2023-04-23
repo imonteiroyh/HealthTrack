@@ -147,7 +147,7 @@
 
 .login-box {
     width: 30%;
-    height: 70%;
+    height: 50%;
     position: absolute;
     top: 55%;
     left: 50%;
@@ -159,10 +159,11 @@
 }
 
 .logo-container {
-    height: 40%;
+    height: 30%;
     width: 100%;
     text-align: center;
     padding-bottom: 5%;
+    padding-top: 10%;
 }
 
 .logo-img {
