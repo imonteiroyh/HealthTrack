@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<!-- ADMIN -->
+
+<html lang="en">
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: Remover Usuário</title>
+    </head>
+
+    <body>
+
+        <%- include('partials/header', {initials}); %>
+
+        <nav class="nav-primary">
+            <% const currentPage = 'remove-user'; %>
+            <%- include('partials/admin-sidebar', {currentPage}); %>
+        </nav>
+
+        <div class="main-content">
+            <b style="font-size: 30px;">Remover Usuário</b>
+            <form>
+
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputUsername">Nome de Usuário <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="inputUsername" placeholder="Digite aqui..." required>
+                    </div>
+
+                    <div class="col">
+                        <label for="inputAdminPassword">Senha do Administrador <span style="color: red;">*</span></label>
+                        <input type="password" class="form-control" id="inputAdminPassword" placeholder="Digite aqui..." required>
+                    </div>
+                </div>
+
+                <div class="form-button">
+                    <button type="submit" class="btn btn-primary btn-dark-green">Remover</button>
+                </div>
+            </form>
+        </div>
+
+    </body>
+
+</html>

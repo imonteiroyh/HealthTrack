@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<!-- ADMIN -->
+
+<html lang="en">
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: Registrar Usuário</title>
+    </head>
+
+    <body>
+
+        <%- include('partials/header', {initials}); %>
+
+        <nav class="nav-primary">
+            <% const currentPage = 'register-user'; %>
+            <%- include('partials/admin-sidebar', {currentPage}); %>
+        </nav>
+
+        <div class="main-content">
+            <b style="font-size: 30px;">Registrar Usuário</b>
+            <form action="/register" method="post">
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputName">Nome <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputName" placeholder="Digite aqui..." required>
+                    </div>
+                    <div class="col">
+                        <label for="inputLastName">Sobrenome <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputLastName" placeholder="Digite aqui..." required>
+                    </div>
+                </div>
+
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputUsername">Nome de Usuário <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputUsername" placeholder="Digite aqui..." required>
+                    </div>
+                    <div class="col">
+                        <label for="inputEmail">E-mail <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputEmail" placeholder="Digite aqui..." required>
+                    </div>
+                </div>
+
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputUserPassword">Senha do Usuário <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="password" class="form-control" id="inputUserPassword" placeholder="Digite aqui..." required>
+                    </div>
+                    <div class="col">
+                        <label for="inputAdminPassword">Senha do Administrador<span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="password" class="form-control" id="inputAdminPassword" placeholder="Digite aqui..." required>
+                    </div>
+                </div>
+
+                <div class="form-button">
+                    <button type="submit" class="btn btn-primary" style="background-color: #70969e;">Cadastrar</button>
+                </div>
+              </form>
+        </div>
+
+    </body>
+
+</html>

@@ -19,7 +19,7 @@ const profiles = [
 app.get('/', (req, res) => {
     switch (profile) {
         case profiles[0]:
-            res.render('register', {
+            res.render('register-user', {
                 initials: initials
             });
             break;
@@ -53,8 +53,22 @@ app.get('/login', (req, res) => {
 });
 
 // Admin routes
-app.get('/register', (req, res) => {
-    res.render('register');
+app.get('/register-user', (req, res) => {
+    res.render('register-user', {
+        initials: initials
+    });
+});
+
+app.get('/remove-user', (req, res) => {
+    res.render('remove-user', {
+        initials: initials
+    });
+});
+
+app.get('/remove-patient', (req, res) => {
+    res.render('remove-patient', {
+        initials: initials
+    });
 });
 
 // Attendant routes

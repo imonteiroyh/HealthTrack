@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<!-- ATTENDANT -->
+<!-- ADMIN -->
 
 <html lang="en">
 
     <head>
         <%- include('partials/head'); %>
-        <title> HealthTrack: Cadastrar Consulta</title>
+        <title> HealthTrack: Remover Paciente</title>
     </head>
 
     <body>
@@ -14,12 +14,12 @@
         <%- include('partials/header', {initials}); %>
 
         <nav class="nav-primary">
-            <% const currentPage = 'register-consultation'; %>
-            <%- include('partials/attendant-sidebar', {currentPage}); %>
+            <% const currentPage = 'remove-patient'; %>
+            <%- include('partials/admin-sidebar', {currentPage}); %>
         </nav>
 
         <div class="main-content">
-            <b style="font-size: 30px;">Cadastrar Consulta</b>
+            <b style="font-size: 30px;">Remover Paciente</b>
             <form>
 
                 <div class="form-group form-content row">
@@ -29,15 +29,15 @@
                     </div>
 
                     <div class="col">
-                        <label for="inputRG">RG</label>
-                        <input type="text" class="form-control" id="inputRG" placeholder="Digite aqui...">
+                        <label for="inputAdminPassword">Senha do Administrador <span style="color: red;">*</span></label>
+                        <input type="password" class="form-control" id="inputAdminPassword" placeholder="Digite aqui..." required>
                     </div>
                 </div>
 
                 <div class="form-button">
                     <button type="submit" class="btn btn-primary btn-dark-green">Buscar</button>
                 </div>
-
+                
                 <!-- RESPOSTA DEVE SER O NOME DA PESSOA, PEDIR CONFIRMAÇÃO DO USUÁRIO E CADASTRAR SE FOR CONFIRMADO -->
             </form>
         </div>
