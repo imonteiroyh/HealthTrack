@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
             break;
 
         case profiles[1]:
-            res.render('consultation-queue', {
+            res.render('record-queue', {
                 initials: initials
             });
             break;
@@ -78,8 +78,8 @@ app.get('/register-patient', (req, res) => {
     });
 });
 
-app.get('/register-consultation', (req, res) => {
-    res.render('register-consultation', {
+app.get('/register-record', (req, res) => {
+    res.render('register-record', {
        initials: initials
     });
 });
@@ -92,8 +92,8 @@ app.get('/risk-classification', (req, res) => {
 });
 
 // Doctor routes
-app.get('/consultation-queue', (req, res) => {
-    res.render('consultation-queue', {
+app.get('/record-queue', (req, res) => {
+    res.render('record-queue', {
         initials: initials
     });
 });
