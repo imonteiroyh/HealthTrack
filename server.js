@@ -103,6 +103,16 @@ app.get('/visualization', (req, res) => {
         initials: initials
     });
 });
+app.get('/edit-record', (req, res) => {
+    res.render('edit-record', {
+        initials: initials
+    });
+});
+app.get('/edit-record-doctor', (req, res) => {
+    res.render('edit-record-doctor', {
+        initials: initials
+    });
+});
 app.get('/configurations', (req, res) => {
     res.render('configurations', {
         initials: initials

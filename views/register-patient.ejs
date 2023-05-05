@@ -20,26 +20,38 @@
 
         <div class="main-content">
             <b style="font-size: 30px;">Cadastrar Paciente</b>
-            <form>
-                <div class="form-group form-content">
-                  <label for="inputName">Nome <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" id="inputName" placeholder="Digite aqui..." required>
+            <form action="/register" method="post">
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputName">Nome Completo <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputName" placeholder="Digite aqui..." required>
+                    </div>
+                    <div class="col">
+                        <label for="inputLastName">Data de Nascimento <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="date" class="form-control" id="inputLastName" placeholder="Digite aqui..." required>
+                    </div>
                 </div>
 
                 <div class="form-group form-content row">
                     <div class="col">
-                        <label for="inputCPF">CPF <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="inputCPF" placeholder="Digite aqui..." required>
+                        <label for="inputUsername">CPF <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputCPF" placeholder="Digite aqui..." required>
                     </div>
                     <div class="col">
-                        <label for="inputRG">RG <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="inputRG" placeholder="Digite aqui..." required>
+                        <label for="inputEmail">RG <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputRG" placeholder="Digite aqui..." required>
                     </div>
                 </div>
 
-                <div class="form-group form-content">
-                  <label for="inputEmail">E-mail</label>
-                  <input type="text" class="form-control" id="inputEmail" placeholder="Digite aqui...">
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputEmail">E-mail <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="email" class="form-control" id="inputEmail" placeholder="Digite aqui..." required>
+                    </div>
+                    <div class="col">
+                        <label for="inputAdminPassword">Celular<span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputCellphone" placeholder="Digite aqui..." required>
+                    </div>
                 </div>
 
                 <div class="form-button">

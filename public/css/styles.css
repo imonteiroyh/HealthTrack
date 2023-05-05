@@ -1,3 +1,13 @@
+html {
+    --background-color: white;
+}
+html[data-theme="dark"]{
+    --background-color: #1a1a1a;
+}
+
+body {
+    background-color: var(--background-color);
+}
 .dropdown {
     position: relative;
     display: inline-block;
@@ -73,6 +83,7 @@
 
 .nav-primary {
     background-color: #70969e;
+    /* background-color: #333333; */
     height: 100%;
     position: absolute;
     left: 0;
@@ -90,6 +101,7 @@
 
 .nav-primary a.active {
     background-color: #acccc7;
+    /* background-color: #4c4c4c; */
     color: white;
 }
 
@@ -101,6 +113,13 @@
     padding-left: 20%;
     padding-top: 2%;
     width: 90%;
+}
+
+.main-header{
+    /* background-color: #1a1a1a; */
+    background-color: white;
+    z-index: 1;
+   padding:15px;
 }
 
 .form-content {

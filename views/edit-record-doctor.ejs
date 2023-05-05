@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<!-- PERFIL -->
+
+<html lang="en">
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: Editar Consultas</title>
+    </head>
+
+    <body>
+
+        <%- include('partials/header', {initials}); %>
+
+        <nav class="nav-primary">
+            <!-- CONTEÚDO DA BARRA LATERAL -->
+            <% const currentPage = 'edit-record-doctor'; %>
+            <%- include('partials/doctor-sidebar', {currentPage}); %>
+        </nav>
+
+        <div class="main-content">
+            <!-- CONTEÚDO DA PÁGINA -->
+            <b style="font-size: 30px;">Informações do Usuário</b>
+            <form action="/register" method="post">
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputName">Nome Completo <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputName" placeholder="Digite aqui..." required>
+                    </div>
+                    <div class="col">
+                        <label for="inputLastName">Data de Nascimento <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="date" class="form-control" id="inputLastName" placeholder="Digite aqui..." required>
+                    </div>
+                </div>
+
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputUsername">CPF <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputCPF" placeholder="Digite aqui..." required>
+                    </div>
+                    <div class="col">
+                        <label for="inputEmail">RG <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputRG" placeholder="Digite aqui..." required>
+                    </div>
+                </div>
+
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputEmail">E-mail <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="email" class="form-control" id="inputEmail" placeholder="Digite aqui..." required>
+                    </div>
+                    <div class="col">
+                        <label for="inputCellphone">Celular<span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputCellphone" placeholder="Digite aqui..." required>
+                    </div>
+                </div>
+                <b style="font-size: 30px;">Dados do Usuário</b>
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputEmail">Pressão Arterial <span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="text" class="form-control" id="inputPressure" placeholder="Digite aqui..." required>
+                    </div>
+                    <div class="col">
+                        <label for="inputAdminPassword">Temperatura Corporal<span style="color: red;">*</span></label>
+                        <input autocomplete="off" type="password" class="form-control" id="inputTemperature" placeholder="Digite aqui..." required>
+                    </div>
+                </div>
+                <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="inputEmail">Descrição<span style="color: red;">*</span></label>
+                        <textarea autocomplete="off" type="text" class="form-control" id="inputDescription" placeholder="Digite aqui.." rows="5" style="resize: none;" ></textarea>
+                    </div>
+                </div>
+               <!--  <div class="form-group form-content row">
+                    <div class="col">
+                        <label for="selectRisk">Grau de Risco<span style="color: red;">*</span></label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Classifique o grau de Risco</option>
+                            <option class="risk1" value="1">Risco 1</option>
+                            <option class="risk2" value="2">Risco 2</option>
+                            <option class="risk3" value="3">Risco 3</option>
+                            <option class="risk4" value="4">Risco 4</option>
+                            <option class="risk5" value="5">Risco 5</option>
+                            
+                          </select>
+                    </div>
+                </div> -->
+
+                <div class="form-button">
+                    <button type="submit" class="btn btn-primary btn-dark-green">Salvar</button>
+                </div>
+              </form>
+              
+            
+        </div>
+        
+    </body>
+    
+</html>
