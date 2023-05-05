@@ -103,6 +103,11 @@ app.get('/visualization', (req, res) => {
         initials: initials
     });
 });
+app.get('/configurations', (req, res) => {
+    res.render('configurations', {
+        initials: initials
+    });
+});
 
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<!-- PERFIL -->
+
+<html lang="en" >
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: Configurações</title>
+    </head>
+
+    <body>
+
+        <%- include('partials/header', {initials}); %>
+
+        <nav class="nav-primary">
+            <!-- CONTEÚDO DA BARRA LATERAL -->
+            <% const currentPage = 'configurations'; %>
+            <%- include('partials/config-sidebar', {currentPage}); %>
+        </nav>
+
+        <div class="main-content">
+            <!-- CONTEÚDO DA PÁGINA -->
+            <input type="checkbox" name="toggle-dark" id="toggle-dark">
+        </div>
+
+    </body>
+
+</html>
