@@ -141,24 +141,100 @@ body {
     display: flex;
 }
 
+.icon-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.icon-item {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.main-title {
+    font-size: 30px;
+}
+
+.required-color {
+    color: red;
+}
+
+.no-resize {
+    resize: none;
+}
+
+.right-0 {
+    right: 0;
+}
+
+.padding-top-3 {
+    padding-top: 3px;
+}
+
+.float-right {
+    float:right;
+}
+
+.background-light-green {
+    background-color: #acccc7;
+}
+
+.background-dark-green {
+    background-color: #70969e;
+}
+
+.color-light-green {
+    color: #acccc7;
+}
+
+.color-dark-green {
+    color: #70969e;
+}
+
 .risk1 {
+    display: inline-block;
     background-color: rgba(201,30,38,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
 }
 
 .risk2 {
-    background-color: rgba(243,107,33,0.7)
+    display: inline-block;
+    background-color: rgba(243,107,33,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
 }
 
 .risk3 {
-    background-color: rgba(225,208,30,0.7)
+    display: inline-block;
+    background-color: rgba(225,208,30,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
 }
 
 .risk4 {
-    background-color: rgba(1,134,69,0.7)
+    display: inline-block;
+    background-color: rgba(1,134,69,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
 }
 
 .risk5 {
-    background-color: rgba(0,148,218,0.7)
+    display: inline-block;
+    background-color: rgba(0,148,218,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
 }
 
 .wrapper {
