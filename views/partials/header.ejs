@@ -10,18 +10,18 @@
     <% if (typeof initials !== 'undefined') { %>
         <div class="dropdown float-right">
             <button class="btn dropdown-toggle dropbtn" type="button">
-                <div class="circle padding-top-3">
+                <span class="circle padding-top-3">
                     <span class="initials"><%= initials %></span>
-                </div>
+                </span>
             </button>
             <div class="dropdown-content border right-0">
                 <a href="/configurations">
-                    <img class="nav-icon" src="/images/config.png">
+                    <img class="nav-icon" src="/images/config.png" alt="Ícone de configurações">
                     Configurações
                 </a>
                 <div class="border-top"></div>
                 <a href="/logout">
-                    <img class="nav-icon" src="/images/logout.png">
+                    <img class="nav-icon" src="/images/logout.png" alt="Ícone de logout">
                     Sair
                 </a>
             </div>
