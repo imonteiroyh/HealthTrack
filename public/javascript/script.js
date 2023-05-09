@@ -16,6 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.onload = _ =>
     swapTheme(
-        localStorage.getItem("sheet") || "default.css"
+        localStorage.getItem("sheet") || "styles.css"
     );
 })
