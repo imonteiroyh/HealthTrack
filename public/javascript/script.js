@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
             dropdownContent.style.display = "block";
         }
     });
-        
+
     window.onload = _ =>
     swapTheme(
-        localStorage.getItem("sheet") || "css/default.css"
+        localStorage.getItem("sheet") || "default.css"
     );
 })
