@@ -100,7 +100,8 @@ body {
 }
 
 .nav-primary a:hover {
-    background-color: #acccc7;
+    /* background-color: #acccc7; */
+    background-color: #4c4c4c;
 }
 
 .main-content {
@@ -138,6 +139,9 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
+    background-color: white;     
+    border-radius: 10%;     
+    padding-bottom: 0.4vw;
 }
 
 .icon-item {
@@ -228,6 +232,10 @@ body {
     height: auto;
     border: #1a1a1a 1px solid;
     border-radius: 15%;
+}
+
+.table-hover tbody tr:hover {     
+    background-color: #ffffff; 
 }
 
 .wrapper {
