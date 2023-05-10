@@ -1,10 +1,49 @@
+.action-icon {
+    max-width: 70%;
+    height: auto;
+}
+
+.background-light-green {
+    background-color: #acccc7;
+}
+
+.background-dark-green {
+    background-color: #70969e;
+}
+
+.btn-dark-green {
+    background-color: #70969e;
+}
+
+.circle {
+    height: 35px;
+    width: 35px;
+    background-color: #a5b6c7;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.color-light-green {
+    color: #acccc7;
+}
+
+.color-dark-green {
+    color: #70969e;
+}
+
+.divider {
+    height: 1px;
+    background-color: #2a3b4c;
+    border: none;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
 .dropbtn {
-    background-color: white;
+    background-color: #ffffff;
     padding-left: 16px;
     padding-right: 16px;
     border: none;
@@ -14,7 +53,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: white;
+    background-color: #ffffff;
     min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -35,18 +74,52 @@
     background-color: #f1f1f1;
 }
 
-.circle {
-    height: 35px;
-    width: 35px;
-    background-color: #a5b6c7;
-    border-radius: 50%;
+.float-right {
+    float:right;
+}
+
+.form-content {
+    padding-bottom: 10px;
+}
+
+.form-button {
+    padding-top: 20px;
+}
+
+.icon-container {
+    width: 30px;
+    height: auto;
+    display: flex;
+}
+
+.icon-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.icon-item {
     display: inline-block;
+    vertical-align: middle;
 }
 
 .initials {
     font-family: 'Barlow';
     font-size: 20px;
-    color: white;
+    color: #ffffff;
+}
+
+.login-box {
+    width: 30%;
+    height: 50%;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
@@ -55,20 +128,37 @@
     padding-left: 20px;
 }
 
+.logo-container {
+    height: 30%;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5%;
+}
+
 .logo-login {
     font-family: 'Barlow';
     font-size: 3vw;
 }
 
+.main-content {
+    padding-left: 20%;
+    padding-top: 2%;
+    width: 90%;
+}
+
+.main-header{
+    background-color: #ffffff;
+    z-index: 1;
+   padding:15px;
+}
+
+.main-title {
+    font-size: 30px;
+}
+
 .nav-icon {
     max-width: 10%;
     height: auto;
-}
-
-.divider {
-    height: 1px;
-    background-color: #2a3b4c;
-    border: none;
 }
 
 .nav-primary {
@@ -90,93 +180,27 @@
 
 .nav-primary a.active {
     background-color: #acccc7;
-    color: white;
+    color: #ffffff;
 }
 
 .nav-primary a:hover {
     background-color: #acccc7;
 }
 
-.main-content {
-    padding-left: 20%;
-    padding-top: 2%;
-    width: 90%;
-}
-
-.main-header{
-    background-color: white;
-    z-index: 1;
-   padding:15px;
-}
-
-.form-content {
-    padding-bottom: 10px;
-}
-
-.form-button {
-    padding-top: 20px;
-}
-
-.action-icon {
-    max-width: 70%;
-    height: auto;
-}
-
-.icon-container {
-    width: 30px;
-    height: auto;
-    display: flex;
-}
-
-.icon-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.icon-item {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.main-title {
-    font-size: 30px;
-}
-
-.required-color {
-    color: red;
-}
-
 .no-resize {
     resize: none;
-}
-
-.right-0 {
-    right: 0;
 }
 
 .padding-top-3 {
     padding-top: 3px;
 }
 
-.float-right {
-    float:right;
+.required-color {
+    color: red;
 }
 
-.background-light-green {
-    background-color: #acccc7;
-}
-
-.background-dark-green {
-    background-color: #70969e;
-}
-
-.color-light-green {
-    color: #acccc7;
-}
-
-.color-dark-green {
-    color: #70969e;
+.right-0 {
+    right: 0;
 }
 
 .risk1 {
@@ -227,28 +251,4 @@
 .wrapper {
     height: 100%;
     background-color: #acccc7;
-}
-
-.login-box {
-    width: 30%;
-    height: 50%;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.logo-container {
-    height: 30%;
-    width: 100%;
-    text-align: center;
-    padding-bottom: 5%;
-}
-
-.btn-dark-green {
-    background-color: #70969e;
 }
