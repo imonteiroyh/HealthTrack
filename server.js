@@ -1,16 +1,8 @@
-import express from 'express';
-
-const app = express();
-const port = 8080;
-
-app.set('view engine', 'ejs');
-app.set('views', './views');
-app.use(express.static('public'))
+const app = require('./config/express')();
+const port = app.get('port');
 
 var initials = 'VM';
 var profile;
-
-// profile = 'admin'
 
 const profiles = [
     'admin', 'doctor', 'risk-classification', 'attendant'
