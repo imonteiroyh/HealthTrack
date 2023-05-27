@@ -22,49 +22,49 @@
         <div class="main-content">
             <!-- CONTEÚDO DA PÁGINA -->
             <b class="main-title">Informações do Usuário</b>
-            <form action="/register" method="post">
+            <form action="/edit-record" method="post">
                 <div class="form-group form-content row">
                     <div class="col">
                         <label for="inputName">Nome Completo <span class="required-color">*</span></label>
-                        <input autocomplete="off" type="text" class="form-control" id="inputName" placeholder="Digite aqui..." required>
+                        <input autocomplete="off" type="text" class="form-control" name="inputName" placeholder="Digite aqui..." required>
                     </div>
                     <div class="col">
                         <label for="inputLastName">Data de Nascimento <span class="required-color">*</span></label>
-                        <input autocomplete="off" type="date" class="form-control" id="inputLastName" required>
+                        <input autocomplete="off" type="date" class="form-control" name="inputLastName" required>
                     </div>
                 </div>
 
                 <div class="form-group form-content row">
                     <div class="col">
                         <label for="inputCPF">CPF <span class="required-color">*</span></label>
-                        <input autocomplete="off" type="text" class="form-control" id="inputCPF" placeholder="Digite aqui..." required>
+                        <input autocomplete="off" type="text" class="form-control" name="inputCPF" placeholder="Digite aqui..." required>
                     </div>
                     <div class="col">
                         <label for="inputRG">RG <span class="required-color">*</span></label>
-                        <input autocomplete="off" type="text" class="form-control" id="inputRG" placeholder="Digite aqui..." required>
+                        <input autocomplete="off" type="text" class="form-control" name="inputRG" placeholder="Digite aqui..." required>
                     </div>
                 </div>
 
                 <div class="form-group form-content row">
                     <div class="col">
                         <label for="inputEmail">E-mail <span class="required-color">*</span></label>
-                        <input autocomplete="off" type="email" class="form-control" id="inputEmail" placeholder="Digite aqui..." required>
+                        <input autocomplete="off" type="email" class="form-control" name="inputEmail" placeholder="Digite aqui..." required>
                     </div>
                     <div class="col">
                         <label for="inputCellphone">Celular<span class="required-color">*</span></label>
-                        <input autocomplete="off" type="text" class="form-control" id="inputCellphone" placeholder="Digite aqui..." required>
+                        <input autocomplete="off" type="text" class="form-control" name="inputCellphone" placeholder="Digite aqui..." required>
                     </div>
                 </div>
                 <div class="form-group form-content row">
                     <div class="col">
                         <label for="inputEmail">Adicionar Descrição<span class="required-color">*</span></label>
-                        <textarea autocomplete="off" class="form-control no-resize" id="inputDescription" placeholder="Digite aqui.." rows="5"></textarea>
+                        <textarea autocomplete="off" class="form-control no-resize" name="inputDescription" placeholder="Digite aqui.." rows="5"></textarea>
                     </div>
                 </div>
                 <div class="form-group form-content row">
                     <div class="col">
                         <label for="selectRisk">Grau de Risco<span class="required-color">*</span></label>
-                        <select class="form-select" id="selectRisk" aria-label="Default select example">
+                        <select class="form-select" name="selectRisk" aria-label="Default select example">
                             <option selected>Classifique o grau de Risco</option>
                             <option class="risk1" value="1">Risco 1</option>
                             <option class="risk2" value="2">Risco 2</option>
@@ -78,11 +78,7 @@
                 <div class="form-button">
                     <button type="submit" class="btn btn-primary btn-dark-green">Salvar</button>
                 </div>
-              </form>
-
-
+            </form>
         </div>
-
     </body>
-
 </html>

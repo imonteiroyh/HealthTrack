@@ -39,7 +39,7 @@ module.exports = function({profile, initials}) {
                     break;
             }
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -48,7 +48,7 @@ module.exports = function({profile, initials}) {
         try {
             res.render('login');
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -60,8 +60,17 @@ module.exports = function({profile, initials}) {
                 initials: initials
             });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
+        }
+    });
+
+    router.post('/register-user', (req, res, next) => {
+        try {
+            console.log(req.body)
+        } catch(err) {
+            console.error(`Error while adding quotes - `, err.message);
+            next(err);
         }
     });
 
@@ -71,7 +80,7 @@ module.exports = function({profile, initials}) {
                 initials: initials
             });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -82,7 +91,7 @@ module.exports = function({profile, initials}) {
                 initials: initials
             });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -94,7 +103,7 @@ module.exports = function({profile, initials}) {
                 initials: initials
                 });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -105,7 +114,7 @@ module.exports = function({profile, initials}) {
                 initials: initials
                 });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -117,7 +126,7 @@ module.exports = function({profile, initials}) {
                 initials: initials
             });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -129,18 +138,7 @@ module.exports = function({profile, initials}) {
                 initials: initials
             });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
-            next(error);
-        }
-    });
-
-    router.get('/visualization', (req, res, next) => {
-        try {
-            res.render('visualization', {
-                initials: initials
-            });
-        } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -151,7 +149,7 @@ module.exports = function({profile, initials}) {
                 initials: initials
             });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -162,7 +160,7 @@ module.exports = function({profile, initials}) {
                 initials: initials
             });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
@@ -173,7 +171,7 @@ module.exports = function({profile, initials}) {
                 initials: initials
             });
         } catch(error) {
-            console.error(`Error while getting page - `, error.message);
+            console.error(`Error while getting page `, error.message);
             next(error);
         }
     });
