@@ -5,11 +5,9 @@ const router = require('./routes/routing')
 var initials = 'VM';
 var profile;
 
-
-
 const quotes = require('./services/database-queries')
 
-app.get('/test', function(req, res, next) {
+app.get('/test', (req, res, next) => {
     try {
         res.json(quotes.getUsers(req.query));
     } catch(error) {
@@ -18,8 +16,8 @@ app.get('/test', function(req, res, next) {
     }
 });
 
-/* POST quote */
-app.post('/test', function(req, res, next) {
+
+app.post('/test', (req, res, next) => {
     try {
         res.json(quotes.create(req.body));
     } catch(err) {
