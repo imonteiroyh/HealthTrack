@@ -5,28 +5,31 @@ const router = require('./routes/routing')
 var initials = 'VM';
 var profile;
 
-const quotes = require('./services/database-queries')
+const databaseQueries = require('./services/database-queries')
 
-app.get('/test', (req, res, next) => {
+
+app.get('/debug', (req, res, next) => {
     try {
-        res.json(quotes.getUsers(req.query));
+        let username = 'admin';
+        let password = 'admin';
+        res.json(databaseQueries.checkUser({username, password}));
     } catch(error) {
-        console.error(`Error while getting quotes - `, error.message);
+        console.error(`Error while getting databaseQueries - `, error.message);
         next(error);
     }
 });
 
 
-app.post('/test', (req, res, next) => {
+app.post('/debug', (req, res, next) => {
     try {
-        res.json(quotes.create(req.body));
+        // res.json(databaseQueries.createUser(req.body));
     } catch(err) {
-        console.error(`Error while adding quotes - `, err.message);
+        console.error(`Error while adding databaseQueries - `, err.message);
         next(err);
     }
 });
 
-app.use('/', router({profile, initials}));
+app.use('/', router({ initials }));
 
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);

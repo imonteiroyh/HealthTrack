@@ -24,15 +24,15 @@
                     </a>
                 </div>
 
-                <form action="/login" method="post">
+                <form action="/login" method="post" onsubmit="event.preventDefault(); handleLogin(event)">
                     <div class="form-floating mb-3">
-                        <input autocomplete="off" autofocus class="form-control" type="text" name="username" placeholder="Digite aqui..." required>
-                        <label for="username">Nome de Usuário</label>
+                        <input autocomplete="off" autofocus class="form-control" type="text" name="inputUsername" placeholder="Digite aqui..." required>
+                        <label for="inputUsername">Nome de Usuário</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input autocomplete="off" class="form-control" type="password" name="password" placeholder="Digite aqui..." required>
-                        <label for="password">Senha</label>
+                        <input autocomplete="off" class="form-control" type="password" name="inputPassword" placeholder="Digite aqui..." required>
+                        <label for="inputPassword">Senha</label>
                     </div>
 
                     <div class="form-button">

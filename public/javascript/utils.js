@@ -1,44 +1,56 @@
 function swapTheme(sheet){
     document.getElementById('theme').setAttribute('href', 'css/' + sheet);
-    localStorage.setItem("sheet", sheet);
+    localStorage.setItem('sheet', sheet);
+}
+
+function applyThemeBasedOnRoute() {
+    var currentRoute = window.location.pathname;
+
+    if (currentRoute === '/login') {
+        swapTheme('styles.css');
+    } else {
+        swapTheme(localStorage.getItem('sheet') || 'styles.css');
+    }
+}
+
+function handleLogin(event) {
+    const inputUsername = event.target.elements['inputUsername'].value;
+    const inputPassword = event.target.elements['inputPassword'].value;
+
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({inputUsername, inputPassword})
+    })
+
+    .then(response => response.json())
+    .then(data => {
+        if (data.redirect) {
+            window.location.href = data.redirect;
+        } else if (data.error) {
+            console.log(data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error: ', error);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var dropdownBtn = document.getElementsByClassName("dropbtn")[0];
-    dropdownBtn.addEventListener("click", function() {
-        var dropdownContent = this.nextElementSibling;
-        if (dropdownContent.style.display == "block") {
-            dropdownContent.style.display = "none";
-        } else {
-            dropdownContent.style.display = "block";
-        }
-    });
 
-    window.onload = _ =>
-    swapTheme(
-        localStorage.getItem("sheet") || "styles.css"
-    );
+    window.onload = applyThemeBasedOnRoute()
 
-    document.querySelector('form').addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const form = event.target;
-        const url = form.getAttribute('action');
-        const formData = new FormData(form);
-        const formObject = Object.fromEntries(formData.entries());
-
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(formObject),
-                headers: {'Content-Type': 'application/json'}
-            });
-
-            if (!response.ok) {
-                throw new Error('Error sending data');
+    if (typeof document.getElementsByClassName('dropbtn')[0] !== 'undefined') {
+        var dropdownBtn = document.getElementsByClassName('dropbtn')[0];
+        dropdownBtn.addEventListener('click', function() {
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display == 'block') {
+                dropdownContent.style.display = 'none';
+            } else {
+                dropdownContent.style.display = 'block';
             }
-        } catch (error) {
-            console.error('Error sendind data: ', error)
-        }
-    });
+        });
+    }
 })
