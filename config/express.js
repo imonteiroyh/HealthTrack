@@ -20,9 +20,9 @@ module.exports = () => {
         resave: false
     }));
 
-    app.use(express.static('public'))
+    app.use(express.static('static'))
     app.set('view engine', 'ejs');
-    app.set('views', './routes');
+    app.set('views', './views');
 
     return app;
 };

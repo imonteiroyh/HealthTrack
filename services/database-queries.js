@@ -1,4 +1,4 @@
-const database = require('./database');
+const database = require('../database/database');
 
 
 function getUsers() {
@@ -40,6 +40,9 @@ function createUser(userObject) {
 }
 
 
+
+////////////////////////////////////////////////////////
+
 function checkUser(userObject) {
     const {username, password} = userObject;
     const result = database.query('SELECT hash FROM users WHERE username = ?', [username]);
@@ -55,21 +58,21 @@ function checkUser(userObject) {
     return 0;
 }
 
-function getUserRole(username) {
-    const result = database.query('SELECT role FROM users WHERE username = ?', [username]);
+function getUserInfo(username) {
+    const result = database.query('SELECT initials, username, role FROM users WHERE username = ?', [username]);
 
     if (result.length == 0) {
         return 1;
     }
 
-    userRole = result[0].role
+    userInfo = result[0]
 
-    return userRole
+    return userInfo
 }
 
 module.exports = {
     getUsers,
     createUser,
     checkUser,
-    getUserRole
+    getUserInfo
 }

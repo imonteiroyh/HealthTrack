@@ -10,9 +10,7 @@ const databaseQueries = require('./services/database-queries')
 
 app.get('/debug', (req, res, next) => {
     try {
-        let username = 'admin';
-        let password = 'admin';
-        res.json(databaseQueries.checkUser({username, password}));
+        res.json(databaseQueries.getUsers());
     } catch(error) {
         console.error(`Error while getting databaseQueries - `, error.message);
         next(error);
