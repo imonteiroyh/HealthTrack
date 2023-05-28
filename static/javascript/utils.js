@@ -13,31 +13,6 @@ function applyThemeBasedOnRoute() {
     }
 }
 
-function handleLogin(event) {
-    const inputUsername = event.target.elements['inputUsername'].value;
-    const inputPassword = event.target.elements['inputPassword'].value;
-
-    fetch('/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({inputUsername, inputPassword})
-    })
-
-    .then(response => response.json())
-    .then(data => {
-        if (data.redirect) {
-            window.location.href = data.redirect;
-        } else if (data.error) {
-            console.log(data.error);
-        }
-    })
-    .catch(error => {
-        console.error('Error: ', error);
-    });
-}
-
 document.addEventListener('DOMContentLoaded', function() {
 
     window.onload = applyThemeBasedOnRoute()

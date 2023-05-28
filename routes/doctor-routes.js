@@ -6,7 +6,7 @@ const { isAuthenticated, isUserAuthorizated } = require('../services/authenticat
 router.get('/record-queue', isAuthenticated, isUserAuthorizated([2]), (req, res, next) => {
     try {
         res.render('record-queue', {
-            initials: initials
+            initials: req.session.user.initials
         });
     } catch(error) {
         console.error(`Error while getting page `, error.message);
@@ -17,7 +17,7 @@ router.get('/record-queue', isAuthenticated, isUserAuthorizated([2]), (req, res,
 router.get('/edit-record-doctor', isAuthenticated, isUserAuthorizated([2]), (req, res, next) => {
     try {
         res.render('edit-record-doctor', {
-            initials: initials
+            initials: req.session.user.initials
         });
     } catch(error) {
         console.error(`Error while getting page `, error.message);

@@ -12,40 +12,39 @@ function getUsers() {
     return data;
 }
 
-function validateUsername(userObject) {
-    const {username, _} = userObject;
+function validateUsername(userInfo) {
+    const {username, _} = userInfo;
     const result = database.query('SELECT COUNT(*) AS n FROM users WHERE username = (?)', [username])[0].n;
 
-    return result;
+    return result
 }
 
-function createUser(userObject) {
-    let validate = validateUsername(userObject);
+function registerUser(userInfo) {
+    let validate = validateUsername(userInfo);
 
-    let message = 'Error in creating username';
     if (validate === 0) {
-        const {username, hash} = userObject;
-        const result = database.run('INSERT INTO users (username, hash) VALUES ?, ?', {username, hash});
+        const {name, lastName, username, email, hash, role} = userObject;
+
+        const initials = `${
+            name.length > 0 ? name.charAt(0).toUpperCase() : ''
+        }${
+            lastName.length > 0 ? lastName.charAt(0).toUpperCase() : ''
+        }`;
+
+        const result = database.run('INSERT INTO users (name, lastName, initials, username, email, hash, role) VALUES (?, ?, ?, ?, ?, ?, ?)', [name, lastName, initials, username, email, hash, role]);
 
         if (result.changes) {
-            message = 'Username created sucessfully';
+            return 0
         }
 
-        return {message};
     } else {
-        message = 'Username already in use';
+        return 1
     }
-
-    return message;
 }
 
-
-
-////////////////////////////////////////////////////////
-
-function checkUser(userObject) {
-    const {username, password} = userObject;
-    const result = database.query('SELECT hash FROM users WHERE username = ?', [username]);
+function checkPassword(userInfo) {
+    const {username, password} = userInfo;
+    const result = database.query('SELECT hash FROM users WHERE username = (?)', [username]);
 
     if (result.length == 0) {
         return 1;
@@ -59,7 +58,7 @@ function checkUser(userObject) {
 }
 
 function getUserInfo(username) {
-    const result = database.query('SELECT initials, username, role FROM users WHERE username = ?', [username]);
+    const result = database.query('SELECT initials, username, role FROM users WHERE username = (?)', [username]);
 
     if (result.length == 0) {
         return 1;
@@ -72,7 +71,7 @@ function getUserInfo(username) {
 
 module.exports = {
     getUsers,
-    createUser,
-    checkUser,
+    registerUser,
+    checkPassword,
     getUserInfo
 }

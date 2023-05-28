@@ -7,7 +7,7 @@ router.route('/register-patient')
     .get(isAuthenticated, isUserAuthorizated([0]), (req, res, next) => {
         try {
             res.render('register-patient', {
-                initials: initials
+                initials: req.session.user.initials
                 });
         } catch(error) {
             console.error(`Error while getting page `, error.message);
@@ -28,7 +28,7 @@ router.route('/register-record')
     .get(isAuthenticated, isUserAuthorizated([0]), (req, res, next) => {
         try {
             res.render('register-record', {
-                initials: initials
+                initials: req.session.user.initials
                 });
         } catch(error) {
             console.error(`Error while getting page `, error.message);

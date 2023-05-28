@@ -63,7 +63,7 @@ router.route('/login')
     .post((req, res, next) => {
         try {
             userObject = {username: req.body.inputUsername, password: req.body.inputPassword};
-            check = databaseQueries.checkUser(userObject);
+            check = databaseQueries.checkPassword(userObject);
 
             if (check == 0) {
                 userInfo = databaseQueries.getUserInfo(userObject.username);
@@ -73,7 +73,7 @@ router.route('/login')
                     initials: userInfo.initials
                 };
 
-                res.json({redirect: '/'});
+                res.redirect('/');
             } else if (check == 1) {
                 console.log('username inexistente')
             } else {
