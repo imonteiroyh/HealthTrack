@@ -6,7 +6,7 @@ const attendantRoutes = require('./attendant-routes');
 const riskClassificationRoutes = require('./risk-classification-routes');
 const doctorRoutes = require('./doctor-routes');
 
-module.exports = function({ initials }) {
+module.exports = function() {
     const router = express.Router();
 
     router.use(basicRoutes);
