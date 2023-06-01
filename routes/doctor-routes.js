@@ -1,28 +1,30 @@
 const express = require('express');
+const asyncHandler = require('express-async-handler')
 const router = express.Router();
 
 const { isAuthenticated, isUserAuthorizated } = require('../services/authentication');
 
-router.get('/record-queue', isAuthenticated, isUserAuthorizated([2]), (req, res, next) => {
-    try {
-        res.render('record-queue', {
-            initials: req.session.user.initials
-        });
-    } catch(error) {
-        console.error(`Error while getting page `, error.message);
-        next(error);
-    }
-});
+const databaseQueries = require('../services/database-queries');
 
-router.get('/edit-record-doctor', isAuthenticated, isUserAuthorizated([2]), (req, res, next) => {
-    try {
+router.route('/record-queue')
+    .get(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
+        const records = databaseQueries.getRecordsByStage(1)
+
+        res.render('record-queue', {
+            initials: req.session.user.initials,
+            records: records
+        });
+    }));
+
+router.route('/edit-record-doctor')
+    .get(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
         res.render('edit-record-doctor', {
             initials: req.session.user.initials
         });
-    } catch(error) {
-        console.error(`Error while getting page `, error.message);
-        next(error);
-    }
-});
+    }))
+
+    .post(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
+        res.status(200).json({message: 'Em construção!'});
+    }));
 
 module.exports = router;

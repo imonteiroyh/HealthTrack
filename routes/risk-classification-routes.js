@@ -1,28 +1,30 @@
 const express = require('express');
+const asyncHandler = require('express-async-handler')
 const router = express.Router();
 
 const { isAuthenticated, isUserAuthorizated } = require('../services/authentication');
 
-router.get('/risk-classification', isAuthenticated, isUserAuthorizated([1]), (req, res, next) => {
-    try {
-        res.render('risk-classification', {
-            initials: req.session.user.initials
-        });
-    } catch(error) {
-        console.error(`Error while getting page `, error.message);
-        next(error);
-    }
-});
+const databaseQueries = require('../services/database-queries');
 
-router.get('/edit-record', isAuthenticated, isUserAuthorizated([1, 2]), (req, res, next) => {
-    try {
+router.route('/risk-classification')
+    .get(isAuthenticated, isUserAuthorizated([1]), asyncHandler(async (req, res) => {
+        const records = databaseQueries.getRecordsByStage(0)
+
+        res.render('risk-classification', {
+            initials: req.session.user.initials,
+            records: records
+        });
+    }));
+
+router.route('/edit-record')
+    .get(isAuthenticated, isUserAuthorizated([1, 2]), asyncHandler(async (req, res) => {
         res.render('edit-record', {
             initials: req.session.user.initials
         });
-    } catch(error) {
-        console.error(`Error while getting page `, error.message);
-        next(error);
-    }
-});
+    }))
+
+    .post(isAuthenticated, isUserAuthorizated([1, 2]), asyncHandler(async (req, res) => {
+        res.status(200).json({message: 'Em construção!'});
+    }));
 
 module.exports = router;

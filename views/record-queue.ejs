@@ -32,7 +32,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <% for(let i = 0; i < records.length; i++) { %>
+                        <tr>
+                            <th scope="row" class="text-start"><%= records[i].id %></th>
+                            <td class="text-start"><%= records[i].name %></td>
+                            <td class="text-center">
+                                <span class="risk<%= records[i].risk %>"><%= records[i].risk %></span>
+                            </td>
+                            <td class="text-center">
+                                <ul class="icon-list">
+                                    <li class="icon-item">
+                                        <div class="icon-container">
+                                            <a href="/edit-record-doctor">
+                                                <img class="action-icon" src="/images/editar.png" alt="Ícone de edição">
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="icon-item">
+                                        <div class="icon-container">
+                                            <a href="/remove-record">
+                                                <img class="action-icon" src="/images/remover.png" alt="Ícone de remoção">
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    <% } %>
+                    <!-- <tr>
                         <th scope="row" class="text-start">1</th>
                         <td class="text-start">Mark</td>
                         <td class="text-center">
@@ -156,7 +183,7 @@
                                 </li>
                             </ul>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>

@@ -124,6 +124,12 @@ function getUserInfo(username) {
     return userInfo;
 }
 
+function getRecordsByStage(stage) {
+    const result = database.query('SELECT records.id, records.risk, patients.name FROM records JOIN patients on records.patient_id = patients.id WHERE stage = (?)', [stage]);
+
+    return result;
+}
+
 module.exports = {
     registerUser,
     removeUser,
@@ -131,5 +137,6 @@ module.exports = {
     removePatient,
     registerRecord,
     checkPassword,
-    getUserInfo
+    getUserInfo,
+    getRecordsByStage
 }
