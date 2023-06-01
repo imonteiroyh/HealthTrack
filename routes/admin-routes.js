@@ -7,7 +7,7 @@ const { isAuthenticated, isUserAuthorizated } = require('../services/authenticat
 const databaseQueries = require('../services/database-queries');
 
 router.route('/register-user')
-    .get(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
+    .get(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         try {
             res.render('register-user', {
                 initials: req.session.user.initials
@@ -16,9 +16,9 @@ router.route('/register-user')
             console.error(`Error while getting page `, error.message);
             next(error);
         }
-    })
+    }))
 
-    .post(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
+    .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         try {
             const adminObject = {
                 username: req.session.user.username,
@@ -57,10 +57,10 @@ router.route('/register-user')
             console.error(`Error while getting page `, err.message);
             next(err);
         }
-    });
+    }));
 
 router.route('/remove-user')
-    .get(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
+    .get(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         try {
             res.render('remove-user', {
                 initials: req.session.user.initials
@@ -69,9 +69,9 @@ router.route('/remove-user')
             console.error(`Error while getting page `, error.message);
             next(error);
         }
-    })
+    }))
 
-    .post(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
+    .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         try {
             const adminObject = {
                 username: req.session.user.username,
@@ -102,10 +102,10 @@ router.route('/remove-user')
             next(error);
         }
 
-    });
+    }));
 
 router.route('/remove-patient')
-    .get(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
+    .get(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         try {
             res.render('remove-patient', {
                 initials: req.session.user.initials
@@ -114,9 +114,9 @@ router.route('/remove-patient')
             console.error(`Error while getting page `, error.message);
             next(error);
         }
-    })
+    }))
 
-    .post(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
+    .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         try {
             const adminObject = {
                 username: req.session.user.username,
@@ -147,6 +147,6 @@ router.route('/remove-patient')
             console.error(`Error while getting page `, error.message);
             next(error);
         }
-    });
+    }));
 
 module.exports = router;
