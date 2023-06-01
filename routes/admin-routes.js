@@ -1,4 +1,5 @@
 const express = require('express');
+const asyncHandler = require('express-async-handler')
 const router = express.Router();
 
 const { isAuthenticated, isUserAuthorizated } = require('../services/authentication');
@@ -6,7 +7,7 @@ const { isAuthenticated, isUserAuthorizated } = require('../services/authenticat
 const databaseQueries = require('../services/database-queries');
 
 router.route('/register-user')
-    .get(isAuthenticated, isUserAuthorizated([3]), (req, res, next) => {
+    .get(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
         try {
             res.render('register-user', {
                 initials: req.session.user.initials
@@ -17,14 +18,14 @@ router.route('/register-user')
         }
     })
 
-    .post(isAuthenticated, isUserAuthorizated([3]), (req, res, next) => {
+    .post(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
         try {
             const adminObject = {
                 username: req.session.user.username,
                 password: req.body.inputAdminPassword
             };
 
-            const check = databaseQueries.checkPassword(adminObject);
+            const check = await databaseQueries.checkPassword(adminObject);
 
             if (check == 0) {
                 // hash inputuserpassord before send to userobject
@@ -37,7 +38,7 @@ router.route('/register-user')
                     role: req.body.selectRole
                 };
 
-                const result = databaseQueries.registerUser(userObject);
+                const result = await databaseQueries.registerUser(userObject);
 
                 if (result == 0) {
                     console.log('usuário registrado');
@@ -59,7 +60,7 @@ router.route('/register-user')
     });
 
 router.route('/remove-user')
-    .get(isAuthenticated, isUserAuthorizated([3]), (req, res, next) => {
+    .get(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
         try {
             res.render('remove-user', {
                 initials: req.session.user.initials
@@ -70,18 +71,18 @@ router.route('/remove-user')
         }
     })
 
-    .post(isAuthenticated, isUserAuthorizated([3]), (req, res, next) => {
+    .post(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
         try {
             const adminObject = {
                 username: req.session.user.username,
                 password: req.body.inputAdminPassword
             };
 
-            const check = databaseQueries.checkPassword(adminObject);
+            const check = await databaseQueries.checkPassword(adminObject);
 
             if (check == 0) {
                 const username = req.body.inputUsername;
-                const result = databaseQueries.removeUser(userObject);
+                const result = await databaseQueries.removeUser(username);
 
                 if (result == 0) {
                     console.log('usuário removido');
@@ -104,7 +105,7 @@ router.route('/remove-user')
     });
 
 router.route('/remove-patient')
-    .get(isAuthenticated, isUserAuthorizated([3]), (req, res, next) => {
+    .get(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
         try {
             res.render('remove-patient', {
                 initials: req.session.user.initials
@@ -115,23 +116,23 @@ router.route('/remove-patient')
         }
     })
 
-    .post(isAuthenticated, isUserAuthorizated([3]), (req, res, next) => {
+    .post(isAuthenticated, isUserAuthorizated([3]), async (req, res) => {
         try {
             const adminObject = {
                 username: req.session.user.username,
                 password: req.body.inputAdminPassword
             };
 
-            const check = databaseQueries.checkPassword(adminObject);
+            const check = await databaseQueries.checkPassword(adminObject);
             console.log(check)
 
             if (check == 0) {
                 const cpf = req.body.inputCPF;
-                const result = databaseQueries.removePatient(cpf);
+                const result = await databaseQueries.removePatient(cpf);
 
                 if (result == 0) {
                     console.log('paciente removido');
-                    res.redirect('/remove-user');
+                    res.redirect('/remove-patient');
                 } else {
                     console.log('erro ao remover paciente');
                 }
