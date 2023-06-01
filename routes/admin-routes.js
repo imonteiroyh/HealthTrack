@@ -89,7 +89,6 @@ router.route('/remove-patient')
         };
 
         const check = await databaseQueries.checkPassword(adminObject);
-        console.log(check)
 
         if (check == 0) {
             const cpf = req.body.inputCPF;
