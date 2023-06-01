@@ -34,15 +34,13 @@ router.route('/register-patient')
     }));
 
 router.route('/register-record')
-    // .get(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
-    .get(asyncHandler(async (req, res) => {
+    .get(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
         res.render('register-record', {
             initials: req.session.user.initials
         });
     }))
 
-    // .post(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
-    .post(asyncHandler(async (req, res) => {
+    .post(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
         const cpf = req.body.inputCPF;
 
         const result = await databaseQueries.registerRecord(cpf);
