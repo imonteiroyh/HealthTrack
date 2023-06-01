@@ -102,7 +102,11 @@
 
 .flash-message.show {
     opacity: 1;
+}
 
+.flash-container.full {
+    left: 0%;
+    width: 100%;
 }
 
 .float-right {

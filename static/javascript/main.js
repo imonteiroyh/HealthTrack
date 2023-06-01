@@ -46,7 +46,10 @@ async function submitForm() {
         const jsonResponse = await response.json();
         console.log(jsonResponse)
         if (jsonResponse.message) {
-            displayFlashMessage(jsonResponse.message);
+            if (jsonResponse.message != '') {
+                displayFlashMessage(jsonResponse.message);
+
+            }
 
             if (jsonResponse.redirect) {
                 setTimeout(function() {

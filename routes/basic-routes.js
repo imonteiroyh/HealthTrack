@@ -55,7 +55,7 @@ router.route('/login')
                 initials: userInfo.initials
             };
 
-            res.status(200).json({message: 'Login realizado com sucesso!', type: 'success', redirect: '/'})
+            res.status(200).json({message: '', type: 'success', redirect: '/'})
         } else {
             res.status(200).json({message: 'Nome de usuário ou senha incorreto. Tente novamente!', type: 'failure'})
         }
