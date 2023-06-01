@@ -9,9 +9,8 @@ const databaseQueries = require('../services/database-queries');
 router.route('/register-patient')
     .get(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
         res.render('register-patient', {
-            // initials: req.session.user.initials
-            initials: ''
-            });
+            initials: req.session.user.initials
+        });
     }))
 
     .post(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
