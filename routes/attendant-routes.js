@@ -1,39 +1,57 @@
 const express = require('express');
+const asyncHandler = require('express-async-handler')
 const router = express.Router();
 
 const { isAuthenticated, isUserAuthorizated } = require('../services/authentication');
 
-router.route('/register-patient')
-    .get(isAuthenticated, isUserAuthorizated([0]), (req, res, next) => {
-        try {
-            res.render('register-patient', {
-                initials: req.session.user.initials
-                });
-        } catch(error) {
-            console.error(`Error while getting page `, error.message);
-            next(error);
-        }
-    })
+const databaseQueries = require('../services/database-queries');
 
-    .post(isAuthenticated, isUserAuthorizated([0]), (req, res, next) => {
-        try {
-            console.log(req.body)
-        } catch(err) {
-            console.error(`Error while getting page `, err.message);
-            next(err);
+router.route('/register-patient')
+    .get(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
+        res.render('register-patient', {
+            // initials: req.session.user.initials
+            initials: ''
+            });
+    }))
+
+    .post(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
+        const patientObject = {
+            name: req.body.inputName,
+            cpf: req.body.inputCPF,
+            email: req.body.inputEmail,
+            birthday: req.body.inputBirthday,
+            address: req.body.inputAddress,
+            phone: req.body.inputPhone
+        };
+
+        const result = await databaseQueries.registerPatient(patientObject);
+
+        if (result == 0) {
+            res.status(200).json({message: 'Paciente cadastrado com sucesso!', type: 'success', redirect: '/register-user'});
+        } else {
+            res.status(200).json({message: 'Erro ao cadastrar paciente!', type: 'failure'});
         }
-    });
+    }));
 
 router.route('/register-record')
-    .get(isAuthenticated, isUserAuthorizated([0]), (req, res, next) => {
-        try {
-            res.render('register-record', {
-                initials: req.session.user.initials
-                });
-        } catch(error) {
-            console.error(`Error while getting page `, error.message);
-            next(error);
+    // .get(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
+    .get(asyncHandler(async (req, res) => {
+        res.render('register-record', {
+            initials: req.session.user.initials
+        });
+    }))
+
+    // .post(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
+    .post(asyncHandler(async (req, res) => {
+        const cpf = req.body.inputCPF;
+
+        const result = await databaseQueries.registerRecord(cpf);
+
+        if (result == 0) {
+            res.status(200).json({message: 'Consulta cadastrada com sucesso!', type: 'success', redirect: '/register-record'});
+        } else {
+            res.status(200).json({message: 'Erro ao cadastrar consulta!', type: 'failure'});
         }
-    });
+    }));
 
 module.exports = router;

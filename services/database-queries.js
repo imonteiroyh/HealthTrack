@@ -1,34 +1,19 @@
 const database = require('../database/database');
 
-function checkPassword(userInfo) {
-    const {username, password} = userInfo;
-    const result = database.query('SELECT hash FROM users WHERE username = (?)', [username]);
+function validateCPF(cpf) {
+    const result = database.query('SELECT COUNT(*) AS n FROM patients WHERE cpf = (?)', [cpf])[0].n;
 
-    if (result.length == 0) {
-        return 1;
-    }
-
-    if (result[0].hash != password) {
-        return 2;
-    }
-
-    return 0;
-}
-
-function getUserInfo(username) {
-    const result = database.query('SELECT initials, username, role FROM users WHERE username = (?)', [username]);
-
-    if (result.length == 0) {
-        return 1;
-    }
-
-    const userInfo = result[0];
-
-    return userInfo;
+    return result;
 }
 
 function validateUsername(username) {
     const result = database.query('SELECT COUNT(*) AS n FROM users WHERE username = (?)', [username])[0].n;
+
+    return result;
+}
+
+function getPatientId(cpf) {
+    const result = database.query('SELECT id FROM patients WHERE cpf = (?)', [cpf])[0].id;
 
     return result;
 }
@@ -66,21 +51,13 @@ function removeUser(username) {
     }
 }
 
-function validateCPF(cpf) {
-    const result = database.query('SELECT COUNT(*) AS n FROM users WHERE cpf = (?)', [cpf])[0].n;
-
-    return result;
-}
-
 function registerPatient(patientInfo) {
-    const {name, birthday, cpf, email, address, phone} = patientInfo;
+    const {name, cpf, email, birthday, address, phone} = patientInfo;
     const validate = validateCPF(cpf);
 
     if (validate === 0) {
 
-        // tratar birthday (YYYY-MM-DD) e phone (DD)12345-6789
-
-        const result = database.run('INSERT INTO patients (name, birthday, cpf, email, address, phone) VALUES (?, ?, ?, ?, ?, ?, ?)', [name, birthday, cpf, email, address, phone]);
+        const result = database.run('INSERT INTO patients (name, birthday, cpf, email, address, phone) VALUES (?, ?, ?, ?, ?, ?)', [name, birthday, cpf, email, address, phone]);
 
         if (result.changes) {
             return 0;
@@ -93,7 +70,7 @@ function registerPatient(patientInfo) {
 
 function removePatient(cpf) {
     cpf = cpf.toString();
-    
+
     const result = database.run('DELETE FROM patients WHERE cpf = (?)', [cpf]);
 
     if (result.changes) {
@@ -103,11 +80,56 @@ function removePatient(cpf) {
     }
 }
 
+function registerRecord(cpf) {
+    const validate = validateCPF(cpf);
+
+    if (validate === 1) {
+
+        const patientId = getPatientId(cpf);
+        const result = database.run('INSERT INTO records (patient_id) VALUES (?)', [patientId]);
+
+        if (result.changes) {
+            return 0;
+        }
+
+    }
+
+    return 1;
+}
+
+function checkPassword(userInfo) {
+    const {username, password} = userInfo;
+    const result = database.query('SELECT hash FROM users WHERE username = (?)', [username]);
+
+    if (result.length == 0) {
+        return 1;
+    }
+
+    if (result[0].hash != password) {
+        return 2;
+    }
+
+    return 0;
+}
+
+function getUserInfo(username) {
+    const result = database.query('SELECT initials, username, role FROM users WHERE username = (?)', [username]);
+
+    if (result.length == 0) {
+        return 1;
+    }
+
+    const userInfo = result[0];
+
+    return userInfo;
+}
+
 module.exports = {
     registerUser,
     removeUser,
     registerPatient,
     removePatient,
+    registerRecord,
     checkPassword,
     getUserInfo
 }
