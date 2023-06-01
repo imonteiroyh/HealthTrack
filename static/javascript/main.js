@@ -32,8 +32,6 @@ async function submitForm() {
     })
     var formJSON = JSON.stringify(object)
 
-    console.log(window.location.href)
-
     const response = await fetch(window.location.href, {
         method: 'POST',
         body: formJSON,
@@ -44,7 +42,7 @@ async function submitForm() {
 
     if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse)
+
         if (jsonResponse.message) {
             if (jsonResponse.message != '') {
                 displayFlashMessage(jsonResponse.message);
