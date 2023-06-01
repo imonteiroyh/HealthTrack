@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-<!-- PERFIL -->
-
 <html lang="pt-br">
 
     <head>
@@ -18,13 +16,11 @@
         </div>
 
         <nav class="nav-primary">
-            <!-- CONTEÚDO DA BARRA LATERAL -->
             <% const currentPage = 'edit-record'; %>
             <%- include('partials/edit-record-sidebar', {currentPage}); %>
         </nav>
 
         <div class="main-content">
-            <!-- CONTEÚDO DA PÁGINA -->
             <b class="main-title">Informações do Usuário</b>
             <form action="/edit-record" method="post">
                 <div class="form-group form-content row">
