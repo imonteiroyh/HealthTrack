@@ -13,6 +13,10 @@
 
         <%- include('partials/header'); %>
 
+        <div class="flash-container">
+            <div class="flash-message"></div>
+        </div>
+
         <div class="wrapper">
             <div class="login-box rounded">
                 <div class="logo-container">
@@ -26,12 +30,12 @@
 
                 <form action="/login" method="post">
                     <div class="form-floating mb-3">
-                        <input autocomplete="off" autofocus class="form-control" type="text" name="inputUsername" placeholder="Digite aqui..." required>
+                        <input autocomplete="off" autofocus class="form-control" type="text" name="inputUsername" required>
                         <label for="inputUsername">Nome de Usuário</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input autocomplete="off" class="form-control" type="password" name="inputPassword" placeholder="Digite aqui..." required>
+                        <input autocomplete="off" class="form-control" type="password" name="inputPassword" required>
                         <label for="inputPassword">Senha</label>
                     </div>
 

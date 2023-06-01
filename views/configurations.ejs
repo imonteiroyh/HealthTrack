@@ -13,6 +13,10 @@
 
         <%- include('partials/header', {initials}); %>
 
+        <div class="flash-container">
+            <div class="flash-message"></div>
+        </div>
+
         <nav class="nav-primary">
             <!-- CONTEÚDO DA BARRA LATERAL -->
             <% const currentPage = 'configurations'; %>
@@ -23,7 +27,7 @@
             <!-- CONTEÚDO DA PÁGINA -->
             <p>
                 <button class="colormode" onclick="swapTheme('styles.css')">Light Mode</button>
-                <button class="colormode" onclick="swapTheme('dark_theme.css')">Dark Mode</button> 
+                <button class="colormode" onclick="swapTheme('dark_theme.css')">Dark Mode</button>
             </p>
         </div>
 

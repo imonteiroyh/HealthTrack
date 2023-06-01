@@ -18,6 +18,10 @@
             <%- include('partials/admin-sidebar', {currentPage}); %>
         </nav>
 
+        <div class="flash-container">
+            <div class="flash-message"></div>
+        </div>
+
         <div class="main-content">
             <b class="main-title">Registrar Usuário</b>
             <form action="/register-user" method="post">

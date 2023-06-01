@@ -13,6 +13,10 @@
 
         <%- include('partials/header', {initials}); %>
 
+        <div class="flash-container">
+            <div class="flash-message"></div>
+        </div>
+
         <nav class="nav-primary">
             <% const currentPage = 'record-queue'; %>
             <%- include('partials/doctor-sidebar', {currentPage}); %>

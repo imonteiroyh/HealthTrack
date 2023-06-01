@@ -8,144 +8,101 @@ const databaseQueries = require('../services/database-queries');
 
 router.route('/register-user')
     .get(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
-        try {
-            res.render('register-user', {
-                initials: req.session.user.initials
-            });
-        } catch(error) {
-            console.error(`Error while getting page `, error.message);
-            next(error);
-        }
+        res.render('register-user', {
+            initials: req.session.user.initials
+        });
     }))
 
     .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
-        try {
-            const adminObject = {
-                username: req.session.user.username,
-                password: req.body.inputAdminPassword
+        const adminObject = {
+            username: req.session.user.username,
+            password: req.body.inputAdminPassword
+        };
+
+        const check = await databaseQueries.checkPassword(adminObject);
+
+        if (check == 0) {
+            // hash inputuserpassord before send to userobject
+            const userObject = {
+                name: req.body.inputName,
+                lastName: req.body.inputLastName,
+                username: req.body.inputUsername,
+                email: req.body.inputEmail,
+                hash: req.body.inputUserPassword,
+                role: req.body.selectRole
             };
 
-            const check = await databaseQueries.checkPassword(adminObject);
+            const result = await databaseQueries.registerUser(userObject);
 
-            if (check == 0) {
-                // hash inputuserpassord before send to userobject
-                const userObject = {
-                    name: req.body.inputName,
-                    lastName: req.body.inputLastName,
-                    username: req.body.inputUsername,
-                    email: req.body.inputEmail,
-                    hash: req.body.inputUserPassword,
-                    role: req.body.selectRole
-                };
-
-                const result = await databaseQueries.registerUser(userObject);
-
-                if (result == 0) {
-                    console.log('usuário registrado');
-                    res.redirect('/register-user');
-                } else {
-                    console.log('erro ao cadastrar usuário');
-                }
-
-            } else if (check == 1) {
-                console.log('erro no username do admin');
+            if (result == 0) {
+                res.status(200).json({message: 'Usuário cadastrado com sucesso!', type: 'success', redirect: '/register-user'});
             } else {
-                console.log('admin password não bate');
+                res.status(200).json({message: 'Erro ao cadastrar usuário!', type: 'failure'});
             }
 
-        } catch(err) {
-            console.error(`Error while getting page `, err.message);
-            next(err);
+        } else {
+            res.status(200).json({message: 'As informações do administrador estão incorretas!', type: 'failure'});
         }
     }));
 
 router.route('/remove-user')
     .get(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
-        try {
-            res.render('remove-user', {
-                initials: req.session.user.initials
-            });
-        } catch(error) {
-            console.error(`Error while getting page `, error.message);
-            next(error);
-        }
+        res.render('remove-user', {
+            initials: req.session.user.initials
+        });
     }))
 
     .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
-        try {
-            const adminObject = {
-                username: req.session.user.username,
-                password: req.body.inputAdminPassword
-            };
+        const adminObject = {
+            username: req.session.user.username,
+            password: req.body.inputAdminPassword
+        };
 
-            const check = await databaseQueries.checkPassword(adminObject);
+        const check = await databaseQueries.checkPassword(adminObject);
 
-            if (check == 0) {
-                const username = req.body.inputUsername;
-                const result = await databaseQueries.removeUser(username);
+        if (check == 0) {
+            const username = req.body.inputUsername;
+            const result = await databaseQueries.removeUser(username);
 
-                if (result == 0) {
-                    console.log('usuário removido');
-                    res.redirect('/remove-user');
-                } else {
-                    console.log('erro ao remover usuário');
-                }
-
-            } else if (check == 1) {
-                console.log('erro no username do admin');
+            if (result == 0) {
+                res.status(200).json({message: 'Usuário removido com sucesso!', type: 'success', redirect: '/remove-user'});
             } else {
-                console.log('admin password não bate');
+                res.status(200).json({message: 'Erro ao remover usuário!', type: 'failure'});
             }
 
-        } catch(error) {
-            console.error(`Error while getting page `, error.message);
-            next(error);
+        } else {
+            res.status(200).json({message: 'As informações do administrador estão incorretas!', type: 'failure'});
         }
-
     }));
 
 router.route('/remove-patient')
     .get(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
-        try {
-            res.render('remove-patient', {
-                initials: req.session.user.initials
-            });
-        } catch(error) {
-            console.error(`Error while getting page `, error.message);
-            next(error);
-        }
+        res.render('remove-patient', {
+            initials: req.session.user.initials
+        });
     }))
 
     .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
-        try {
-            const adminObject = {
-                username: req.session.user.username,
-                password: req.body.inputAdminPassword
-            };
+        const adminObject = {
+            username: req.session.user.username,
+            password: req.body.inputAdminPassword
+        };
 
-            const check = await databaseQueries.checkPassword(adminObject);
-            console.log(check)
+        const check = await databaseQueries.checkPassword(adminObject);
+        console.log(check)
 
-            if (check == 0) {
-                const cpf = req.body.inputCPF;
-                const result = await databaseQueries.removePatient(cpf);
+        if (check == 0) {
+            const cpf = req.body.inputCPF;
+            const result = await databaseQueries.removePatient(cpf);
 
-                if (result == 0) {
-                    console.log('paciente removido');
-                    res.redirect('/remove-patient');
-                } else {
-                    console.log('erro ao remover paciente');
-                }
-
-            } else if (check == 1) {
-                console.log('erro no username do admin');
+            if (result == 0) {
+                res.status(200).json({message: 'Paciente removido com sucesso!', type: 'success', redirect: '/remove-patient'});
             } else {
-                console.log('admin password não bate');
+                res.status(200).json({message: 'Erro ao remover paciente!', type: 'failure'});
             }
 
-        } catch(error) {
-            console.error(`Error while getting page `, error.message);
-            next(error);
+        } else {
+            res.status(200).json({message: 'As informações do administrador estão incorretas!', type: 'failure'});
         }
     }));
 
