@@ -13,6 +13,34 @@ function applyThemeBasedOnRoute() {
     }
 }
 
+function increaseFontSize() {
+    var element = document.getElementById("valueFontSize");
+    var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
+    var newSize = parseInt(size) + 2;
+
+    localStorage.setItem('fontSize', newSize + 'px');
+    applyFontSize();
+  }
+
+  function decreaseFontSize() {
+    var element = document.getElementById("valueFontSize");
+    var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
+    var newSize = parseInt(size) - 2;
+
+    localStorage.setItem('fontSize', newSize + 'px');
+    applyFontSize();
+  }
+
+  function applyFontSize() {
+
+    if (localStorage.getItem('fontSize')) {
+
+      var size = localStorage.getItem('fontSize');
+
+      document.body.style.fontSize = size;
+    }
+  }
+
 function displayFlashMessage(message) {
     const flashMessage = document.querySelector('.flash-message');
     flashMessage.textContent = message;
@@ -66,6 +94,7 @@ async function submitForm() {
 document.addEventListener('DOMContentLoaded', function() {
 
     window.onload = applyThemeBasedOnRoute()
+    window.onload = applyFontSize()
 
     if (typeof document.getElementsByClassName('dropbtn')[0] !== 'undefined') {
         var dropdownBtn = document.getElementsByClassName('dropbtn')[0];

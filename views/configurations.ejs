@@ -24,8 +24,16 @@
         <div class="main-content">
             <!-- CONTEÚDO DA PÁGINA -->
             <p>
-                <button class="colormode" onclick="swapTheme('styles.css')">Light Mode</button>
-                <button class="colormode" onclick="swapTheme('dark_theme.css')">Dark Mode</button>
+                <a> Alterar o tema: </a><br>
+                <!-- <b class="main-title">Registrar Usuário:</b> -->
+                <button onclick="swapTheme('styles.css')">Light Mode</button>
+                <button onclick="swapTheme('dark_theme.css')">Dark Mode</button>
+            </p>
+
+            <p>
+                <a id="valueFontSize"> Aumentar ou diminuir a Fonte: </a><br>
+                <button onclick="increaseFontSize()">A+</button>
+                <button onclick="decreaseFontSize()">A-</button>
             </p>
         </div>
 
