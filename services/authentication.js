@@ -7,7 +7,7 @@ function isAuthenticated (req, res, next) {
 }
 
 function isUserAuthorizated(types) {
-    types = [0, 1, 2, 3];
+    
     return function (req, res, next) {
         const userRole = Number(req.session.user.role);
 
