@@ -20,18 +20,18 @@ function increaseFontSize() {
 
     localStorage.setItem('fontSize', newSize + 'px');
     applyFontSize();
-  }
+}
 
-  function decreaseFontSize() {
+function decreaseFontSize() {
     var element = document.getElementById("valueFontSize");
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
     var newSize = parseInt(size) - 2;
 
     localStorage.setItem('fontSize', newSize + 'px');
     applyFontSize();
-  }
+}
 
-  function applyFontSize() {
+function applyFontSize() {
 
     if (localStorage.getItem('fontSize')) {
 
@@ -39,7 +39,11 @@ function increaseFontSize() {
 
       document.body.style.fontSize = size;
     }
-  }
+}
+
+function clearLocalStorage(){
+    localStorage.clear()
+}
 
 function displayFlashMessage(message) {
     const flashMessage = document.querySelector('.flash-message');
