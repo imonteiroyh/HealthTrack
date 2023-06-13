@@ -1,5 +1,7 @@
 const database = require('../database/database');
 
+const { checkHashedPassword } = require('./cryptography');
+
 function validateCPF(cpf) {
     const result = database.query('SELECT COUNT(*) AS n FROM patients WHERE cpf = (?)', [cpf])[0].n;
 
@@ -97,7 +99,22 @@ function registerRecord(cpf) {
     return 1;
 }
 
-function checkPassword(userInfo) {
+// function checkPassword(userInfo) {
+//     const {username, password} = userInfo;
+//     const result = database.query('SELECT hash FROM users WHERE username = (?)', [username]);
+
+//     if (result.length == 0) {
+//         return 1;
+//     }
+
+//     if (result[0].hash != password) {
+//         return 2;
+//     }
+
+//     return 0;
+// }
+
+async function checkPassword(userInfo) {
     const {username, password} = userInfo;
     const result = database.query('SELECT hash FROM users WHERE username = (?)', [username]);
 
@@ -105,7 +122,11 @@ function checkPassword(userInfo) {
         return 1;
     }
 
-    if (result[0].hash != password) {
+    hashedPassword = result[0].hash
+
+    const check = await checkHashedPassword(hashedPassword, password);
+
+    if (!check) {
         return 2;
     }
 

@@ -1,10 +1,12 @@
 const express = require('express');
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler');
 const router = express.Router();
 
 const { isAuthenticated, isUserAuthorizated } = require('../services/authentication');
 
 const databaseQueries = require('../services/database-queries');
+
+const { hashPassword } = require('../services/cryptography');
 
 router.route('/register-user')
     .get(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
@@ -22,13 +24,15 @@ router.route('/register-user')
         const check = await databaseQueries.checkPassword(adminObject);
 
         if (check == 0) {
-            // hash inputuserpassord before send to userobject
+           
+            const hashedPassword = await hashPassword(req.body.inputUserPassword);
+
             const userObject = {
                 name: req.body.inputName,
                 lastName: req.body.inputLastName,
                 username: req.body.inputUsername,
                 email: req.body.inputEmail,
-                hash: req.body.inputUserPassword,
+                hash: hashedPassword,
                 role: req.body.selectRole
             };
 
