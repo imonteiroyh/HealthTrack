@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/imonteiroyh/WEB#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "better-sqlite3": "^8.4.0",
     "config": "^3.3.9",
     "cookie-parser": "^1.4.6",
