@@ -2,6 +2,53 @@ const database = require('../database/database');
 
 const { checkHashedPassword } = require('./cryptography');
 
+async function countUsers() {
+    const result = await database.query('SELECT COUNT(*) AS n FROM users', [])[0].n;
+
+    return result;
+}
+
+async function createTables() {
+    const createTableUsers = `
+        CREATE TABLE IF NOT EXISTS users (
+        'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, 
+        'name' TEXT,
+        'lastName' TEXT,
+        'initials' TEXT,
+        'username' TEXT NOT NULL UNIQUE,
+        'email' TEXT UNIQUE,
+        'hash' TEXT NOT NULL,
+        'role' TEXT NOT NULL
+    );`;
+
+    const createTablePatients = `
+        CREATE TABLE IF NOT EXISTS patients (
+        'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+        'name' TEXT NOT NULL,
+        'birthday' TEXT,
+        'cpf' TEXT NOT NULL UNIQUE,
+        'email' TEXT UNIQUE,
+        'address' TEXT,
+        'phone' TEXT
+    );`;
+
+    const createTableRecords = `
+        CREATE TABLE IF NOT EXISTS records (
+        'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+        'patient_id' INTEGER NOT NULL,
+        'arterial_pressure' TEXT,
+        'temperature' TEXT,
+        'description' TEXT,
+        'risk' INTEGER,
+        'stage' INTEGER DEFAULT 0,
+        FOREIGN KEY (patient_id) REFERENCES patients (id)
+    );`;
+
+    await database.exec(createTableUsers);
+    await database.exec(createTablePatients);
+    await database.exec(createTableRecords);
+}
+
 async function validateCPF(cpf) {
     const result = await database.query('SELECT COUNT(*) AS n FROM patients WHERE cpf = (?)', [cpf])[0].n;
 
@@ -137,6 +184,8 @@ async function getRecordsByStage(stage) {
 }
 
 module.exports = {
+    countUsers,
+    createTables,
     registerUser,
     removeUser,
     registerPatient,
