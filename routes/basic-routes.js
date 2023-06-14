@@ -44,11 +44,16 @@ router.route('/login')
     }))
 
     .post(asyncHandler(async (req, res) => {
-        userObject = {username: req.body.inputUsername, password: req.body.inputPassword};
-        check = databaseQueries.checkPassword(userObject);
+        const userObject = {
+            username: req.body.inputUsername,
+            password: req.body.inputPassword
+        };
+        
+        const check = await databaseQueries.checkPassword(userObject);
 
         if (check == 0) {
-            userInfo = databaseQueries.getUserInfo(userObject.username);
+            const userInfo = await databaseQueries.getUserInfo(userObject.username);
+            
             req.session.user = {
                 username: userInfo.username,
                 role: userInfo.role,

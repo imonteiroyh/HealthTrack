@@ -8,7 +8,7 @@ const databaseQueries = require('../services/database-queries');
 
 router.route('/risk-classification')
     .get(isAuthenticated, isUserAuthorizated([1]), asyncHandler(async (req, res) => {
-        const records = databaseQueries.getRecordsByStage(0)
+        const records = await databaseQueries.getRecordsByStage(0)
 
         res.render('risk-classification', {
             initials: req.session.user.initials,

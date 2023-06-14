@@ -8,7 +8,7 @@ const databaseQueries = require('../services/database-queries');
 
 router.route('/record-queue')
     .get(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
-        const records = databaseQueries.getRecordsByStage(1)
+        const records = await databaseQueries.getRecordsByStage(1)
 
         res.render('record-queue', {
             initials: req.session.user.initials,
