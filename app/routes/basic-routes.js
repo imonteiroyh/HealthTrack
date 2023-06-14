@@ -2,9 +2,9 @@ const express = require('express');
 const asyncHandler = require('express-async-handler')
 const router = express.Router();
 
-const { isAuthenticated } = require('../services/authentication');
+const { isAuthenticated } = require('../../services/authentication');
 
-const databaseQueries = require('../services/database-queries');
+const databaseQueries = require('../../services/database-queries');
 
 router.route('/')
     .get(asyncHandler(async (req, res) => {
@@ -48,12 +48,12 @@ router.route('/login')
             username: req.body.inputUsername,
             password: req.body.inputPassword
         };
-        
+
         const check = await databaseQueries.checkPassword(userObject);
 
         if (check == 0) {
             const userInfo = await databaseQueries.getUserInfo(userObject.username);
-            
+
             req.session.user = {
                 username: userInfo.username,
                 role: userInfo.role,

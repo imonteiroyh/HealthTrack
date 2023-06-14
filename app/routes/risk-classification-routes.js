@@ -2,9 +2,9 @@ const express = require('express');
 const asyncHandler = require('express-async-handler')
 const router = express.Router();
 
-const { isAuthenticated, isUserAuthorizated } = require('../services/authentication');
+const { isAuthenticated, isUserAuthorizated } = require('../../services/authentication');
 
-const databaseQueries = require('../services/database-queries');
+const databaseQueries = require('../../services/database-queries');
 
 router.route('/risk-classification')
     .get(isAuthenticated, isUserAuthorizated([1]), asyncHandler(async (req, res) => {

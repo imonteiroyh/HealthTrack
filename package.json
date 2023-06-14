@@ -2,11 +2,12 @@
   "name": "gerenciador_hospitalar",
   "version": "1.0.0",
   "description": "Um gerenciador hospitalar, para acelerar e facilitar o atendimento.",
-  "main": "server.js",
+  "main": "server-application.js",
   "type": "commonjs",
   "scripts": {
     "initialize-database": "nodemon database/initialize-database.js",
-    "start": "nodemon server.js",
+    "app": "nodemon server-application.js",
+    "data": "nodemon server-database.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

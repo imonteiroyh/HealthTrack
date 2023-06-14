@@ -1,5 +1,6 @@
 {
     "server": {
-        "port" : 8080
+        "port_application" : 8080,
+        "port_database" : 8081
     }
 }

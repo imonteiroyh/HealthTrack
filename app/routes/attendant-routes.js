@@ -2,9 +2,9 @@ const express = require('express');
 const asyncHandler = require('express-async-handler')
 const router = express.Router();
 
-const { isAuthenticated, isUserAuthorizated } = require('../services/authentication');
+const { isAuthenticated, isUserAuthorizated } = require('../../services/authentication');
 
-const databaseQueries = require('../services/database-queries');
+const databaseQueries = require('../../services/database-queries');
 
 router.route('/register-patient')
     .get(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {

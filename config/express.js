@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('config');
 const sessions = require('express-session');
@@ -9,7 +8,7 @@ const oneDay = 1000 * 60 * 60 * 24;
 module.exports = () => {
     const app = express();
 
-    app.set('port', process.env.PORT || config.get('server.port'));
+    app.set('port', process.env.PORT || config.get('server.port_application'));
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
     app.use(cookieParser());
@@ -21,9 +20,9 @@ module.exports = () => {
         resave: false
     }));
 
-    app.use(express.static('static'))
+    app.use(express.static('./app/static'))
     app.set('view engine', 'ejs');
-    app.set('views', './views');
+    app.set('views', './app/views');
 
     return app;
 };
