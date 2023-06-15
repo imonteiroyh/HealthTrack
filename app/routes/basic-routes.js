@@ -4,8 +4,6 @@ const router = express.Router();
 
 const { isAuthenticated } = require('../../services/authentication');
 
-const databaseQueries = require('../../services/database-queries');
-
 router.route('/')
     .get(asyncHandler(async (req, res) => {
         const profile = req.session.user ? req.session.user.role : null;
@@ -62,8 +60,18 @@ router.route('/login')
         });
 
         if (check == 0) {
-            const userInfo = await databaseQueries.getUserInfo(userObject.username);
-            
+            const userInfo = await fetch('http://localhost:8081/getUserInfo', {
+                method: 'POST',
+                body: JSON.stringify(userObject),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
             req.session.user = {
                 username: userInfo.username,
                 role: userInfo.role,
