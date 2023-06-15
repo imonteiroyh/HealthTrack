@@ -8,7 +8,7 @@ const oneDay = 1000 * 60 * 60 * 24;
 module.exports = () => {
     const app = express();
 
-    app.set('port', process.env.PORT || config.get('server.port_application'));
+    app.set('port', process.env.PORT || config.get('server.port'));
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
     app.use(cookieParser());
