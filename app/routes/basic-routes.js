@@ -1,5 +1,5 @@
 const express = require('express');
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler');
 const router = express.Router();
 
 const { isAuthenticated } = require('../../services/authentication');
@@ -49,11 +49,21 @@ router.route('/login')
             password: req.body.inputPassword
         };
 
-        const check = await databaseQueries.checkPassword(userObject);
+        const check = await fetch('http://localhost:8081/checkPassword', {
+            method: 'POST',
+            body: JSON.stringify(userObject),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
         if (check == 0) {
             const userInfo = await databaseQueries.getUserInfo(userObject.username);
-
+            
             req.session.user = {
                 username: userInfo.username,
                 role: userInfo.role,

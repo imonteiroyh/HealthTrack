@@ -20,7 +20,7 @@ router.route('/register-user')
             username: req.session.user.username,
             password: req.body.inputAdminPassword
         };
-
+        
         const check = await databaseQueries.checkPassword(adminObject);
 
         if (check == 0) {
