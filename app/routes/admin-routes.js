@@ -3,10 +3,7 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 
 const { isAuthenticated, isUserAuthorizated } = require('../../services/authentication');
-
-const databaseQueries = require('../../services/database-queries');
-
-const { hashPassword } = require('../../services/cryptography');
+const { fetchData } = require('../../services/get-data');
 
 router.route('/register-user')
     .get(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
@@ -20,12 +17,13 @@ router.route('/register-user')
             username: req.session.user.username,
             password: req.body.inputAdminPassword
         };
-        
-        const check = await databaseQueries.checkPassword(adminObject);
+
+        const check = await fetchData('/checkPassword', adminObject);
 
         if (check == 0) {
 
-            const hashedPassword = await hashPassword(req.body.inputUserPassword);
+            const userPassword = {userPassword: req.body.inputUserPassword}
+            const hashedPassword = await fetchData('/hashPassword', userPassword);
 
             const userObject = {
                 name: req.body.inputName,
@@ -36,7 +34,7 @@ router.route('/register-user')
                 role: req.body.selectRole
             };
 
-            const result = await databaseQueries.registerUser(userObject);
+            const result = await fetchData('/registerUser', userObject);
 
             if (result == 0) {
                 res.status(200).json({message: 'Usuário cadastrado com sucesso!', type: 'success', redirect: '/register-user'});
@@ -62,11 +60,11 @@ router.route('/remove-user')
             password: req.body.inputAdminPassword
         };
 
-        const check = await databaseQueries.checkPassword(adminObject);
+        const check = await fetchData('/checkPassword', adminObject);
 
         if (check == 0) {
-            const username = req.body.inputUsername;
-            const result = await databaseQueries.removeUser(username);
+            const username = {username: req.body.inputUsername};
+            const result = await fetchData('/removeUser', username);
 
             if (result == 0) {
                 res.status(200).json({message: 'Usuário removido com sucesso!', type: 'success', redirect: '/remove-user'});
@@ -92,11 +90,11 @@ router.route('/remove-patient')
             password: req.body.inputAdminPassword
         };
 
-        const check = await databaseQueries.checkPassword(adminObject);
+        const check = await fetchData('/checkPassword', adminObject);
 
         if (check == 0) {
-            const cpf = req.body.inputCPF;
-            const result = await databaseQueries.removePatient(cpf);
+            const cpf = {cpf: req.body.inputCPF};
+            const result = await fetchData('/removePatient', cpf);
 
             if (result == 0) {
                 res.status(200).json({message: 'Paciente removido com sucesso!', type: 'success', redirect: '/remove-patient'});
