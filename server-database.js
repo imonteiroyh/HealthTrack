@@ -25,6 +25,19 @@ router.route('/checkPassword')
         res.status(200).json(check);
     }));
 
+router.route('/getUserInfo')
+    .post(asyncHandler(async (req, res) => {
+        const userObject = {
+            username: req.body.username,
+            password: req.body.password
+        };
+
+        const userInfo = await databaseQueries.getUserInfo(userObject.username);
+
+        // Fazer tratamento adequado baseado na resposta de userInfo
+        res.status(200).json(userInfo);
+    }));
+
 app.use('/', router);
 
 app.listen(port, () => {
