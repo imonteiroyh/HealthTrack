@@ -11,7 +11,7 @@ async function countUsers() {
 async function createTables() {
     const createTableUsers = `
         CREATE TABLE IF NOT EXISTS users (
-        'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, 
+        'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
         'name' TEXT,
         'lastName' TEXT,
         'initials' TEXT,
@@ -41,7 +41,7 @@ async function createTables() {
         'description' TEXT,
         'risk' INTEGER,
         'stage' INTEGER DEFAULT 0,
-        FOREIGN KEY (patient_id) REFERENCES patients (id)
+        FOREIGN KEY (patient_id) REFERENCES patients (id) ON DELETE CASCADE
     );`;
 
     await database.exec(createTableUsers);
@@ -119,7 +119,8 @@ async function registerPatient(patientInfo) {
 
 async function removePatient(cpf) {
     cpf = cpf.toString();
-
+    // remover também as consultas com o id desse paciente
+    console.log(cpf)
     const result = await database.run('DELETE FROM patients WHERE cpf = (?)', [cpf]);
 
     if (result.changes) {
@@ -149,11 +150,11 @@ async function registerRecord(cpf) {
 async function checkPassword(userInfo) {
     const {username, password} = userInfo;
     const result = await database.query('SELECT hash FROM users WHERE username = (?)', [username]);
-    
+
     if (result.length == 0) {
         return 1;
     }
-    
+
     hashedPassword = result[0].hash
 
     const check = await checkHashedPassword(password, hashedPassword);
