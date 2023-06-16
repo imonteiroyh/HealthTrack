@@ -1,14 +1,15 @@
 const express = require('express');
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler');
 const router = express.Router();
 
 const { isAuthenticated, isUserAuthorizated } = require('../../services/authentication');
-
-const databaseQueries = require('../../services/database-queries');
+const { fetchData } = require('../../services/get-data');
 
 router.route('/risk-classification')
     .get(isAuthenticated, isUserAuthorizated([1]), asyncHandler(async (req, res) => {
-        const records = await databaseQueries.getRecordsByStage(0)
+        const stage = {stage: 0};
+
+        const records = await fetchData('/getRecordsByStage', stage);
 
         res.render('risk-classification', {
             initials: req.session.user.initials,

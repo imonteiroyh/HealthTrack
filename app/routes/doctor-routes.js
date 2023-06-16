@@ -1,14 +1,15 @@
 const express = require('express');
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler');
 const router = express.Router();
 
 const { isAuthenticated, isUserAuthorizated } = require('../../services/authentication');
-
-const databaseQueries = require('../../services/database-queries');
+const { fetchData } = require('../../services/get-data');
 
 router.route('/record-queue')
     .get(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
-        const records = await databaseQueries.getRecordsByStage(1)
+        const stage = {stage: 1};
+
+        const records = await fetchData('/getRecordsByStage', stage);
 
         res.render('record-queue', {
             initials: req.session.user.initials,

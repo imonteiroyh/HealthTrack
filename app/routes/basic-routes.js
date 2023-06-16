@@ -12,22 +12,22 @@ router.route('/')
         switch (profile) {
             // Admin
             case '3':
-                res.redirect('/register-user')
+                res.redirect('/register-user');
                 break;
 
             // Doctor
             case '2':
-                res.redirect('/record-queue')
+                res.redirect('/record-queue');
                 break;
 
             // Risk Classification
             case '1':
-                res.redirect('/risk-classification')
+                res.redirect('/risk-classification');
                 break;
 
             // Attendant
             case '0':
-                res.redirect('/register-patient')
+                res.redirect('/register-patient');
                 break;
 
             // Not authenticated
@@ -49,7 +49,7 @@ router.route('/login')
         };
 
         const check = await fetchData('/checkPassword', userObject);
-        
+
         if (check == 0) {
 
             const userInfo = await fetchData('/getUserInfo', userObject);

@@ -41,7 +41,7 @@ router.route('/getUserInfo')
 
 router.route('/hashPassword')
     .post(asyncHandler(async (req, res) => {
-        const userPassword = req.body.userPassword
+        const userPassword = req.body.userPassword;
 
         const hashedPassword = await hashPassword(userPassword);
 
@@ -51,7 +51,7 @@ router.route('/hashPassword')
 
 router.route('/registerUser')
     .post(asyncHandler(async (req, res) => {
-        const userObject = req.body
+        const userObject = req.body;
 
         const result = await databaseQueries.registerUser(userObject);
 
@@ -61,7 +61,7 @@ router.route('/registerUser')
 
 router.route('/removeUser')
     .post(asyncHandler(async (req, res) => {
-        const username = req.body.username
+        const username = req.body.username;
 
         const result = await databaseQueries.removeUser(username);
 
@@ -71,7 +71,7 @@ router.route('/removeUser')
 
 router.route('/removePatient')
     .post(asyncHandler(async (req, res) => {
-        const cpf = req.body.cpf
+        const cpf = req.body.cpf;
 
         const result = await databaseQueries.removePatient(cpf);
 
@@ -81,7 +81,7 @@ router.route('/removePatient')
 
 router.route('/registerPatient')
     .post(asyncHandler(async (req, res) => {
-        const patientObject = req.body
+        const patientObject = req.body;
 
         const result = await databaseQueries.registerPatient(patientObject);
 
@@ -92,12 +92,22 @@ router.route('/registerPatient')
 
 router.route('/registerRecord')
     .post(asyncHandler(async (req, res) => {
-        const cpf = req.body.cpf
+        const cpf = req.body.cpf;
 
         const result = await databaseQueries.registerRecord(cpf);
 
         // Fazer tratamento adequado baseado na resposta de result
         res.status(200).json(result);
+    }));
+
+router.route('/getRecordsByStage')
+    .post(asyncHandler(async (req, res) => {
+        const stage = req.body.stage;
+
+        const records = await databaseQueries.getRecordsByStage(stage);
+
+        // Fazer tratamento adequado baseado na resposta de records
+        res.status(200).json(records);
     }));
 
 app.use('/', router);

@@ -22,7 +22,7 @@ router.route('/register-user')
 
         if (check == 0) {
 
-            const userPassword = {userPassword: req.body.inputUserPassword}
+            const userPassword = {userPassword: req.body.inputUserPassword};
             const hashedPassword = await fetchData('/hashPassword', userPassword);
 
             const userObject = {
