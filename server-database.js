@@ -72,15 +72,33 @@ router.route('/removeUser')
 router.route('/removePatient')
     .post(asyncHandler(async (req, res) => {
         const cpf = req.body.cpf
-        console.log(cpf)
 
         const result = await databaseQueries.removePatient(cpf);
-        console.log(result)
 
         // Fazer tratamento adequado baseado na resposta de result
         res.status(200).json(result);
     }));
 
+router.route('/registerPatient')
+    .post(asyncHandler(async (req, res) => {
+        const patientObject = req.body
+
+        const result = await databaseQueries.registerPatient(patientObject);
+
+        // Fazer tratamento adequado baseado na resposta de result
+        res.status(200).json(result);
+    }));
+
+
+router.route('/registerRecord')
+    .post(asyncHandler(async (req, res) => {
+        const cpf = req.body.cpf
+
+        const result = await databaseQueries.registerRecord(cpf);
+
+        // Fazer tratamento adequado baseado na resposta de result
+        res.status(200).json(result);
+    }));
 
 app.use('/', router);
 
