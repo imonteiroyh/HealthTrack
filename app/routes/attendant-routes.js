@@ -3,8 +3,7 @@ const asyncHandler = require('express-async-handler')
 const router = express.Router();
 
 const { isAuthenticated, isUserAuthorizated } = require('../../services/authentication');
-
-const databaseQueries = require('../../services/database-queries');
+const { fetchData } = require('../../services/get-data');
 
 router.route('/register-patient')
     .get(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
@@ -23,10 +22,10 @@ router.route('/register-patient')
             phone: req.body.inputPhone
         };
 
-        const result = await databaseQueries.registerPatient(patientObject);
+        const result = await fetchData('/registerPatient', patientObject);
 
         if (result == 0) {
-            res.status(200).json({message: 'Paciente cadastrado com sucesso!', type: 'success', redirect: '/register-user'});
+            res.status(200).json({message: 'Paciente cadastrado com sucesso!', type: 'success', redirect: '/register-patient'});
         } else {
             res.status(200).json({message: 'Erro ao cadastrar paciente!', type: 'failure'});
         }
@@ -40,9 +39,9 @@ router.route('/register-record')
     }))
 
     .post(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
-        const cpf = req.body.inputCPF;
+        const cpf = {cpf: req.body.inputCPF};
 
-        const result = await databaseQueries.registerRecord(cpf);
+        const result = await fetchData('/registerRecord', cpf)
 
         if (result == 0) {
             res.status(200).json({message: 'Consulta cadastrada com sucesso!', type: 'success', redirect: '/register-record'});
