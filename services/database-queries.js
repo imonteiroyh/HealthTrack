@@ -61,6 +61,12 @@ async function validateUsername(username) {
     return result;
 }
 
+async function validateEmail(email) {
+    const result = await database.query('SELECT COUNT(*) AS n FROM users WHERE email = (?)', [email])[0].n;
+
+    return result;
+}
+
 async function getPatientId(cpf) {
     const result = await database.query('SELECT id FROM patients WHERE cpf = (?)', [cpf])[0].id;
 
@@ -69,86 +75,99 @@ async function getPatientId(cpf) {
 
 async function registerUser(userInfo) {
     const {name, lastName, username, email, hash, role} = userInfo;
-    const validate = await validateUsername(username);
 
-    if (validate === 0) {
-
-        const initials = `${
-            name.length > 0 ? name.charAt(0).toUpperCase() : ''
-        }${
-            lastName.length > 0 ? lastName.charAt(0).toUpperCase() : ''
-        }`;
-
-        const result = await database.run('INSERT INTO users (name, lastName, initials, username, email, hash, role) VALUES (?, ?, ?, ?, ?, ?, ?)', [name, lastName, initials, username, email, hash, role]);
-
-        if (result.changes) {
-            return 0;
-        }
-
+    const validateUsernameConst = await validateUsername(username);
+    if (validateUsernameConst != 0) {
+        return 1;
     }
 
-    return 1;
+    const validateEmailConst = await validateEmail(email);
+    if (validateEmailConst != 0) {
+        return 2;
+    }
+
+    const initials = `${
+        name.length > 0 ? name.charAt(0).toUpperCase() : ''
+    }${
+        lastName.length > 0 ? lastName.charAt(0).toUpperCase() : ''
+    }`;
+
+    const result = await database.run('INSERT INTO users (name, lastName, initials, username, email, hash, role) VALUES (?, ?, ?, ?, ?, ?, ?)', [name, lastName, initials, username, email, hash, role]);
+
+    if (result.changes) {
+        return 0;
+    } else {
+        return 3;
+    }
+
 }
 
 async function removeUser(username) {
+    const validateUsernameConst = await validateUsername(username);
+    if (validateUsernameConst == 0) {
+        return 1;
+    }
+
     const result = await database.run('DELETE FROM users WHERE username = (?)', [username]);
 
     if (result.changes) {
         return 0;
     } else {
-        return 1;
+        return 2;
     }
 }
 
 async function registerPatient(patientInfo) {
     const {name, cpf, email, birthday, address, phone} = patientInfo;
-    const validate = await validateCPF(cpf);
 
-    if (validate === 0) {
-
-        const result = await database.run('INSERT INTO patients (name, birthday, cpf, email, address, phone) VALUES (?, ?, ?, ?, ?, ?)', [name, birthday, cpf, email, address, phone]);
-
-        if (result.changes) {
-            return 0;
-        }
-
+    const validateCPFConst = await validateCPF(cpf);
+    if (validateCPFConst != 0) {
+        return 1;
     }
 
-    return 1;
+    const result = await database.run('INSERT INTO patients (name, birthday, cpf, email, address, phone) VALUES (?, ?, ?, ?, ?, ?)', [name, birthday, cpf, email, address, phone]);
+
+    if (result.changes) {
+        return 0;
+    } else {
+        return 2;
+    }
 }
 
 async function removePatient(cpf) {
-    cpf = cpf.toString();
-    // remover também as consultas com o id desse paciente
-    console.log(cpf)
+    const validateCPFConst = await validateCPF(cpf);
+    if (validateCPFConst == 0) {
+        return 1;
+    }
+
     const result = await database.run('DELETE FROM patients WHERE cpf = (?)', [cpf]);
 
     if (result.changes) {
         return 0;
     } else {
-        return 1;
+        return 2;
     }
 }
 
 async function registerRecord(cpf) {
-    const validate = await validateCPF(cpf);
-
-    if (validate === 1) {
-
-        const patientId = await getPatientId(cpf);
-        const result = await database.run('INSERT INTO records (patient_id) VALUES (?)', [patientId]);
-
-        if (result.changes) {
-            return 0;
-        }
-
+    const validateCPFConst = await validateCPF(cpf);
+    if (validateCPFConst == 0) {
+        return 1;
     }
 
-    return 1;
+    const patientId = await getPatientId(cpf);
+    const result = await database.run('INSERT INTO records (patient_id) VALUES (?)', [patientId]);
+
+    if (result.changes) {
+        return 0;
+    } else {
+        return 2;
+    }
 }
 
 async function checkPassword(userInfo) {
     const {username, password} = userInfo;
+
     const result = await database.query('SELECT hash FROM users WHERE username = (?)', [username]);
 
     if (result.length == 0) {
@@ -158,9 +177,20 @@ async function checkPassword(userInfo) {
     hashedPassword = result[0].hash
 
     const check = await checkHashedPassword(password, hashedPassword);
-
     if (!check) {
         return 2;
+    }
+
+    return 0;
+}
+
+async function changePassword(newPasswordInfo) {
+    const {username, newPassword} = newPasswordInfo;
+
+    const result = await database.query('UPDATE users SET hash = (?) WHERE username = (?)', [newPassword, username]);
+
+    if (result.length == 0) {
+        return 1;
     }
 
     return 0;
@@ -179,9 +209,9 @@ async function getUserInfo(username) {
 }
 
 async function getRecordsByStage(stage) {
-    const result = await database.query('SELECT records.id, records.risk, patients.name FROM records JOIN patients on records.patient_id = patients.id WHERE stage = (?)', [stage]);
+    const records = await database.query('SELECT records.id, records.risk, patients.name FROM records JOIN patients on records.patient_id = patients.id WHERE stage = (?)', [stage]);
 
-    return result;
+    return records;
 }
 
 module.exports = {
@@ -193,6 +223,7 @@ module.exports = {
     removePatient,
     registerRecord,
     checkPassword,
+    changePassword,
     getUserInfo,
     getRecordsByStage
 }

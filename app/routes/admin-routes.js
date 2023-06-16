@@ -93,7 +93,7 @@ router.route('/remove-patient')
         const check = await fetchData('/checkPassword', adminObject);
 
         if (check == 0) {
-            const cpf = {cpf: req.body.inputCPF};
+            const cpf = {cpf: (req.body.inputCPF).toString()};
             const result = await fetchData('/removePatient', cpf);
 
             if (result == 0) {

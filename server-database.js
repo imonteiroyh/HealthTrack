@@ -26,6 +26,16 @@ router.route('/checkPassword')
         res.status(200).json(check);
     }));
 
+router.route('/changePassword')
+    .post(asyncHandler(async (req, res) => {
+        const newPasswordObject = req.body;
+
+        const result = await databaseQueries.changePassword(newPasswordObject);
+
+        // Fazer tratamento adequado baseado na resposta de result
+        res.status(200).json(result);
+    }));
+
 router.route('/getUserInfo')
     .post(asyncHandler(async (req, res) => {
         const userObject = {

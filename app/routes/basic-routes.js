@@ -60,9 +60,9 @@ router.route('/login')
                 initials: userInfo.initials
             };
 
-            res.status(200).json({message: '', type: 'success', redirect: '/'})
+            res.status(200).json({message: '', type: 'success', redirect: '/'});
         } else {
-            res.status(200).json({message: 'Nome de usuário ou senha incorreto. Tente novamente!', type: 'failure'})
+            res.status(200).json({message: 'Nome de usuário ou senha incorreto. Tente novamente!', type: 'failure'});
         }
     }));
 
@@ -70,6 +70,57 @@ router.route('/logout')
     .get(isAuthenticated, asyncHandler(async (req, res) => {
         req.session.destroy();
         res.redirect('/login');
+    }));
+
+
+router.route('/changePassword')
+    .get(isAuthenticated, asyncHandler(async (req, res) => {
+        res.render('change-password', {
+            initials: req.session.user.initials
+        });
+    }))
+
+    .post(isAuthenticated, asyncHandler(async (req, res) => {
+        const userObject = {
+            username: req.session.user.username,
+            password: req.body.inputPassword
+        };
+
+        const check = await fetchData('/checkPassword', userObject);
+
+        if (check == 0) {
+
+            const userInfo = {
+                username: req.session.user.username,
+                password: req.body.inputPassword,
+                newPassword: req.body.inputNewPassword,
+                newPasswordConfirmation: req.body.inputNewPasswordConfirmation
+            };
+
+            if (userInfo.newPassword != newPasswordConfirmation) {
+                res.status(200).json({message: 'As novas senhas não conferem. Tente novamente!', type: 'failure'});
+            }
+
+            const userPassword = {userPassword: userInfo.newPassword};
+            const hashedPassword = await fetchData('/hashPassword', userPassword);
+
+            const newPasswordObject = {
+                username: userInfo.username,
+                newPassword: hashedPassword
+            };
+
+            const result = await fetchData('/changePassword', newPasswordObject);
+
+            if (result == 0) {
+                res.status(200).json({message: 'Senha alterada com sucesso!', type: 'success', redirect: '/register-user'});
+            } else {
+                res.status(200).json({message: 'Erro ao alterar senha!', type: 'failure'});
+            }
+
+            res.status(200).json({message: '', type: 'success', redirect: '/'});
+        } else {
+            res.status(200).json({message: 'Senha incorreta. Tente novamente!', type: 'failure'});
+        }
     }));
 
 router.route('/configurations')
