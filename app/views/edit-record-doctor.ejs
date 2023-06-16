@@ -14,7 +14,7 @@
         <%- include('partials/flash-container'); %>
 
         <nav class="nav-primary">
-            <% const currentPage = 'edit-record-doctor'; %>
+            <% const currentPage = 'record-queue'; %>
             <%- include('partials/doctor-sidebar', {currentPage}); %>
         </nav>
 
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col">
                         <label for="inputLastName">Data de Nascimento <span class="required-color">*</span></label>
-                        <input autocomplete="off" type="date" class="form-control" name="inputLastName" required>
+                        <input autocomplete="off" type="date" class="form-control" name="inputBirthday" required>
                     </div>
                 </div>
                 <b class="main-title">Dados do Paciente</b>

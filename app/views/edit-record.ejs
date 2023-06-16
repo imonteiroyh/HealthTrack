@@ -14,8 +14,8 @@
         <%- include('partials/flash-container'); %>
 
         <nav class="nav-primary">
-            <% const currentPage = 'edit-record'; %>
-            <%- include('partials/edit-record-sidebar', {currentPage}); %>
+            <% const currentPage = 'risk-classification'; %>
+            <%- include('partials/risk-classification-sidebar', {currentPage}); %>
         </nav>
 
         <div class="main-content">
@@ -25,10 +25,6 @@
                     <div class="col">
                         <label for="inputName">Nome Completo <span class="required-color">*</span></label>
                         <input autocomplete="off" type="text" class="form-control" name="inputName" placeholder="Digite aqui..." required>
-                    </div>
-                    <div class="col">
-                        <label for="inputLastName">Data de Nascimento <span class="required-color">*</span></label>
-                        <input autocomplete="off" type="date" class="form-control" name="inputLastName" required>
                     </div>
                 </div>
                 <b class="main-title">Dados do Paciente</b>
