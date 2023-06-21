@@ -17,29 +17,77 @@ function increaseFontSize() {
     var element = document.getElementById("valueFontSize");
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
     var newSize = parseInt(size) + 2;
-
     localStorage.setItem('fontSize', newSize + 'px');
-    applyFontSize();
-  }
 
-  function decreaseFontSize() {
+    var elementTitle = document.querySelector('.main-title');
+    if(elementTitle){
+        var sizeTitle = window.getComputedStyle(elementTitle, null).getPropertyValue("font-size");
+        var newSizeTitle = parseInt(sizeTitle) + 2;
+        localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
+    }
+    else{
+        if(localStorage.getItem('fontSizeTitle')){
+            var sizeTitle = localStorage.getItem('fontSizeTitle');
+            var newSizeTitle = parseInt(sizeTitle) + 2;
+            localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
+        }
+        else{
+            localStorage.setItem('fontSizeTitle', 32 + 'px');
+        }
+    }
+    applyFontSize();
+}
+
+function decreaseFontSize() {
     var element = document.getElementById("valueFontSize");
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
     var newSize = parseInt(size) - 2;
-
     localStorage.setItem('fontSize', newSize + 'px');
+    
+    var elementTitle = document.querySelector('.main-title');
+    if(elementTitle){
+        var sizeTitle = window.getComputedStyle(elementTitle, null).getPropertyValue("font-size");
+        var newSizeTitle = parseInt(sizeTitle) - 2;
+        localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
+    }
+    else{
+        if(localStorage.getItem('fontSizeTitle')){
+            var sizeTitle = localStorage.getItem('fontSizeTitle');
+            var newSizeTitle = parseInt(sizeTitle) - 2;
+            localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
+        }
+        else{
+            localStorage.setItem('fontSizeTitle', 28 + 'px');
+        }
+    }
+    
     applyFontSize();
   }
+function clearLocalStorage(){
+    localStorage.clear()
 
-  function applyFontSize() {
+    applyFontSize();
+}
 
-    if (localStorage.getItem('fontSize')) {
+function applyFontSize() {
+
+    var element = document.querySelector('.main-content')
+    if (element) {
 
       var size = localStorage.getItem('fontSize');
-
-      document.body.style.fontSize = size;
+      
+      element.style.fontSize = size;
     }
-  }
+
+    var elementTitle = document.querySelector('.main-title');
+    if(elementTitle){
+        if(localStorage.getItem('fontSizeTitle')){
+            var sizeTitle = localStorage.getItem('fontSizeTitle');
+    
+            elementTitle.style.fontSize = sizeTitle;
+        }
+    }
+}
 
 function displayFlashMessage(message) {
     const flashMessage = document.querySelector('.flash-message');
