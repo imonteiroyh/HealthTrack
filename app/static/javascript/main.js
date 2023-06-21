@@ -12,7 +12,6 @@ function applyThemeBasedOnRoute() {
         swapTheme(localStorage.getItem('sheet') || 'styles.css');
     }
 }
-
 function increaseFontSize() {
     var element = document.getElementById("valueFontSize");
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
@@ -35,8 +34,10 @@ function increaseFontSize() {
             localStorage.setItem('fontSizeTitle', 32 + 'px');
         }
     }
+    
     applyFontSize();
 }
+
 
 function decreaseFontSize() {
     var element = document.getElementById("valueFontSize");
@@ -61,11 +62,6 @@ function decreaseFontSize() {
         }
     }
     
-    applyFontSize();
-  }
-function clearLocalStorage(){
-    localStorage.clear()
-
     applyFontSize();
 }
 
