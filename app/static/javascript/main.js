@@ -85,6 +85,13 @@ function applyFontSize() {
     }
 }
 
+// function fillField(){
+//     // document.getElementById("inputName").value = Maria;
+//     if(document.getElementById("inputName")){
+//         document.getElementById("inputName").value = "Maria";
+//     }
+// }
+
 function displayFlashMessage(message) {
     const flashMessage = document.querySelector('.flash-message');
     flashMessage.textContent = message;
@@ -139,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.onload = applyThemeBasedOnRoute()
     window.onload = applyFontSize()
+    // window.onload = fillField()
 
     if (typeof document.getElementsByClassName('dropbtn')[0] !== 'undefined') {
         var dropdownBtn = document.getElementsByClassName('dropbtn')[0];
