@@ -120,6 +120,16 @@ router.route('/getRecordsByStage')
         res.status(200).json(records);
     }));
 
+router.route('/editRecordRC')
+    .post(asyncHandler(async (req, res) => {
+        recordObject = req.body
+
+        const records = await databaseQueries.editRecordRC(recordObject);
+
+        // Fazer tratamento adequado baseado na resposta de records
+        res.status(200).json(records);
+    }));
+
 app.use('/', router);
 
 app.listen(port, () => {

@@ -16,20 +16,18 @@ router.route('/risk-classification')
             records: records
         });
     }))
-    
+
     .post(isAuthenticated, isUserAuthorizated([1]), asyncHandler(async (req, res) => {
-        const classifiObject ={
-            name : req.body.inputName,
-            patient_id : req.body.inputId,
+        const recordObject = {
+            record_id : req.body.inputRecordId,
             arterial_pressure : req.body.inputPressure,
-            description : req.body.inputDescription,
             temperature : req.body.inputTemperature,
+            description : req.body.inputDescription,
             risk : req.body.selectRisk,
+            stage : 0
         }
 
-        const result = await fetchData('/riskClassification', classifiObject);
-        console.log(classifiObject)
-        console.log(result)
+        const result = await fetchData('/editRecordRC', recordObject);
 
         if (result == 0) {
             res.status(200).json({message: 'Classificação de risco cadastrado com sucesso!', type: 'success', redirect: '/risk-classification'});
@@ -37,7 +35,7 @@ router.route('/risk-classification')
             res.status(400).json({message: 'Erro ao cadastrar paciente!', type: 'failure'});
         }
     }));
-    
+
 router.route('/edit-record')
     .get(isAuthenticated, isUserAuthorizated([1, 2]), asyncHandler(async (req, res) => {
         res.render('edit-record', {

@@ -187,13 +187,13 @@ async function checkPassword(userInfo) {
 async function changePassword(newPasswordInfo) {
     const {username, newPassword} = newPasswordInfo;
 
-    const result = await database.query('UPDATE users SET hash = (?) WHERE username = (?)', [newPassword, username]);
+    const result = await database.run('UPDATE users SET hash = (?) WHERE username = (?)', [newPassword, username]);
 
-    if (result.length == 0) {
-        return 1;
+    if (result.changes) {
+        return 0;
     }
 
-    return 0;
+    return 1;
 }
 
 async function getUserInfo(username) {
@@ -214,6 +214,19 @@ async function getRecordsByStage(stage) {
     return records;
 }
 
+async function editRecordRC(recordInfo) {
+    console.log(recordInfo)
+    const { record_id, arterial_pressure, temperature, description, risk, stage } = recordInfo;
+
+    const result = await database.run('UPDATE records SET arterial_pressure = (?), temperature = (?), description = (?), risk = (?), stage = (?) WHERE id = (?)', [arterial_pressure, temperature, description, risk, stage + 1, record_id]);
+
+    if (result.changes) {
+        return 0;
+    }
+
+    return 1;
+}
+
 module.exports = {
     countUsers,
     createTables,
@@ -225,5 +238,6 @@ module.exports = {
     checkPassword,
     changePassword,
     getUserInfo,
-    getRecordsByStage
+    getRecordsByStage,
+    editRecordRC
 }
