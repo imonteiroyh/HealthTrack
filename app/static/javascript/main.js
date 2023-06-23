@@ -85,12 +85,10 @@ function applyFontSize() {
     }
 }
 
-// function fillField(){
-//     // document.getElementById("inputName").value = Maria;
-//     if(document.getElementById("inputName")){
-//         document.getElementById("inputName").value = "Maria";
-//     }
-// }
+function closeModal(){
+    const modal = document.querySelector("#myModal_<%= records[i].id %>");
+    modal.style.display = "none";
+}
 
 function displayFlashMessage(message) {
     const flashMessage = document.querySelector('.flash-message');

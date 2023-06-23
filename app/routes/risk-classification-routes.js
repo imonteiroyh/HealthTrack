@@ -27,7 +27,7 @@ router.route('/risk-classification')
             stage : 0
         }
 
-        const result = await fetchData('/editRecordRC', recordObject);
+        // const result = await fetchData('/editRecordRC', recordObject);
 
         if (result == 0) {
             res.status(200).json({message: 'Classificação de risco cadastrado com sucesso!', type: 'success', redirect: '/risk-classification'});
