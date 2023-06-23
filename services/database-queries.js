@@ -209,7 +209,7 @@ async function getUserInfo(username) {
 }
 
 async function getRecordsByStage(stage) {
-    const records = await database.query('SELECT records.id, records.risk, patients.name FROM records JOIN patients on records.patient_id = patients.id WHERE stage = (?)', [stage]);
+    const records = await database.query('SELECT records.id, records.risk, records.arterial_pressure, records.temperature, records.description, records.risk, patients.name, patients.birthday FROM records JOIN patients on records.patient_id = patients.id WHERE stage = (?)', [stage]);
 
     return records;
 }
