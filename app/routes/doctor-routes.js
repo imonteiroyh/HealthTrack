@@ -11,7 +11,6 @@ router.route('/record-queue')
 
         const records = await fetchData('/getRecordsByStage', stage);
 
-        console.log(records)
         res.render('record-queue', {
             initials: req.session.user.initials,
             records: records
@@ -27,10 +26,8 @@ router.route('/record-queue')
             description : req.body.inputDescription,
             stage : 1
         }
-        console.log(recordObject)
-        const result = 0;
 
-        // const result = await fetchData('/editRecordRC', recordObject);
+        const result = await fetchData('/editRecordRC', recordObject);
 
         if (result == 0) {
             res.status(200).json({message: 'Classificação de risco cadastrado com sucesso!', type: 'success', redirect: '/record-queue'});

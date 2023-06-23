@@ -26,9 +26,8 @@ router.route('/risk-classification')
             risk : req.body.selectRisk,
             stage : 0
         }
-        console.log(recordObject)
-        const result = 0;
-        // const result = await fetchData('/editRecordRC', recordObject);
+
+        const result = await fetchData('/editRecordRC', recordObject);
 
         if (result == 0) {
             res.status(200).json({message: 'Risco classificado com sucesso!', type: 'success'});
