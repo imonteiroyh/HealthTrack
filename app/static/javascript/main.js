@@ -34,7 +34,7 @@ function increaseFontSize() {
             localStorage.setItem('fontSizeTitle', 32 + 'px');
         }
     }
-    
+
     applyFontSize();
 }
 
@@ -44,7 +44,7 @@ function decreaseFontSize() {
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
     var newSize = parseInt(size) - 2;
     localStorage.setItem('fontSize', newSize + 'px');
-    
+
     var elementTitle = document.querySelector('.main-title');
     if(elementTitle){
         var sizeTitle = window.getComputedStyle(elementTitle, null).getPropertyValue("font-size");
@@ -61,7 +61,7 @@ function decreaseFontSize() {
             localStorage.setItem('fontSizeTitle', 28 + 'px');
         }
     }
-    
+
     applyFontSize();
 }
 
@@ -71,7 +71,7 @@ function applyFontSize() {
     if (element) {
 
       var size = localStorage.getItem('fontSize');
-      
+
       element.style.fontSize = size;
     }
 
@@ -79,7 +79,7 @@ function applyFontSize() {
     if(elementTitle){
         if(localStorage.getItem('fontSizeTitle')){
             var sizeTitle = localStorage.getItem('fontSizeTitle');
-    
+
             elementTitle.style.fontSize = sizeTitle;
         }
     }
@@ -116,6 +116,7 @@ async function submitForm() {
             'Content-Type': 'application/json',
         },
     });
+
 
     if (response.ok) {
         const jsonResponse = await response.json();
@@ -158,8 +159,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    document.querySelector('form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        submitForm();
+    const forms = document.querySelectorAll('form');
+    forms.forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            submitForm();
+        });
     });
 })
