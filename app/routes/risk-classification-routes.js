@@ -26,11 +26,12 @@ router.route('/risk-classification')
             risk : req.body.selectRisk,
             stage : 0
         }
-
-        const result = await fetchData('/editRecordRC', recordObject);
+        console.log(recordObject)
+        const result = 0;
+        // const result = await fetchData('/editRecordRC', recordObject);
 
         if (result == 0) {
-            res.status(200).json({message: 'Classificação de risco cadastrado com sucesso!', type: 'success'});
+            res.status(200).json({message: 'Risco classificado com sucesso!', type: 'success'});
         } else {
             res.status(400).json({message: 'Erro ao cadastrar paciente!', type: 'failure'});
         }

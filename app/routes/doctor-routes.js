@@ -11,6 +11,7 @@ router.route('/record-queue')
 
         const records = await fetchData('/getRecordsByStage', stage);
 
+        console.log(records)
         res.render('record-queue', {
             initials: req.session.user.initials,
             records: records
@@ -23,9 +24,11 @@ router.route('/record-queue')
             birthday : req.body.inputBirthday,
             arterial_pressure : req.body.inputPressure,
             temperature : req.body.inputTemperature,
-            // description : req.body.inputDescription,
+            description : req.body.inputDescription,
             stage : 1
         }
+        console.log(recordObject)
+        const result = 0;
 
         // const result = await fetchData('/editRecordRC', recordObject);
 
