@@ -53,25 +53,16 @@
                             </td>
                         </tr>
 
-
-                        <script>
-                            function closeModal(){
-                                $("#myModal_<%= records[i].id %>").modal('hide');
-                            }
-                        </script>
-
                         <div class="modal" id="myModal_<%= records[i].id %>">
                             <div class="modal-dialog">
                                 <div class="modal-content">
 
-                                    <!-- Cabeçalho do modal -->
                                     <div class="modal-header">
                                     <h5 class="modal-title">Editar</h5>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
-                                    <form action="/risk-classification" method="post" onsubmit="closeModal()">
-                                    <!-- Corpo do modal -->
+                                    <form action="/risk-classification" method="post">
                                     <div class="modal-body">
                                         <div class="form-group form-content row">
                                         <b class="main-title">Informações do Paciente</b>
@@ -117,9 +108,8 @@
 
                                     </div>
 
-                                    <!-- Rodapé do modal -->
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>                                        
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                         <button type="submit" class="btn btn-primary btn-dark-green">Salvar</button>
                                     </div>
                                     </form>

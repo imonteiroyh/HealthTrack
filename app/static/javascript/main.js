@@ -85,11 +85,6 @@ function applyFontSize() {
     }
 }
 
-function closeModal(){
-    const modal = document.querySelector("#myModal_<%= records[i].id %>");
-    modal.style.display = "none";
-}
-
 function displayFlashMessage(message) {
     const flashMessage = document.querySelector('.flash-message');
     flashMessage.textContent = message;
@@ -108,6 +103,16 @@ async function submitForm() {
         object[key] = value;
     })
     var formJSON = JSON.stringify(object)
+
+    if (window.location.pathname == '/risk-classification' || window.location.pathname == '/record-queue') {
+        const backdrop = document.getElementsByClassName('modal-backdrop')[0]
+        backdrop.classList.remove('modal-backdrop')
+
+        const modals = [...document.getElementsByClassName('modal')];
+        modals.forEach(function(modal) {
+            modal.style.display = 'none';
+        });
+    }
 
     const response = await fetch(window.location.href, {
         method: 'POST',
@@ -142,10 +147,8 @@ async function submitForm() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-
     window.onload = applyThemeBasedOnRoute()
     window.onload = applyFontSize()
-    // window.onload = fillField()
 
     if (typeof document.getElementsByClassName('dropbtn')[0] !== 'undefined') {
         var dropdownBtn = document.getElementsByClassName('dropbtn')[0];
