@@ -215,7 +215,6 @@ async function getRecordsByStage(stage) {
 }
 
 async function editRecordRC(recordInfo) {
-    console.log(recordInfo)
     const { record_id, arterial_pressure, temperature, description, risk, stage } = recordInfo;
 
     const result = await database.run('UPDATE records SET arterial_pressure = (?), temperature = (?), description = (?), risk = (?), stage = (?) WHERE id = (?)', [arterial_pressure, temperature, description, risk, stage + 1, record_id]);
@@ -226,6 +225,19 @@ async function editRecordRC(recordInfo) {
 
     return 1;
 }
+
+async function editRecordD(recordInfo) {
+    const { record_id, arterial_pressure, temperature, description, stage } = recordInfo;
+
+    const result = await database.run('UPDATE records SET arterial_pressure = (?), temperature = (?), description = (?), stage = (?) WHERE id = (?)', [arterial_pressure, temperature, description, stage + 1, record_id]);
+
+    if (result.changes) {
+        return 0;
+    }
+
+    return 1;
+}
+
 
 module.exports = {
     countUsers,
@@ -239,5 +251,6 @@ module.exports = {
     changePassword,
     getUserInfo,
     getRecordsByStage,
-    editRecordRC
+    editRecordRC,
+    editRecordD
 }

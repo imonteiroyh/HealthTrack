@@ -36,15 +36,4 @@ router.route('/risk-classification')
         }
     }));
 
-router.route('/edit-record')
-    .get(isAuthenticated, isUserAuthorizated([1, 2]), asyncHandler(async (req, res) => {
-        res.render('edit-record', {
-            initials: req.session.user.initials
-        });
-    }))
-
-    .post(isAuthenticated, isUserAuthorizated([1, 2]), asyncHandler(async (req, res) => {
-        res.status(200).json({message: 'Em construção!'});
-    }));
-
 module.exports = router;
