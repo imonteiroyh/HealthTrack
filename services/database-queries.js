@@ -238,6 +238,17 @@ async function editRecordD(recordInfo) {
     return 1;
 }
 
+async function removeRecord(recordInfo) {
+    const { record_id } = recordInfo;
+
+    const result = await database.run('DELETE FROM records WHERE id = (?)', [record_id]);
+
+    if (result.changes) {
+        return 0;
+    }
+
+    return 1;
+}
 
 module.exports = {
     countUsers,
@@ -252,5 +263,6 @@ module.exports = {
     getUserInfo,
     getRecordsByStage,
     editRecordRC,
-    editRecordD
+    editRecordD,
+    removeRecord
 }

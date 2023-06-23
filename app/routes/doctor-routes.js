@@ -12,8 +12,7 @@ router.route('/record-queue')
         const records = await fetchData('/getRecordsByStage', stage);
 
         res.render('record-queue', {
-            // initials: req.session.user.initials,
-            initials: '',
+            initials: req.session.user.initials,
             records: records
         });
     }))
@@ -30,9 +29,9 @@ router.route('/record-queue')
         const result = await fetchData('/editRecordD', recordObject);
 
         if (result == 0) {
-            res.status(200).json({message: 'Classificação de risco cadastrado com sucesso!', type: 'success', redirect: '/record-queue'});
+            res.status(200).json({message: 'Consulta salva com sucesso!', type: 'success'});
         } else {
-            res.status(400).json({message: 'Erro ao cadastrar paciente!', type: 'failure'});
+            res.status(400).json({message: 'Erro ao salvar consulta!', type: 'failure'});
         }
     }));
 

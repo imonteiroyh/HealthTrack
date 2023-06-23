@@ -125,11 +125,11 @@
                         <div class="modal" id="removeModal_<%= records[i].id %>">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                              
+
                                     <div class="modal-header">
                                     <h5 class="modal-title">Remover</h5>
                                     </div>
-                                    
+
                                     <form action="/remove-record" method="post">
                                         <div class="modal-body">
                                             <b>Deseja realmente remover essa consulta?</b>
@@ -137,6 +137,7 @@
                                             <a>Consulta de <%= records[i].name %></a>
 
                                             <input type="hidden" class="form-control" name="inputRecordId" id="inputRecordId" value= <%= records[i].id %>>
+                                            <input type="hidden" class="form-control" name="inputRoute" id="inputRoute" value="/remove-record">
 
                                         </div>
 
@@ -145,7 +146,7 @@
                                             <button type="submit" class="btn btn-primary btn-dark-green">Confirmar</button>
                                         </div>
                                         </form>
-                                
+
                                 </div>
                             </div>
                         </div>

@@ -12,6 +12,7 @@ function applyThemeBasedOnRoute() {
         swapTheme(localStorage.getItem('sheet') || 'styles.css');
     }
 }
+
 function increaseFontSize() {
     var element = document.getElementById("valueFontSize");
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
@@ -19,25 +20,22 @@ function increaseFontSize() {
     localStorage.setItem('fontSize', newSize + 'px');
 
     var elementTitle = document.querySelector('.main-title');
-    if(elementTitle){
+    if (elementTitle){
         var sizeTitle = window.getComputedStyle(elementTitle, null).getPropertyValue("font-size");
         var newSizeTitle = parseInt(sizeTitle) + 2;
         localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
-    }
-    else{
-        if(localStorage.getItem('fontSizeTitle')){
+    } else {
+        if (localStorage.getItem('fontSizeTitle')){
             var sizeTitle = localStorage.getItem('fontSizeTitle');
             var newSizeTitle = parseInt(sizeTitle) + 2;
             localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
-        }
-        else{
+        } else {
             localStorage.setItem('fontSizeTitle', 32 + 'px');
         }
     }
 
     applyFontSize();
 }
-
 
 function decreaseFontSize() {
     var element = document.getElementById("valueFontSize");
@@ -46,18 +44,16 @@ function decreaseFontSize() {
     localStorage.setItem('fontSize', newSize + 'px');
 
     var elementTitle = document.querySelector('.main-title');
-    if(elementTitle){
+    if (elementTitle) {
         var sizeTitle = window.getComputedStyle(elementTitle, null).getPropertyValue("font-size");
         var newSizeTitle = parseInt(sizeTitle) - 2;
         localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
-    }
-    else{
-        if(localStorage.getItem('fontSizeTitle')){
+    } else {
+        if (localStorage.getItem('fontSizeTitle')){
             var sizeTitle = localStorage.getItem('fontSizeTitle');
             var newSizeTitle = parseInt(sizeTitle) - 2;
             localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
-        }
-        else{
+        } else {
             localStorage.setItem('fontSizeTitle', 28 + 'px');
         }
     }
@@ -95,13 +91,18 @@ function displayFlashMessage(message) {
     }, 2000);
 }
 
-async function submitForm() {
-    const formData = new FormData(document.querySelector('form'));
+async function submitForm(form) {
+    const formData = new FormData(form);
 
     var object = {};
     formData.forEach(function(value, key) {
         object[key] = value;
     })
+    const domain = window.location.protocol + '//' + window.location.host;
+    const route = (object.inputRoute == '/remove-record') ? domain + "/remove-record" : window.location.href;
+
+    delete object.inputRoute;
+
     var formJSON = JSON.stringify(object)
 
     if (window.location.pathname == '/risk-classification' || window.location.pathname == '/record-queue') {
@@ -113,8 +114,6 @@ async function submitForm() {
             modal.style.display = 'none';
         });
     }
-    const domain = window.location.protocol + '//' + window.location.host; 
-    const route = (window.location.pathname == '/risk-classification' || window.location.pathname == '/record-queue') ? domain + "/remove-record" : window.location.href; 
 
     const response = await fetch(route, {
         method: 'POST',
@@ -124,14 +123,12 @@ async function submitForm() {
         },
     });
 
-
     if (response.ok) {
         const jsonResponse = await response.json();
 
         if (jsonResponse.message) {
             if (jsonResponse.message != '') {
                 displayFlashMessage(jsonResponse.message);
-
             }
 
             if (jsonResponse.redirect) {
@@ -168,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
     forms.forEach(function(form) {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-            submitForm();
+            submitForm(form);
         });
     });
 })
