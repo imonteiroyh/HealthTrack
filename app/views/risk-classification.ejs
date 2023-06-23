@@ -44,7 +44,7 @@
                                     </li>
                                     <li class="icon-item">
                                         <div class="icon-container">
-                                            <a href="/remove-record">
+                                            <a href="" data-toggle="modal" data-target="#removeModal_<%= records[i].id %>">
                                                 <img class="action-icon" src="/images/remover.png" alt="Ícone de remoção">
                                             </a>
                                         </div>
@@ -114,13 +114,42 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                        <button type="button" class="btn btn-primary btn-dark-green" data-dismiss="modal">Cancelar</button>
                                         <button type="submit" class="btn btn-primary btn-dark-green">Salvar</button>
                                     </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="modal" id="removeModal_<%= records[i].id %>">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                              
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">Remover</h5>
+                                    </div>
+                                    
+                                    <form action="/remove-record" method="post">
+                                        <div class="modal-body">
+                                            <b>Deseja realmente remover essa consulta?</b>
+                                            <br>
+                                            <a>Consulta de <%= records[i].name %></a>
+
+                                            <input type="hidden" class="form-control" name="inputRecordId" id="inputRecordId" value= <%= records[i].id %>>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary btn-dark-green" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary btn-dark-green">Confirmar</button>
+                                        </div>
+                                        </form>
+                                
+                                </div>
+                            </div>
+                        </div>
+
                     <% } %>
                 </tbody>
             </table>
