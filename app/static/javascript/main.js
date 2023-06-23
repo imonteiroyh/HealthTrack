@@ -113,8 +113,10 @@ async function submitForm() {
             modal.style.display = 'none';
         });
     }
+    const domain = window.location.protocol + '//' + window.location.host; 
+    const route = (window.location.pathname == '/risk-classification' || window.location.pathname == '/record-queue') ? domain + "/remove-record" : window.location.href; 
 
-    const response = await fetch(window.location.href, {
+    const response = await fetch(route, {
         method: 'POST',
         body: formJSON,
         headers: {
