@@ -7,9 +7,9 @@ function applyThemeBasedOnRoute() {
     var currentRoute = window.location.pathname;
 
     if (currentRoute === '/login') {
-        swapTheme('styles.css');
+        swapTheme('light_theme.css');
     } else {
-        swapTheme(localStorage.getItem('sheet') || 'styles.css');
+        swapTheme(localStorage.getItem('sheet') || 'light_theme.css');
     }
 }
 function increaseFontSize() {

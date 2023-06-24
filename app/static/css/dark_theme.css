@@ -42,6 +42,7 @@ body {
     border: none;
 }
 
+/* mudar no dark */
 .dropdown {
     background-color: #333333;
     border-radius: 8px;
@@ -49,6 +50,7 @@ body {
     display: inline-block;
 }
 
+/* mudar no dark */
 .dropbtn {
     background-color: #333333;
     padding-left: 16px;
@@ -74,7 +76,7 @@ body {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #ffffff;
+    background-color: #f1f1f1;
 
 }
 
@@ -125,6 +127,7 @@ body {
     padding-top: 20px;
 }
 
+/* exclusivo no dark */
 .form-button :hover {
     background-color: #4c4c4c;
 }
@@ -294,18 +297,22 @@ body {
     border-radius: 15%;
 }
 
+/* exclusivo no dark */
 .table-hover tbody tr:hover {
     background-color: #ffffff;
 }
 
+/* exclusivo no dark */
 .text-start {
 color: #ffffff;
 }
 
+/* exclusivo no dark */
 td{
 color: #ffffff;
 }
 
+/* exclusivo no dark */
 .text-center {
 color: #ffffff;
 }
