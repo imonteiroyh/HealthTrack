@@ -99,8 +99,6 @@ async function submitForm(form) {
         object[key] = value;
     })
 
-    delete object.inputRoute;
-
     var formJSON = JSON.stringify(object)
 
     if (window.location.pathname == '/risk-classification' || window.location.pathname == '/record-queue') {
@@ -114,10 +112,9 @@ async function submitForm(form) {
     }
 
     const domain = window.location.protocol + '//' + window.location.host;
-    const route = (object.inputRoute == '/remove-record') ? domain + "/remove-record" : window.location.href;
+    const path = form.getAttribute('action');
+    const route = (path == '/remove-record') ? domain + "/remove-record" : window.location.href;
     const request_method = (form.getAttribute('method')).toUpperCase();
-
-    console.log(route, request_method, formJSON)
 
     const response = await fetch(route, {
         method: request_method,

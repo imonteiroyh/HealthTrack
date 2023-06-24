@@ -66,7 +66,7 @@
                                     <h5 class="modal-title">Editar</h5>
                                     </div>
 
-                                    <form action="/record-queue" method="post">
+                                    <form action="/record-queue" method="put">
                                     <div class="modal-body">
                                         <div class="form-group form-content row">
                                         <b class="main-title">Informações do Paciente</b>
@@ -122,14 +122,13 @@
                                     <h5 class="modal-title">Remover</h5>
                                     </div>
 
-                                    <form action="/remove-record" method="post">
+                                    <form action="/remove-record" method="put">
                                         <div class="modal-body">
                                             <b>Deseja realmente remover essa consulta?</b>
                                             <br>
                                             <a>Consulta de <%= records[i].name %></a>
 
                                             <input type="hidden" class="form-control" name="inputRecordId" id="inputRecordId" value= <%= records[i].id %>>
-                                            <input type="hidden" class="form-control" name="inputRoute" id="inputRoute" value="/remove-record">
 
                                         </div>
 

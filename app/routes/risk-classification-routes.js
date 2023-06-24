@@ -36,17 +36,4 @@ router.route('/risk-classification')
         }
     }));
 
-router.route('/remove-record')
-    .post(isAuthenticated, isUserAuthorizated([1, 2]), asyncHandler(async (req, res) => {
-        recordObject = {record_id : req.body.inputRecordId};
-
-        const result = await fetchData('/removeRecord', recordObject);
-
-        if (result == 0) {
-            res.status(200).json({message: 'Consulta removida com sucesso!', type: 'success'});
-        } else {
-            res.status(400).json({message: 'Erro ao remover consulta!', type: 'failure'});
-        }
-    }));
-
 module.exports = router;
