@@ -122,9 +122,28 @@ router.route('/getRecordsByStage')
 
 router.route('/editRecordRC')
     .post(asyncHandler(async (req, res) => {
-        recordObject = req.body
+        recordObject = req.body;
 
         const records = await databaseQueries.editRecordRC(recordObject);
+
+        // Fazer tratamento adequado baseado na resposta de records
+        res.status(200).json(records);
+    }));
+
+router.route('/editRecordD')
+    .post(asyncHandler(async (req, res) => {
+        recordObject = req.body;
+
+        const records = await databaseQueries.editRecordD(recordObject);
+
+        // Fazer tratamento adequado baseado na resposta de records
+        res.status(200).json(records);
+    }));
+
+router.route('/removeRecord')
+    .post(asyncHandler(async (req, res) => {
+        recordObject = req.body;
+        const records = await databaseQueries.removeRecord(recordObject);
 
         // Fazer tratamento adequado baseado na resposta de records
         res.status(200).json(records);

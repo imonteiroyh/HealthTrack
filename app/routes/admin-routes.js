@@ -54,7 +54,7 @@ router.route('/remove-user')
         });
     }))
 
-    .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
+    .put(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         const adminObject = {
             username: req.session.user.username,
             password: req.body.inputAdminPassword
@@ -84,7 +84,7 @@ router.route('/remove-patient')
         });
     }))
 
-    .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
+    .put(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         const adminObject = {
             username: req.session.user.username,
             password: req.body.inputAdminPassword

@@ -12,13 +12,12 @@ router.route('/record-queue')
         const records = await fetchData('/getRecordsByStage', stage);
 
         res.render('record-queue', {
-            // initials: req.session.user.initials,
-            initials: '',
+            initials: req.session.user.initials,
             records: records
         });
     }))
 
-    .post(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
+    .put(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
         const recordObject = {
             record_id : req.body.inputRecordId,
             arterial_pressure : req.body.inputPressure,
@@ -30,9 +29,23 @@ router.route('/record-queue')
         const result = await fetchData('/editRecordD', recordObject);
 
         if (result == 0) {
-            res.status(200).json({message: 'Classificação de risco cadastrado com sucesso!', type: 'success', redirect: '/record-queue'});
+            res.status(200).json({message: 'Consulta salva com sucesso!', type: 'success'});
         } else {
-            res.status(400).json({message: 'Erro ao cadastrar paciente!', type: 'failure'});
+            res.status(400).json({message: 'Erro ao salvar consulta!', type: 'failure'});
+        }
+    }));
+
+router.route('/remove-record')
+    .put(isAuthenticated, isUserAuthorizated([1, 2]), asyncHandler(async (req, res) => {
+        console.log(req.body)
+        recordObject = {record_id : req.body.inputRecordId};
+
+        const result = await fetchData('/removeRecord', recordObject);
+
+        if (result == 0) {
+            res.status(200).json({message: 'Consulta removida com sucesso!', type: 'success'});
+        } else {
+            res.status(400).json({message: 'Erro ao remover consulta!', type: 'failure'});
         }
     }));
 
