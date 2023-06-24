@@ -1,10 +1,8 @@
-/* mudar no dark */
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* mudar no dark */
 .dropbtn {
     background-color: #ffffff;
     padding-left: 16px;
@@ -13,21 +11,18 @@
     cursor: pointer;
 }
 
-/* mudar no dark */
 .icon-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* mudar no dark */
 .main-header{
     background-color: #ffffff;
     z-index: 1;
    padding:15px;
 }
 
-/* mudar no dark */
 .nav-primary {
     background-color: #70969e;
     height: 100%;
@@ -38,13 +33,11 @@
     z-index: 0;
 }
 
-/* mudar no dark */
 .nav-primary a.active {
     background-color: #acccc7;
     color: #ffffff;
 }
 
-/* mudar no dark */
 .nav-primary a:hover {
     background-color: #acccc7;
 }

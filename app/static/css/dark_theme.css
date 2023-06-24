@@ -3,8 +3,6 @@ body {
     color: #ffffff;
 }
 
-
-/* mudar no dark */
 .dropdown {
     background-color: #333333;
     border-radius: 8px;
@@ -12,7 +10,6 @@ body {
     display: inline-block;
 }
 
-/* mudar no dark */
 .dropbtn {
     background-color: #333333;
     padding-left: 16px;
@@ -21,12 +18,9 @@ body {
     cursor: pointer;
 }
 
-
-/* exclusivo no dark */
 .form-button :hover {
     background-color: #4c4c4c;
 }
-
 
 .icon-list {
     list-style: none;
@@ -40,7 +34,7 @@ body {
 .main-header{
     background-color: #1a1a1a;
     z-index: 1;
-   padding:15px;
+    padding:15px;
 }
 
 .nav-primary {
@@ -62,22 +56,18 @@ body {
     background-color: #4c4c4c;
 }
 
-/* exclusivo no dark */
 .table-hover tbody tr:hover {
     background-color: #ffffff;
 }
 
-/* exclusivo no dark */
 .text-start {
 color: #ffffff;
 }
 
-/* exclusivo no dark */
 td{
 color: #ffffff;
 }
 
-/* exclusivo no dark */
 .text-center {
 color: #ffffff;
 }
