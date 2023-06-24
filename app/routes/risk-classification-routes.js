@@ -7,9 +7,9 @@ const { fetchData } = require('../../services/get-data');
 
 router.route('/risk-classification')
     .get(isAuthenticated, isUserAuthorizated([1]), asyncHandler(async (req, res) => {
-        const stage = {stage: 0};
+        const stage = 0;
 
-        const records = await fetchData('/getRecordsByStage', stage);
+        const records = await fetchData('/getRecordsByStage/' + stage, '', 'GET');
 
         res.render('risk-classification', {
             initials: req.session.user.initials,
@@ -27,7 +27,7 @@ router.route('/risk-classification')
             stage : 0
         }
 
-        const result = await fetchData('/editRecordRC', recordObject);
+        const result = await fetchData('/editRecordRC', recordObject, 'PUT');
 
         if (result == 0) {
             res.status(200).json({message: 'Risco classificado com sucesso!', type: 'success'});

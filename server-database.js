@@ -8,11 +8,6 @@ const router = express.Router();
 const databaseQueries = require('./services/database-queries');
 const { hashPassword } = require('./services/cryptography');
 
-router.route('/api')
-    .get((req, res) => {
-        res.send('Hello, World!');
-    });
-
 router.route('/checkPassword')
     .post(asyncHandler(async (req, res) => {
         const userObject = {
@@ -27,7 +22,7 @@ router.route('/checkPassword')
     }));
 
 router.route('/changePassword')
-    .post(asyncHandler(async (req, res) => {
+    .put(asyncHandler(async (req, res) => {
         const newPasswordObject = req.body;
 
         const result = await databaseQueries.changePassword(newPasswordObject);
@@ -36,14 +31,11 @@ router.route('/changePassword')
         res.status(200).json(result);
     }));
 
-router.route('/getUserInfo')
-    .post(asyncHandler(async (req, res) => {
-        const userObject = {
-            username: req.body.username,
-            password: req.body.password
-        };
+router.route('/getUserInfo/:username')
+    .get(asyncHandler(async (req, res) => {
+        username = req.params.username
 
-        const userInfo = await databaseQueries.getUserInfo(userObject.username);
+        const userInfo = await databaseQueries.getUserInfo(username);
 
         // Fazer tratamento adequado baseado na resposta de userInfo
         res.status(200).json(userInfo);
@@ -69,9 +61,9 @@ router.route('/registerUser')
         res.status(200).json(result);
     }));
 
-router.route('/removeUser')
-    .post(asyncHandler(async (req, res) => {
-        const username = req.body.username;
+router.route('/removeUser/:username')
+    .delete(asyncHandler(async (req, res) => {
+        const username = req.params.username;
 
         const result = await databaseQueries.removeUser(username);
 
@@ -79,9 +71,9 @@ router.route('/removeUser')
         res.status(200).json(result);
     }));
 
-router.route('/removePatient')
-    .post(asyncHandler(async (req, res) => {
-        const cpf = req.body.cpf;
+router.route('/removePatient/:cpf')
+    .delete(asyncHandler(async (req, res) => {
+        const cpf = req.params.cpf;
 
         const result = await databaseQueries.removePatient(cpf);
 
@@ -110,9 +102,9 @@ router.route('/registerRecord')
         res.status(200).json(result);
     }));
 
-router.route('/getRecordsByStage')
-    .post(asyncHandler(async (req, res) => {
-        const stage = req.body.stage;
+router.route('/getRecordsByStage/:stage')
+    .get(asyncHandler(async (req, res) => {
+        const stage = req.params.stage;
 
         const records = await databaseQueries.getRecordsByStage(stage);
 
@@ -121,7 +113,7 @@ router.route('/getRecordsByStage')
     }));
 
 router.route('/editRecordRC')
-    .post(asyncHandler(async (req, res) => {
+    .put(asyncHandler(async (req, res) => {
         recordObject = req.body;
 
         const records = await databaseQueries.editRecordRC(recordObject);
@@ -131,7 +123,7 @@ router.route('/editRecordRC')
     }));
 
 router.route('/editRecordD')
-    .post(asyncHandler(async (req, res) => {
+    .put(asyncHandler(async (req, res) => {
         recordObject = req.body;
 
         const records = await databaseQueries.editRecordD(recordObject);
@@ -140,9 +132,10 @@ router.route('/editRecordD')
         res.status(200).json(records);
     }));
 
-router.route('/removeRecord')
-    .post(asyncHandler(async (req, res) => {
-        recordObject = req.body;
+router.route('/removeRecord/:record_id')
+    .delete(asyncHandler(async (req, res) => {
+        const recordObject = {record_id: req.params.record_id}
+
         const records = await databaseQueries.removeRecord(recordObject);
 
         // Fazer tratamento adequado baseado na resposta de records

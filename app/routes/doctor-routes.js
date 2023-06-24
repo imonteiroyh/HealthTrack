@@ -7,9 +7,9 @@ const { fetchData } = require('../../services/get-data');
 
 router.route('/record-queue')
     .get(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
-        const stage = {stage: 1};
+        const stage = 1;
 
-        const records = await fetchData('/getRecordsByStage', stage);
+        const records = await fetchData('/getRecordsByStage/' + stage, '', 'GET');
 
         res.render('record-queue', {
             initials: req.session.user.initials,
@@ -17,7 +17,7 @@ router.route('/record-queue')
         });
     }))
 
-    .put(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
+    .post(isAuthenticated, isUserAuthorizated([2]), asyncHandler(async (req, res) => {
         const recordObject = {
             record_id : req.body.inputRecordId,
             arterial_pressure : req.body.inputPressure,
@@ -26,7 +26,7 @@ router.route('/record-queue')
             stage : 1
         }
 
-        const result = await fetchData('/editRecordD', recordObject);
+        const result = await fetchData('/editRecordD', recordObject, 'PUT');
 
         if (result == 0) {
             res.status(200).json({message: 'Consulta salva com sucesso!', type: 'success'});
@@ -36,11 +36,10 @@ router.route('/record-queue')
     }));
 
 router.route('/remove-record')
-    .put(isAuthenticated, isUserAuthorizated([1, 2]), asyncHandler(async (req, res) => {
-        console.log(req.body)
-        recordObject = {record_id : req.body.inputRecordId};
+    .post(isAuthenticated, isUserAuthorizated([1, 2]), asyncHandler(async (req, res) => {
+        const record_id = req.body.inputRecordId;
 
-        const result = await fetchData('/removeRecord', recordObject);
+        const result = await fetchData('/removeRecord/' + record_id, '', 'DELETE');
 
         if (result == 0) {
             res.status(200).json({message: 'Consulta removida com sucesso!', type: 'success'});
