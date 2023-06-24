@@ -98,8 +98,6 @@ async function submitForm(form) {
     formData.forEach(function(value, key) {
         object[key] = value;
     })
-    const domain = window.location.protocol + '//' + window.location.host;
-    const route = (object.inputRoute == '/remove-record') ? domain + "/remove-record" : window.location.href;
 
     delete object.inputRoute;
 
@@ -115,8 +113,14 @@ async function submitForm(form) {
         });
     }
 
+    const domain = window.location.protocol + '//' + window.location.host;
+    const route = (object.inputRoute == '/remove-record') ? domain + "/remove-record" : window.location.href;
+    const request_method = (form.getAttribute('method')).toUpperCase();
+
+    console.log(route, request_method, formJSON)
+
     const response = await fetch(route, {
-        method: 'POST',
+        method: request_method,
         body: formJSON,
         headers: {
             'Content-Type': 'application/json',
