@@ -48,11 +48,10 @@ router.route('/login')
             password: req.body.inputPassword
         };
 
-        const check = await fetchData('/checkPassword', userObject);
+        const check = await fetchData('/checkPassword', userObject, 'POST');
 
         if (check == 0) {
-
-            const userInfo = await fetchData('/getUserInfo', userObject);
+            const userInfo = await fetchData('/getUserInfo/' + userObject.username, '', 'GET');
 
             req.session.user = {
                 username: userInfo.username,
@@ -86,7 +85,7 @@ router.route('/changePassword')
             password: req.body.inputPassword
         };
 
-        const check = await fetchData('/checkPassword', userObject);
+        const check = await fetchData('/checkPassword', userObject, 'POST');
 
         if (check == 0) {
 
@@ -102,14 +101,14 @@ router.route('/changePassword')
             }
 
             const userPassword = {userPassword: userInfo.newPassword};
-            const hashedPassword = await fetchData('/hashPassword', userPassword);
+            const hashedPassword = await fetchData('/hashPassword', userPassword, 'POST');
 
             const newPasswordObject = {
                 username: userInfo.username,
                 newPassword: hashedPassword
             };
 
-            const result = await fetchData('/changePassword', newPasswordObject);
+            const result = await fetchData('/changePassword', newPasswordObject, 'PUT');
 
             if (result == 0) {
                 res.status(200).json({message: 'Senha alterada com sucesso!', type: 'success', redirect: '/register-user'});

@@ -18,12 +18,12 @@ router.route('/register-user')
             password: req.body.inputAdminPassword
         };
 
-        const check = await fetchData('/checkPassword', adminObject);
+        const check = await fetchData('/checkPassword', adminObject, 'POST');
 
         if (check == 0) {
 
             const userPassword = {userPassword: req.body.inputUserPassword};
-            const hashedPassword = await fetchData('/hashPassword', userPassword);
+            const hashedPassword = await fetchData('/hashPassword', userPassword, 'POST');
 
             const userObject = {
                 name: req.body.inputName,
@@ -34,7 +34,7 @@ router.route('/register-user')
                 role: req.body.selectRole
             };
 
-            const result = await fetchData('/registerUser', userObject);
+            const result = await fetchData('/registerUser', userObject, 'POST');
 
             if (result == 0) {
                 res.status(200).json({message: 'Usuário cadastrado com sucesso!', type: 'success', redirect: '/register-user'});
@@ -54,17 +54,17 @@ router.route('/remove-user')
         });
     }))
 
-    .put(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
+    .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         const adminObject = {
             username: req.session.user.username,
             password: req.body.inputAdminPassword
         };
 
-        const check = await fetchData('/checkPassword', adminObject);
+        const check = await fetchData('/checkPassword', adminObject, 'POST');
 
         if (check == 0) {
-            const username = {username: req.body.inputUsername};
-            const result = await fetchData('/removeUser', username);
+            const username = req.body.inputUsername;
+            const result = await fetchData('/removeUser/' + username, '', 'DELETE');
 
             if (result == 0) {
                 res.status(200).json({message: 'Usuário removido com sucesso!', type: 'success', redirect: '/remove-user'});
@@ -84,17 +84,17 @@ router.route('/remove-patient')
         });
     }))
 
-    .put(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
+    .post(isAuthenticated, isUserAuthorizated([3]), asyncHandler(async (req, res) => {
         const adminObject = {
             username: req.session.user.username,
             password: req.body.inputAdminPassword
         };
 
-        const check = await fetchData('/checkPassword', adminObject);
+        const check = await fetchData('/checkPassword', adminObject, 'POST');
 
         if (check == 0) {
-            const cpf = {cpf: (req.body.inputCPF).toString()};
-            const result = await fetchData('/removePatient', cpf);
+            const cpf = (req.body.inputCPF).toString();
+            const result = await fetchData('/removePatient/' + cpf, '', 'DELETE');
 
             if (result == 0) {
                 res.status(200).json({message: 'Paciente removido com sucesso!', type: 'success', redirect: '/remove-patient'});

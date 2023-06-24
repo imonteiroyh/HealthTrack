@@ -22,7 +22,7 @@ router.route('/register-patient')
             phone: req.body.inputPhone
         };
 
-        const result = await fetchData('/registerPatient', patientObject);
+        const result = await fetchData('/registerPatient', patientObject, 'POST');
 
         if (result == 0) {
             res.status(200).json({message: 'Paciente cadastrado com sucesso!', type: 'success', redirect: '/register-patient'});
@@ -41,7 +41,7 @@ router.route('/register-record')
     .post(isAuthenticated, isUserAuthorizated([0]), asyncHandler(async (req, res) => {
         const cpf = {cpf: req.body.inputCPF};
 
-        const result = await fetchData('/registerRecord', cpf)
+        const result = await fetchData('/registerRecord', cpf, 'POST')
 
         if (result == 0) {
             res.status(200).json({message: 'Consulta cadastrada com sucesso!', type: 'success', redirect: '/register-record'});
