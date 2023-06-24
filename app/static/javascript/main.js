@@ -15,19 +15,19 @@ function applyThemeBasedOnRoute() {
 function increaseFontSize() {
     var element = document.getElementById("valueFontSize");
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
-    var newSize = parseInt(size) + 2;
+    var newSize = (parseInt(size)<30) ? parseInt(size) + 2 : 30;
     localStorage.setItem('fontSize', newSize + 'px');
 
     var elementTitle = document.querySelector('.main-title');
     if(elementTitle){
         var sizeTitle = window.getComputedStyle(elementTitle, null).getPropertyValue("font-size");
-        var newSizeTitle = parseInt(sizeTitle) + 2;
+        var newSizeTitle = (parseInt(sizeTitle)<44) ? parseInt(sizeTitle) + 2 : 44 ;
         localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
     }
     else{
         if(localStorage.getItem('fontSizeTitle')){
             var sizeTitle = localStorage.getItem('fontSizeTitle');
-            var newSizeTitle = parseInt(sizeTitle) + 2;
+            var newSizeTitle = (parseInt(sizeTitle)<44) ? parseInt(sizeTitle) + 2 : 44 ;
             localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
         }
         else{
@@ -42,19 +42,20 @@ function increaseFontSize() {
 function decreaseFontSize() {
     var element = document.getElementById("valueFontSize");
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
-    var newSize = parseInt(size) - 2;
+    console.log(size)
+    var newSize = (parseInt(size)>10) ? parseInt(size) - 2 : 10 ;
     localStorage.setItem('fontSize', newSize + 'px');
 
     var elementTitle = document.querySelector('.main-title');
     if(elementTitle){
         var sizeTitle = window.getComputedStyle(elementTitle, null).getPropertyValue("font-size");
-        var newSizeTitle = parseInt(sizeTitle) - 2;
+        var newSizeTitle = (parseInt(sizeTitle)>24) ? parseInt(sizeTitle) - 2 : 24 ;
         localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
     }
     else{
         if(localStorage.getItem('fontSizeTitle')){
             var sizeTitle = localStorage.getItem('fontSizeTitle');
-            var newSizeTitle = parseInt(sizeTitle) - 2;
+            var newSizeTitle = (parseInt(sizeTitle)>24) ? parseInt(sizeTitle) - 2 : 24 ;
             localStorage.setItem('fontSizeTitle', newSizeTitle + 'px');
         }
         else{
@@ -67,12 +68,20 @@ function decreaseFontSize() {
 
 function applyFontSize() {
 
-    var element = document.querySelector('.main-content')
-    if (element) {
+    var elementContent = document.querySelector('.main-content')
+    if (elementContent) {
 
       var size = localStorage.getItem('fontSize');
 
-      element.style.fontSize = size;
+      elementContent.style.fontSize = size;
+    }
+    
+    var elementNav = document.querySelector('.nav-primary')
+    if (elementNav) {
+
+      var sizeNav = localStorage.getItem('fontSize');
+
+      elementNav.style.fontSize = sizeNav;
     }
 
     var elementTitle = document.querySelector('.main-title');
@@ -83,6 +92,11 @@ function applyFontSize() {
             elementTitle.style.fontSize = sizeTitle;
         }
     }
+}
+
+function clearLocalStorage (){
+    localStorage.clear();
+    location.reload();
 }
 
 function displayFlashMessage(message) {
