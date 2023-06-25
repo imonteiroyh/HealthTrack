@@ -1,15 +1,48 @@
-function swapTheme(sheet){
-    document.getElementById('theme').setAttribute('href', 'css/' + sheet);
-    localStorage.setItem('sheet', sheet);
+function swapTheme(){
+    if(localStorage.getItem('sheet')){
+        var sheet = localStorage.getItem('sheet');
+        if(sheet == 'light_theme.css'){
+            sheet = 'dark_theme.css'
+            document.getElementById('theme').setAttribute('href', 'css/' + sheet);
+            localStorage.setItem('sheet', sheet);
+        }
+        else{
+            sheet = 'light_theme.css'
+            document.getElementById('theme').setAttribute('href', 'css/' + sheet);
+            localStorage.setItem('sheet', sheet);
+        }
+    }
+    else{
+        localStorage.setItem('sheet', 'light_theme.css');
+        var sheet = localStorage.getItem('sheet');
+        if(sheet == 'light_theme.css'){
+            sheet = 'dark_theme.css'
+            document.getElementById('theme').setAttribute('href', 'css/' + sheet);
+            localStorage.setItem('sheet', sheet);
+        }
+        else{
+            sheet = 'light_theme.css'
+            document.getElementById('theme').setAttribute('href', 'css/' + sheet);
+            localStorage.setItem('sheet', sheet);
+        }
+    }
 }
 
 function applyThemeBasedOnRoute() {
     var currentRoute = window.location.pathname;
 
     if (currentRoute === '/login') {
-        swapTheme('light_theme.css');
+        document.getElementById('theme').setAttribute('href', 'css/' + 'light_theme.css');
     } else {
-        swapTheme(localStorage.getItem('sheet') || 'light_theme.css');
+        if(!localStorage.getItem('sheet')){
+            localStorage.setItem('sheet', 'light_theme.css');
+            var sheet = localStorage.getItem('sheet');
+            document.getElementById('theme').setAttribute('href', 'css/' + sheet);
+        }
+        else{
+            var sheet = localStorage.getItem('sheet');
+            document.getElementById('theme').setAttribute('href', 'css/' + sheet);
+        }
     }
 }
 
@@ -88,10 +121,30 @@ function applyFontSize() {
             elementTitle.style.fontSize = sizeTitle;
         }
     }
+
+    var elementTitleModal = document.querySelector('.modal-title');
+    if(elementTitleModal){
+        if(localStorage.getItem('fontSizeTitle')){
+            var sizeTitle = localStorage.getItem('fontSizeTitle');
+            elementTitleModal.style.fontSize = sizeTitle;
+        }
+    }
+
+    var patientInfo = document.querySelector('.patientInfo');
+    var patientData = document.querySelector('.patientData');
+    console.log(patientInfo)
+    if(patientInfo){
+        if(localStorage.getItem('fontSizeTitle')){
+            var sizeTitle = localStorage.getItem('fontSizeTitle');
+            patientInfo.style.fontSize = sizeTitle;
+            patientData.style.fontSize = sizeTitle;
+        }
+    }
 }
 
-function clearLocalStorage (){
-    localStorage.clear();
+function clearFontSize(){
+    localStorage.removeItem('fontSize');
+    localStorage.removeItem('fontSizeTitle');
     location.reload();
 }
 

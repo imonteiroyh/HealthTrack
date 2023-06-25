@@ -64,7 +64,7 @@
                                     <form action="/risk-classification" method="post">
                                     <div class="modal-body">
                                         <div class="form-group form-content row">
-                                        <b class="main-title">Informações do Paciente</b>
+                                        <h5 class="main-title patientInfo">Informações do Paciente</h5>
                                             <div class="col">
                                                 <label for="inputName">Nome Completo <span class="required-color">*</span></label>
                                                 <input readonly type="text" class="form-control" name="inputName" id="inputName" value="<%= records[i].name %>" placeholder="Digite aqui..." required >
@@ -79,7 +79,7 @@
                                                 <input readonly type="date" class="form-control" name="inputBirthday" id="inputBirthday" value="<%= records[i].birthday %>" placeholder="Digite aqui..." required >
                                             </div>
                                         </div>
-                                        <b class="main-title">Dados do Paciente</b>
+                                        <h5 class="main-title patientData">Dados do Paciente</h5>
                                         <div class="form-group form-content row">
                                             <div class="col">
                                                 <label for="inputPressure">Pressão Arterial <span class="required-color">*</span></label>

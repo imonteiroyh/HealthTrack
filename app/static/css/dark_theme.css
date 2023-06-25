@@ -22,6 +22,10 @@ body {
     background-color: #4c4c4c;
 }
 
+.fontButton :hover {
+    background-color: #4c4c4c;
+}
+
 .icon-list {
     list-style: none;
     padding: 0;
@@ -35,6 +39,30 @@ body {
     background-color: #1a1a1a;
     z-index: 1;
     padding:15px;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.modal-header {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.modal-body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.modal-footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.modal-footer :hover {
+    background-color: #4c4c4c;
 }
 
 .nav-primary {
@@ -64,10 +92,15 @@ body {
 color: #ffffff;
 }
 
+.text-center {
+color: #ffffff;
+}
+
 td{
 color: #ffffff;
 }
 
-.text-center {
-color: #ffffff;
+.theme img {
+    background-color: #f1f1f1;
+    border-radius: 50%;
 }
