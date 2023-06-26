@@ -72,7 +72,7 @@ router.route('/logout')
     }));
 
 
-router.route('/changePassword')
+router.route('/change-password')
     .get(isAuthenticated, asyncHandler(async (req, res) => {
         res.render('change-password', {
             initials: req.session.user.initials
@@ -96,7 +96,7 @@ router.route('/changePassword')
                 newPasswordConfirmation: req.body.inputNewPasswordConfirmation
             };
 
-            if (userInfo.newPassword != newPasswordConfirmation) {
+            if (userInfo.newPassword != userInfo.newPasswordConfirmation) {
                 res.status(200).json({message: 'As novas senhas não conferem. Tente novamente!', type: 'failure'});
             }
 
@@ -111,22 +111,16 @@ router.route('/changePassword')
             const result = await fetchData('/changePassword', newPasswordObject, 'PUT');
 
             if (result == 0) {
-                res.status(200).json({message: 'Senha alterada com sucesso!', type: 'success', redirect: '/register-user'});
+                res.status(200).json({message: 'Senha alterada com sucesso!', type: 'success', redirect: '/change-password'});
             } else {
                 res.status(200).json({message: 'Erro ao alterar senha!', type: 'failure'});
             }
 
-            res.status(200).json({message: '', type: 'success', redirect: '/'});
+            // res.status(200).json({message: '', type: 'success', redirect: '/'});
         } else {
             res.status(200).json({message: 'Senha incorreta. Tente novamente!', type: 'failure'});
         }
     }));
 
-router.route('/configurations')
-    .get(isAuthenticated, asyncHandler(async (req, res) => {
-        res.render('configurations', {
-            initials: req.session.user.initials
-        });
-    }));
 
 module.exports = router;

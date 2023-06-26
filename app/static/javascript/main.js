@@ -132,7 +132,6 @@ function applyFontSize() {
 
     var patientInfo = document.querySelector('.patientInfo');
     var patientData = document.querySelector('.patientData');
-    console.log(patientInfo)
     if(patientInfo){
         if(localStorage.getItem('fontSizeTitle')){
             var sizeTitle = localStorage.getItem('fontSizeTitle');
