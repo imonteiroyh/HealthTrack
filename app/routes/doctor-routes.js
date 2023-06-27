@@ -31,7 +31,7 @@ router.route('/record-queue')
         if (result == 0) {
             res.status(200).json({message: 'Consulta salva com sucesso!', type: 'success'});
         } else {
-            res.status(400).json({message: 'Erro ao salvar consulta!', type: 'failure'});
+            res.status(result.status).json({message: result.message, type: 'failure'});
         }
     }));
 
@@ -44,7 +44,7 @@ router.route('/remove-record')
         if (result == 0) {
             res.status(200).json({message: 'Consulta removida com sucesso!', type: 'success'});
         } else {
-            res.status(400).json({message: 'Erro ao remover consulta!', type: 'failure'});
+            res.status(result.status).json({message: result.message, type: 'failure'});
         }
     }));
 

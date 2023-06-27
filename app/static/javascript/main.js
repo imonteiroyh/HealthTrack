@@ -73,7 +73,6 @@ function increaseFontSize() {
 function decreaseFontSize() {
     var element = document.getElementById("valueFontSize");
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");
-    console.log(size)
     var newSize = (parseInt(size)>10) ? parseInt(size) - 2 : 10 ;
     localStorage.setItem('fontSize', newSize + 'px');
 
@@ -208,6 +207,8 @@ async function submitForm(form) {
             window.location.href = '/';
         }
     } else {
+        const jsonResponse = await response.json();
+        displayFlashMessage(jsonResponse.message);
         console.error('Erro ao submeter formulário!')
     }
 }

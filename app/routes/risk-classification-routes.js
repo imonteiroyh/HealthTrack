@@ -32,7 +32,7 @@ router.route('/risk-classification')
         if (result == 0) {
             res.status(200).json({message: 'Risco classificado com sucesso!', type: 'success'});
         } else {
-            res.status(400).json({message: 'Erro ao classificar paciente!', type: 'failure'});
+            res.status(result.status).json({message: result.message, type: 'failure'});
         }
     }));
 

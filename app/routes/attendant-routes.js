@@ -27,7 +27,7 @@ router.route('/register-patient')
         if (result == 0) {
             res.status(200).json({message: 'Paciente cadastrado com sucesso!', type: 'success', redirect: '/register-patient'});
         } else {
-            res.status(200).json({message: 'Erro ao cadastrar paciente!', type: 'failure'});
+            res.status(result.status).json({message: result.message, type: 'failure'});
         }
     }));
 
@@ -46,7 +46,7 @@ router.route('/register-record')
         if (result == 0) {
             res.status(200).json({message: 'Consulta cadastrada com sucesso!', type: 'success', redirect: '/register-record'});
         } else {
-            res.status(200).json({message: 'Erro ao cadastrar consulta!', type: 'failure'});
+            res.status(result.status).json({message: result.message, type: 'failure'});
         }
     }));
 

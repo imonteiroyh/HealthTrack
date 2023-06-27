@@ -61,7 +61,7 @@ router.route('/login')
 
             res.status(200).json({message: '', type: 'success', redirect: '/'});
         } else {
-            res.status(200).json({message: 'Nome de usuário ou senha incorreto. Tente novamente!', type: 'failure'});
+            res.status(406).json({message: 'Nome de usuário ou senha incorreto. Tente novamente!', type: 'failure'});
         }
     }));
 
@@ -97,7 +97,7 @@ router.route('/change-password')
             };
 
             if (userInfo.newPassword != userInfo.newPasswordConfirmation) {
-                res.status(200).json({message: 'As novas senhas não conferem. Tente novamente!', type: 'failure'});
+                res.status(400).json({message: 'As novas senhas não conferem. Tente novamente!', type: 'failure'});
             }
 
             const userPassword = {userPassword: userInfo.newPassword};
@@ -113,12 +113,12 @@ router.route('/change-password')
             if (result == 0) {
                 res.status(200).json({message: 'Senha alterada com sucesso!', type: 'success', redirect: '/change-password'});
             } else {
-                res.status(200).json({message: 'Erro ao alterar senha!', type: 'failure'});
+                res.status(result.status).json({message: result.message, type: 'failure'});
             }
 
             // res.status(200).json({message: '', type: 'success', redirect: '/'});
         } else {
-            res.status(200).json({message: 'Senha incorreta. Tente novamente!', type: 'failure'});
+            res.status(406).json({message: 'Senha incorreta. Tente novamente!', type: 'failure'});
         }
     }));
 

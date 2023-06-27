@@ -39,11 +39,11 @@ router.route('/register-user')
             if (result == 0) {
                 res.status(200).json({message: 'Usuário cadastrado com sucesso!', type: 'success', redirect: '/register-user'});
             } else {
-                res.status(200).json({message: 'Erro ao cadastrar usuário!', type: 'failure'});
+                res.status(result.status).json({message: result.message, type: 'failure'});
             }
 
         } else {
-            res.status(200).json({message: 'As informações do administrador estão incorretas!', type: 'failure'});
+            res.status(406).json({message: 'As informações do administrador estão incorretas!', type: 'failure'});
         }
     }));
 
@@ -69,11 +69,11 @@ router.route('/remove-user')
             if (result == 0) {
                 res.status(200).json({message: 'Usuário removido com sucesso!', type: 'success', redirect: '/remove-user'});
             } else {
-                res.status(200).json({message: 'Erro ao remover usuário!', type: 'failure'});
+                res.status(result.status).json({message: result.message, type: 'failure'});
             }
-
+            
         } else {
-            res.status(200).json({message: 'As informações do administrador estão incorretas!', type: 'failure'});
+            res.status(406).json({message: 'As informações do administrador estão incorretas!', type: 'failure'});
         }
     }));
 
@@ -99,11 +99,11 @@ router.route('/remove-patient')
             if (result == 0) {
                 res.status(200).json({message: 'Paciente removido com sucesso!', type: 'success', redirect: '/remove-patient'});
             } else {
-                res.status(200).json({message: 'Erro ao remover paciente!', type: 'failure'});
+                res.status(result.status).json({message: result.message, type: 'failure'});
             }
 
         } else {
-            res.status(200).json({message: 'As informações do administrador estão incorretas!', type: 'failure'});
+            res.status(406).json({message: 'As informações do administrador estão incorretas!', type: 'failure'});
         }
     }));
 
