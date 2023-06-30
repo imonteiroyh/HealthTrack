@@ -124,13 +124,17 @@ async function registerPatient(patientInfo) {
     if (validateCPFConst != 0) {
         return 1;
     }
+    const validateEmailConst = await validateEmail(email);
+    if (validateEmailConst != 0) {
+        return 2;
+    }
 
     const result = await database.run('INSERT INTO patients (name, birthday, cpf, email, address, phone) VALUES (?, ?, ?, ?, ?, ?)', [name, birthday, cpf, email, address, phone]);
 
     if (result.changes) {
         return 0;
     } else {
-        return 2;
+        return 3;
     }
 }
 

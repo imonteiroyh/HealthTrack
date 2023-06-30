@@ -17,7 +17,6 @@ router.route('/checkPassword')
 
         const check = await databaseQueries.checkPassword(userObject);
 
-        // Fazer tratamento adequado baseado na resposta de check
         if(check == 0){
             res.status(200).json(check);
         }
@@ -35,7 +34,6 @@ router.route('/changePassword')
 
         const result = await databaseQueries.changePassword(newPasswordObject);
 
-        // Fazer tratamento adequado baseado na resposta de result
         if(result == 0){
             res.status(200).json(result);
         }
@@ -50,7 +48,6 @@ router.route('/getUserInfo/:username')
 
         const userInfo = await databaseQueries.getUserInfo(username);
 
-        // Fazer tratamento adequado baseado na resposta de userInfo
         if(userInfo == 1){
             res.status(404).json({message: 'Informações do usuário não foram encontradas!', type: 'failure', status: 404});
         }
@@ -65,7 +62,6 @@ router.route('/hashPassword')
 
         const hashedPassword = await hashPassword(userPassword);
 
-        // Fazer tratamento adequado baseado na resposta de hashedPassword
         if(hashedPassword){
             res.status(200).json(hashedPassword);
         }
@@ -80,7 +76,6 @@ router.route('/registerUser')
 
         const result = await databaseQueries.registerUser(userObject);
 
-        // Fazer tratamento adequado baseado na resposta de result
         if(result == 1){
             res.status(409).json({message: 'Nome de usuário já está em uso!', type: 'failure', status:409});
         }
@@ -101,7 +96,6 @@ router.route('/removeUser/:username')
 
         const result = await databaseQueries.removeUser(username);
 
-        // Fazer tratamento adequado baseado na resposta de result
         if(result == 1){
             res.status(404).json({message: 'Nome de usuário não encontrado!', type: 'failure', status: 404});
         }
@@ -119,7 +113,6 @@ router.route('/removePatient/:cpf')
 
         const result = await databaseQueries.removePatient(cpf);
 
-        // Fazer tratamento adequado baseado na resposta de result
         if(result == 1){
             res.status(404).json({message: 'CPF do paciente não encontrado!', type: 'failure', status: 404});
         }
@@ -137,12 +130,14 @@ router.route('/registerPatient')
 
         const result = await databaseQueries.registerPatient(patientObject);
 
-        // Fazer tratamento adequado baseado na resposta de result
         if(result == 1){
             res.status(409).json({message: 'CPF do paciente já está em uso!', type: 'failure', status: 409});
         }
         else if(result == 0){
             res.status(200).json(result);
+        }
+        else if(result == 2){
+            res.status(409).json({message: 'Email já está em uso!', type: 'failure', status: 409});
         }
         else{
             res.status(500).json({message: 'Erro ao  cadastrar paciente!', type: 'failure', status: 500});
@@ -156,7 +151,6 @@ router.route('/registerRecord')
 
         const result = await databaseQueries.registerRecord(cpf);
 
-        // Fazer tratamento adequado baseado na resposta de result
         if(result == 1){
             res.status(404).json({message: 'CPF do paciente não encontrado!', type: 'failure', status: 404});
         }
@@ -174,7 +168,6 @@ router.route('/getRecordsByStage/:stage')
 
         const records = await databaseQueries.getRecordsByStage(stage);
 
-        // Fazer tratamento adequado baseado na resposta de records
         if(records){
             res.status(200).json(records);
         }
@@ -189,7 +182,6 @@ router.route('/editRecordRC')
 
         const records = await databaseQueries.editRecordRC(recordObject);
 
-        // Fazer tratamento adequado baseado na resposta de records
         if(records == 0){
             res.status(200).json(records);
         }
@@ -204,7 +196,6 @@ router.route('/editRecordD')
 
         const records = await databaseQueries.editRecordD(recordObject);
 
-        // Fazer tratamento adequado baseado na resposta de records
         if(records == 0){
             res.status(200).json(records);
         }
@@ -219,7 +210,6 @@ router.route('/removeRecord/:record_id')
 
         const records = await databaseQueries.removeRecord(recordObject);
 
-        // Fazer tratamento adequado baseado na resposta de records
         if(records == 0){
             res.status(200).json(records);
         }

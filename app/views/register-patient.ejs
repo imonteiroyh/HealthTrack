@@ -28,18 +28,18 @@
                     </div>
                     <div class="col">
                         <label for="inputCPF">CPF <span class="required-color">*</span></label>
-                        <input autocomplete="off" type="text" class="form-control" name="inputCPF" placeholder="Digite aqui..." required>
+                        <input autocomplete="off" type="text" minlength="11" maxlength="11" pattern="^[0-9]+$" title="Somente números e de tamanho 11 - exemplo: 12345678900" class="form-control" name="inputCPF" placeholder="Digite aqui..." required>
                     </div>
                 </div>
 
                 <div class="form-group form-content row">
                     <div class="col">
                         <label for="inputEmail">E-mail</label>
-                        <input autocomplete="off" type="email" class="form-control" name="inputEmail" placeholder="Digite aqui...">
+                        <input autocomplete="off" type="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="Exemplo: joao.silva@exemplo.com" class="form-control" name="inputEmail" placeholder="Digite aqui..."required>
                     </div>
                     <div class="col">
                         <label for="inputBirthday">Data de Nascimento</label>
-                        <input autocomplete="off" type="date" class="form-control" name="inputBirthday">
+                        <input autocomplete="off" type="date" min="1900-01-01" max="2023-12-12" class="form-control" name="inputBirthday">
                     </div>
                 </div>
 
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col">
                         <label for="inputCellphone">Celular (com DDD)</label>
-                        <input autocomplete="off" type="tel" pattern="([0-9]{2})[0-9]{5}[0-9]{4}" class="form-control" name="inputPhone" placeholder="Digite aqui...">
+                        <input autocomplete="off" type="tel" pattern="\(\d{2}\)\d{9}" title="Usar parênteses Exemplo: (00)123456789" class="form-control" name="inputPhone" placeholder="Digite aqui...">
                     </div>
                 </div>
 
