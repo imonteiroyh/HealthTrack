@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: Login</title>
+    </head>
+
+    <body class="background-light-green" id="invalid-body">
+
+        <%- include('partials/header'); %>
+
+        <%- include('partials/flash-container'); %>
+
+        <div class="wrapper">
+            <div class="login-box rounded" id="invalid">
+                <div class="logo-container">
+                    <a class="navbar-brand logo-login" href="/">
+                        <b>
+                            <span class="color-light-green">HEALTH</span>
+                            <span class="color-dark-green">TRACK</span>
+                        </b>
+                    </a>
+                </div>
+                        <b>Você acessou uma rota inválida ou o qual não possui autorização.</b>
+                        <br>
+                        <a>Clique no botão para ser redirecionado</a>
+
+                <div class="form-button">
+                    <a href="/">
+                        <button class="btn btn-primary btn-dark-green">Redirecionar</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

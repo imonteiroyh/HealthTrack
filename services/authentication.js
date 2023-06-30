@@ -14,7 +14,7 @@ function isUserAuthorizated(types) {
         if (types.includes(userRole)) {
             next();
         } else {
-            res.status(403).send('Acesso negado');
+            res.status(403).render('invalid-route')
         }
     }
 }

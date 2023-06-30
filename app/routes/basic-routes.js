@@ -37,6 +37,11 @@ router.route('/')
         }
     }));
 
+router.route('/invalid-route')
+    .get(asyncHandler(async (req, res) => {
+        res.render('invalid-route')
+}));
+
 router.route('/login')
     .get(asyncHandler(async (req, res) => {
         res.render('login');

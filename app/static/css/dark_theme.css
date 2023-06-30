@@ -35,6 +35,15 @@ body {
     padding-bottom: 0.4vw;
 }
 
+#invalid {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+#invalid-body {
+    background-color: #1a1a1a;
+}
+
 .main-header{
     background-color: #1a1a1a;
     z-index: 1;
