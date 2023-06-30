@@ -99,22 +99,23 @@ router.route('/change-password')
             if (userInfo.newPassword != userInfo.newPasswordConfirmation) {
                 res.status(400).json({message: 'As novas senhas não conferem. Tente novamente!', type: 'failure'});
             }
-
-            const userPassword = {userPassword: userInfo.newPassword};
-            const hashedPassword = await fetchData('/hashPassword', userPassword, 'POST');
-
-            const newPasswordObject = {
-                username: userInfo.username,
-                newPassword: hashedPassword
-            };
-
-            const result = await fetchData('/changePassword', newPasswordObject, 'PUT');
-
-            if (result == 0) {
-                res.status(200).json({message: 'Senha alterada com sucesso!', type: 'success', redirect: '/change-password'});
-            } else {
-                res.status(result.status).json({message: result.message, type: 'failure'});
+            else{
+                const userPassword = {userPassword: userInfo.newPassword};
+                const hashedPassword = await fetchData('/hashPassword', userPassword, 'POST');
+    
+                const newPasswordObject = {
+                    username: userInfo.username,
+                    newPassword: hashedPassword
+                };
+    
+                const result = await fetchData('/changePassword', newPasswordObject, 'PUT');
+                if (result == 0) {
+                    res.status(200).json({message: 'Senha alterada com sucesso!', type: 'success', redirect: '/login'});
+                } else {
+                    res.status(result.status).json({message: result.message, type: 'failure'});
+                }
             }
+
 
             // res.status(200).json({message: '', type: 'success', redirect: '/'});
         } else {
