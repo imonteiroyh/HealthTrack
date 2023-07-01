@@ -149,8 +149,9 @@
 
 .main-content {
     padding-left: 20%;
-    padding-top: 4%;
+    /* padding-top: 4%; */
     width: 90%;
+    padding-top: 140px;
 }
 
 
