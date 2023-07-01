@@ -70,22 +70,11 @@
     width: 85%;
 }
 
-.flash-message {
-    position: absolute;
-    top: 0;
-    left: 0;
+.flash-container-login {
+    position: relative;
+    opacity: 1;
+    display: block;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    padding: 1rem;
-    border-radius: 5px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.5s;
 }
 
 .flash-message.show {
