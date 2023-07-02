@@ -11,11 +11,15 @@ body {
 }
 
 .dropbtn {
-    background-color: #333333;
+    background-color: #1a1a1a;
     padding-left: 16px;
     padding-right: 16px;
     border: none;
     cursor: pointer;
+}
+
+.dropbtn :hover{
+    background-color: #333333;
 }
 
 .flash-message {
