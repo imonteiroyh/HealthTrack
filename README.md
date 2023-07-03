@@ -9,6 +9,16 @@ The database can be initialized with only one user, with username and password e
 npm run initialize-database
 ```
 
+## Start application and database
+
+```
+npm run app
+```
+
+```
+npm run data
+```
+
 ## Interaction between Client and Servers
 The interaction between the client and the servers is illustrated in the following image where the GET and POST methods are used for the interaction between the client and the application server and the GET, POST, PUT and DELETE methods are used for the interaction between the application server and the database server.
 
