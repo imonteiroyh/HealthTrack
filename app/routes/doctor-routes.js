@@ -29,7 +29,7 @@ router.route('/record-queue')
         const result = await fetchData('/editRecordD', recordObject, 'PUT');
 
         if (result == 0) {
-            res.status(200).json({message: 'Consulta salva com sucesso!', type: 'success'});
+            res.status(200).json({message: 'Consulta salva com sucesso!', type: 'success', redirect: '/record-queue'});
         } else {
             res.status(result.status).json({message: result.message, type: 'failure'});
         }
@@ -42,7 +42,7 @@ router.route('/remove-record')
         const result = await fetchData('/removeRecord/' + record_id, '', 'DELETE');
 
         if (result == 0) {
-            res.status(200).json({message: 'Consulta removida com sucesso!', type: 'success'});
+            res.status(200).json({message: 'Consulta removida com sucesso!', type: 'success', redirect: '/'});
         } else {
             res.status(result.status).json({message: result.message, type: 'failure'});
         }

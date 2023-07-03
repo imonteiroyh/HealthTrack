@@ -30,7 +30,7 @@ router.route('/risk-classification')
         const result = await fetchData('/editRecordRC', recordObject, 'PUT');
 
         if (result == 0) {
-            res.status(200).json({message: 'Risco classificado com sucesso!', type: 'success'});
+            res.status(200).json({message: 'Risco classificado com sucesso!', type: 'success', redirect: '/risk-classification'});
         } else {
             res.status(result.status).json({message: result.message, type: 'failure'});
         }
