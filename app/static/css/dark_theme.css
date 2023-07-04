@@ -135,7 +135,19 @@ td{
 color: #ffffff;
 }
 
-.theme img {
+/* .theme img {
     background-color: #f1f1f1;
     border-radius: 50%;
+} */
+
+.iconDarkTheme {
+    width: 37px;
+    height: 37px;
+    cursor: pointer;
+}
+
+.iconLightTheme {
+    width: 37px;
+    height: 37px;
+    display: none;
 }

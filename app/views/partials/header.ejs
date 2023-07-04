@@ -10,8 +10,11 @@
     <% if (typeof initials !== 'undefined') { %>
         <div class="d-flex justify-content-flex-end align-items-center">
             <div class="theme">
-                <a href="" onclick="swapTheme()">
-                    <img class="iconDarkTheme" src="/images/dark-theme.png">
+                <a onclick="swapTheme('dark_theme.css')">
+                    <img  class="iconLightTheme" src="/images/sol.png">
+                </a>
+                <a onclick="swapTheme('light_theme.css')">
+                    <img  class="iconDarkTheme" src="/images/lua.png">
                 </a>
             </div>
             <div class="dropdown">
