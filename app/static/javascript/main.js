@@ -13,54 +13,6 @@ function applyThemeBasedOnRoute() {
     }
 }
 
-// function swapTheme(){
-//     if(localStorage.getItem('sheet')){
-//         var sheet = localStorage.getItem('sheet');
-//         if(sheet == 'light_theme.css'){
-//             sheet = 'dark_theme.css'
-//             document.getElementById('theme').setAttribute('href', 'css/' + sheet);
-//             localStorage.setItem('sheet', sheet);
-//         }
-//         else{
-//             sheet = 'light_theme.css'
-//             document.getElementById('theme').setAttribute('href', 'css/' + sheet);
-//             localStorage.setItem('sheet', sheet);
-//         }
-//     }
-//     else{
-//         localStorage.setItem('sheet', 'light_theme.css');
-//         var sheet = localStorage.getItem('sheet');
-//         if(sheet == 'light_theme.css'){
-//             sheet = 'dark_theme.css'
-//             document.getElementById('theme').setAttribute('href', 'css/' + sheet);
-//             localStorage.setItem('sheet', sheet);
-//         }
-//         else{
-//             sheet = 'light_theme.css'
-//             document.getElementById('theme').setAttribute('href', 'css/' + sheet);
-//             localStorage.setItem('sheet', sheet);
-//         }
-//     }
-// }
-
-// function applyThemeBasedOnRoute() {
-//     var currentRoute = window.location.pathname;
-
-//     if (currentRoute === '/login') {
-//         document.getElementById('theme').setAttribute('href', 'css/' + 'light_theme.css');
-//     } else {
-//         if(!localStorage.getItem('sheet')){
-//             localStorage.setItem('sheet', 'light_theme.css');
-//             var sheet = localStorage.getItem('sheet');
-//             document.getElementById('theme').setAttribute('href', 'css/' + sheet);
-//         }
-//         else{
-//             var sheet = localStorage.getItem('sheet');
-//             document.getElementById('theme').setAttribute('href', 'css/' + sheet);
-//         }
-//     }
-// }
-
 function increaseFontSize() {
     var element = document.getElementById("valueFontSize");
     var size = window.getComputedStyle(element, null).getPropertyValue("font-size");

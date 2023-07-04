@@ -233,11 +233,13 @@
     border-radius: 15%;
 }
 
+.theme {
+    text-align: right;
+}
+
 .wrapper {
     height: 100%;
     background-color: #acccc7;
 }
 
-.theme {
-    text-align: right;
-}
+

@@ -48,6 +48,18 @@ body {
     background-color: #4c4c4c;
 }
 
+.iconLightTheme {
+    width: 37px;
+    height: 37px;
+    display: none;
+}
+
+.iconDarkTheme {
+    width: 37px;
+    height: 37px;
+    cursor: pointer;
+}
+
 .icon-list {
     list-style: none;
     padding: 0;
@@ -133,21 +145,4 @@ color: #ffffff;
 
 td{
 color: #ffffff;
-}
-
-/* .theme img {
-    background-color: #f1f1f1;
-    border-radius: 50%;
-} */
-
-.iconDarkTheme {
-    width: 37px;
-    height: 37px;
-    cursor: pointer;
-}
-
-.iconLightTheme {
-    width: 37px;
-    height: 37px;
-    display: none;
 }

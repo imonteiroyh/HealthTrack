@@ -29,6 +29,18 @@
     transition: opacity 0.5s;
 }
 
+.iconDarkTheme {
+    width: 37px;
+    height: 37px;
+    display: none;
+}
+
+.iconLightTheme {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
 .icon-list {
     list-style: none;
     padding: 0;
@@ -62,16 +74,4 @@
 
 .nav-primary a:hover {
     background-color: #acccc7;
-}
-
-.iconLightTheme {
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
-}
-
-.iconDarkTheme {
-    width: 37px;
-    height: 37px;
-    display: none;
 }
