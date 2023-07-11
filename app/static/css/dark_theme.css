@@ -1,0 +1,148 @@
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dropdown {
+    background-color: #333333;
+    border-radius: 8px;
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #1a1a1a;
+    padding-left: 16px;
+    padding-right: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn :hover{
+    background-color: #333333;
+}
+
+.flash-message {
+    position: fixed;
+    margin-top: 93px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1a1a1a;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.form-button :hover {
+    background-color: #4c4c4c;
+}
+
+.fontButton :hover {
+    background-color: #4c4c4c;
+}
+
+.iconLightTheme {
+    width: 37px;
+    height: 37px;
+    display: none;
+}
+
+.iconDarkTheme {
+    width: 37px;
+    height: 37px;
+    cursor: pointer;
+}
+
+.icon-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border-radius: 10%;
+    padding-bottom: 0.4vw;
+}
+
+#invalid {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+#invalid-body {
+    background-color: #1a1a1a;
+}
+
+.main-header{
+    background-color: #1a1a1a;
+    z-index: 1;
+    padding:15px;
+    position: fixed;
+    width: 100%;
+    height: 93px;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.modal-header {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.modal-body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.modal-footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.modal-footer :hover {
+    background-color: #4c4c4c;
+}
+
+.nav-primary {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    top: auto;
+    width: 15%;
+    z-index: 0;
+    position: fixed;
+    padding-top: 93px;;
+}
+
+.nav-primary a.active {
+    background-color: #4c4c4c;
+    color: #ffffff;
+}
+
+.nav-primary a:hover {
+    background-color: #4c4c4c;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #ffffff;
+}
+
+.text-start {
+color: #ffffff;
+}
+
+.text-center {
+color: #ffffff;
+}
+
+td{
+color: #ffffff;
+}

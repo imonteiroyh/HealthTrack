@@ -1,0 +1,57 @@
+
+<header id="header" class="main-header navbar border shadow">
+    <a class="navbar-brand logo" href="/">
+        <b>
+            <span class="color-light-green">HEALTH</span>
+            <span class="color-dark-green">TRACK</span>
+        </b>
+    </a>
+
+    <% if (typeof initials !== 'undefined') { %>
+        <div class="d-flex justify-content-flex-end align-items-center">
+            <div class="theme">
+                <a onclick="swapTheme('dark_theme.css')">
+                    <img  class="iconLightTheme" src="/images/sol.png">
+                </a>
+                <a onclick="swapTheme('light_theme.css')">
+                    <img  class="iconDarkTheme" src="/images/lua.png">
+                </a>
+            </div>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle dropbtn" type="button">
+                    <span class="circle padding-top-3">
+                        <span class="initials"><%= initials %></span>
+                    </span>
+                </button>
+                <div class="dropdown-content border right-0">
+                    <div>
+                        <a> 
+                            <img class="nav-icon" src="/images/fontSize.png" alt="Ícone de tamanho da fonte">
+                            <div class="btn-group fontButton" role="group">
+                                <button type="button" class="btn btn-primary btn-dark-green" onclick="decreaseFontSize()">A-</button>
+                                <button type="button" class="btn btn-primary btn-dark-green" onclick="clearFontSize()">A</button>
+                                <button type="button" class="btn btn-primary btn-dark-green" onclick="increaseFontSize()">A+</button>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="border-top"></div>
+                    <a href="/change-password">
+                        <img class="nav-icon" src="/images/change-password.png" alt="Ícone de mudar senha">
+                        Alterar Senha
+                    </a>
+                    <div class="border-top"></div>
+                    <a href="/logout" onclick="localStorage.clear()">
+                        <img class="nav-icon" src="/images/logout.png" alt="Ícone de logout">
+                        Sair
+                    </a>
+                </div>
+            </div>
+        </div>
+            
+        
+    <% } else { %>
+        
+
+    <% } %>
+
+</header>

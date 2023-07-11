@@ -1,0 +1,245 @@
+.action-icon {
+    max-width: 70%;
+    height: auto;
+}
+
+.background-light-green {
+    background-color: #acccc7;
+}
+
+.background-dark-green {
+    background-color: #70969e;
+}
+
+.btn-dark-green {
+    background-color: #70969e;
+}
+
+.circle {
+    height: 35px;
+    width: 35px;
+    background-color: #a5b6c7;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.color-light-green {
+    color: #acccc7;
+}
+
+.color-dark-green {
+    color: #70969e;
+}
+
+.divider {
+    height: 1px;
+    background-color: #2a3b4c;
+    border: none;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #000000;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #f1f1f1;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.flash-container {
+    position: relative;
+    opacity: 1;
+    display: block;
+    left: 15%;
+    width: 85%;
+}
+
+.flash-container-login {
+    position: relative;
+    opacity: 1;
+    display: block;
+    width: 100%;
+}
+
+.flash-message.show {
+    opacity: 1;
+}
+
+.flash-container.full {
+    left: 0%;
+    width: 100%;
+}
+
+.float-right {
+    float:right;
+}
+
+.form-content {
+    padding-bottom: 10px;
+}
+
+.form-button {
+    padding-top: 20px;
+}
+
+.icon-container {
+    width: 30px;
+    height: auto;
+    display: flex;
+}
+
+
+.icon-item {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.initials {
+    font-family: 'Barlow';
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.login-box {
+    width: 30%;
+    height: 50%;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-family: 'Barlow';
+    font-size: 34px;
+    padding-left: 20px;
+}
+
+.logo-container {
+    height: 30%;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.logo-login {
+    font-family: 'Barlow';
+    font-size: 3vw;
+}
+
+.main-content {
+    padding-left: 20%;
+    /* padding-top: 4%; */
+    width: 90%;
+    padding-top: 140px;
+}
+
+
+.main-title {
+    font-size: 30px;
+}
+
+.nav-icon {
+    max-width: 10%;
+    height: auto;
+}
+
+
+.nav-primary a {
+    display: block;
+    padding: 15px;
+    color: #f1f1f1;
+    text-decoration: none;
+}
+
+.no-resize {
+    resize: none;
+}
+
+.padding-top-3 {
+    padding-top: 3px;
+}
+
+.required-color {
+    color: red;
+}
+
+.right-0 {
+    right: 0;
+}
+
+.risk1 {
+    display: inline-block;
+    background-color: rgba(201,30,38,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
+}
+
+.risk2 {
+    display: inline-block;
+    background-color: rgba(243,107,33,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
+}
+
+.risk3 {
+    display: inline-block;
+    background-color: rgba(225,208,30,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
+}
+
+.risk4 {
+    display: inline-block;
+    background-color: rgba(1,134,69,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
+}
+
+.risk5 {
+    display: inline-block;
+    background-color: rgba(0,148,218,0.7);
+    width: 40px;
+    height: auto;
+    border: #1a1a1a 1px solid;
+    border-radius: 15%;
+}
+
+.theme {
+    text-align: right;
+}
+
+.wrapper {
+    height: 100%;
+    background-color: #acccc7;
+}
+
+

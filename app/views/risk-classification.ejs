@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+    <head>
+        <%- include('partials/head'); %>
+        <title> HealthTrack: Classificação de Risco</title>
+    </head>
+
+    <body>
+
+        <%- include('partials/header', {initials}); %>
+
+        <%- include('partials/flash-container'); %>
+
+        <nav class="nav-primary">
+            <% const currentPage = 'risk-classification'; %>
+            <%- include('partials/risk-classification-sidebar', {currentPage}); %>
+        </nav>
+
+        <div class="main-content">
+            <b class="main-title">Classificação de Risco</b>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-start col-2">ID da Consulta</th>
+                        <th scope="col" class="text-start">Nome do Paciente</th>
+                        <th scope="col" class="text-center col-1">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i = 0; i < records.length; i++) { %>
+                        <tr>
+                            <th scope="row" class="text-start"><%= records[i].id %></th>
+                            <td class="text-start"><%= records[i].name %></td>
+                            <td class="text-center">
+                                <ul class="icon-list">
+                                    <li class="icon-item">
+                                        <div class="icon-container">
+                                            <a href="" data-toggle="modal" data-target="#myModal_<%= records[i].id %>">
+                                                <img class="action-icon" src="/images/editar.png" alt="Ícone de edição">
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="icon-item">
+                                        <div class="icon-container">
+                                            <a href="" data-toggle="modal" data-target="#removeModal_<%= records[i].id %>">
+                                                <img class="action-icon" src="/images/remover.png" alt="Ícone de remoção">
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        <div class="modal" id="myModal_<%= records[i].id %>">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">Editar</h5>
+                                    </div>
+
+                                    <form action="/risk-classification" method="post">
+                                    <div class="modal-body">
+                                        <div class="form-group form-content row">
+                                        <h5 class="main-title patientInfo">Informações do Paciente</h5>
+                                            <div class="col">
+                                                <label for="inputName">Nome Completo <span class="required-color">*</span></label>
+                                                <input readonly type="text" class="form-control" name="inputName" id="inputName" value="<%= records[i].name %>" placeholder="Digite aqui..." required >
+                                            </div>
+
+                                            <input type="hidden" class="form-control" name="inputRecordId" id="inputRecordId" value= <%= records[i].id %>>
+
+                                        </div>
+                                        <div class="form-group form-content row">
+                                            <div class="col">
+                                                <label for="inputBirthday">Data de Nascimento <span class="required-color">*</span></label>
+                                                <input readonly type="date" class="form-control" name="inputBirthday" id="inputBirthday" value="<%= records[i].birthday %>" placeholder="Digite aqui..." required >
+                                            </div>
+                                        </div>
+                                        <h5 class="main-title patientData">Dados do Paciente</h5>
+                                        <div class="form-group form-content row">
+                                            <div class="col">
+                                                <label for="inputPressure">Pressão Arterial <span class="required-color">*</span></label>
+                                                <input autocomplete="off" type="text" pattern="\d{2,3}/\d{2,3}" title="Digite a pressão arterial no formato sistólica/diastólica: 'NN/NNN ou NNN/NN'" class="form-control" name="inputPressure" id="inputPressure"
+                                                placeholder="Digite aqui..." required>
+                                            </div>
+                                            <div class="col">
+                                                <label for="inputTemperature">Temperatura Corporal<span class="required-color">*</span></label>
+                                                <input autocomplete="off" type="number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="form-control" name="inputTemperature" id="inputTemperature" placeholder="Digite aqui..." required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-content row">
+                                            <div class="col">
+                                                <label for="inputDescription">Descrição</label>
+                                                <textarea autocomplete="off" type="text" class="form-control no-resize" name="inputDescription" id="inputDescription" placeholder="Digite aqui.." rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-content row">
+                                            <div class="col">
+                                                <label for="selectRisk">Grau de Risco<span class="required-color">*</span></label>
+                                                <select class="form-select" name="selectRisk" id="selectRisk" aria-label="Default select example" required>
+                                                    <option value="">Classifique o grau de Risco</option>
+                                                    <option class="risk1" value="1">Risco 1</option>
+                                                    <option class="risk2" value="2">Risco 2</option>
+                                                    <option class="risk3" value="3">Risco 3</option>
+                                                    <option class="risk4" value="4">Risco 4</option>
+                                                    <option class="risk5" value="5">Risco 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary btn-dark-green" data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary btn-dark-green">Salvar</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal" id="removeModal_<%= records[i].id %>">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">Remover</h5>
+                                    </div>
+
+                                    <form action="/remove-record" method="post">
+                                        <div class="modal-body">
+                                            <b>Deseja realmente remover essa consulta?</b>
+                                            <br>
+                                            <a>Consulta de <%= records[i].name %></a>
+
+                                            <input type="hidden" class="form-control" name="inputRecordId" id="inputRecordId" value= <%= records[i].id %>>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary btn-dark-green" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary btn-dark-green">Confirmar</button>
+                                        </div>
+                                        </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <meta http-equiv="refresh" content="60">
+    </body>
+
+</html>
