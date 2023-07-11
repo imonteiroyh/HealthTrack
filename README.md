@@ -1,6 +1,6 @@
 # HealthTrack
 
-HealthTrack consists of a medical tool for managing patients in a health care unit, such as emergency units (UPAs) or hospitals. The project was developed as the conclusion work of the Web Applications Development Course in July 2023.
+HealthTrack consists of a medical tool for managing patients in a health care unit, such as emergency units (such as UPAs, in Brazil) or hospitals. The project was developed as the conclusion work of the Web Applications Development Course in July 2023.
 
 ## Database initialization
 The database can be initialized with only one user, with username and password equal to **admin** by the following command.
