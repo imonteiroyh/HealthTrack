@@ -44,4 +44,4 @@ Visualize the records in a table, which is periodically updated and ordered by r
 Visualize the records in a table, which is periodically updated and ordered by risk. The user can edit the information previously collected by the risk classifier.
 
 ## Contributions
-The project was made by Vandemberg Monteiro, responsible for the back-end, and Yago Oliveira, responsible for the front-end. It is worth mentioning that both project's participants took part in the development and testing of the application's functionalities.
+The project was made by Vandemberg Monteiro, responsible for the back-end, and Yago Oliveira, responsible for the front-end.
